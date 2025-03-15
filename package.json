@@ -1,0 +1,36 @@
+{
+  "dependencies": {
+    "@tailwindcss/postcss": "^4.0.14",
+    "amqplib": "^0.10.5",
+    "bcrypt": "^5.1.1",
+    "config": "^3.3.12",
+    "cookie-parser": "^1.4.7",
+    "dbgr": "^1.0.0",
+    "dotenv": "^16.4.7",
+    "ejs": "^3.1.10",
+    "express": "^4.21.2",
+    "jsonwebtoken": "^9.0.2",
+    "mongoose": "^8.12.1",
+    "nodemon": "^3.1.9",
+    "path": "^0.12.7",
+    "postcss": "^8.5.3",
+    "socket.io": "^4.8.1",
+    "tailwind": "^4.0.0"
+  },
+  "name": "manipal",
+  "version": "1.0.0",
+  "main": "App.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "cross-env NODE_ENV=production node App.js",
+    "dev": "cross-env NODE_ENV=development node App.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "devDependencies": {
+    "cross-env": "^7.0.3",
+    "tailwindcss": "^4.0.14"
+  }
+}

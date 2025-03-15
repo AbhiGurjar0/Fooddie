@@ -1,0 +1,76 @@
+<%- include('./partials/header') %>
+    <nav class="flex justify-between box-border  text-black">
+        <svg class="w-[5vw]" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M3 4H21V6H3V4ZM3 11H15V13H3V11ZM3 18H21V20H3V18Z"></path>
+        </svg>
+        <svg class="w-[5vw]" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+            <path
+                d="M4.00436 6.41686L0.761719 3.17422L2.17593 1.76001L5.41857 5.00265H20.6603C21.2126 5.00265 21.6603 5.45037 21.6603 6.00265C21.6603 6.09997 21.6461 6.19678 21.6182 6.29L19.2182 14.29C19.0913 14.713 18.7019 15.0027 18.2603 15.0027H6.00436V17.0027H17.0044V19.0027H5.00436C4.45207 19.0027 4.00436 18.5549 4.00436 18.0027V6.41686ZM5.50436 23.0027C4.67593 23.0027 4.00436 22.3311 4.00436 21.5027C4.00436 20.6742 4.67593 20.0027 5.50436 20.0027C6.33279 20.0027 7.00436 20.6742 7.00436 21.5027C7.00436 22.3311 6.33279 23.0027 5.50436 23.0027ZM17.5044 23.0027C16.6759 23.0027 16.0044 22.3311 16.0044 21.5027C16.0044 20.6742 16.6759 20.0027 17.5044 20.0027C18.3328 20.0027 19.0044 20.6742 19.0044 21.5027C19.0044 22.3311 18.3328 23.0027 17.5044 23.0027Z">
+            </path>
+        </svg>
+    </nav>
+    <p class="text-black py-2">Hello, <span>Abhishek</span></p>
+    <p class=" text-3xl text-black">What would you like to <span class="text-orange-500 font-bold">eat?</span></p>
+    <div class="w-full h-[10vh] box-border flex items-center justify-center gap-1 ">
+        <div class="relative"><svg class=" absolute w-[6vw] top-[.35em] left-1" xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24" fill="black">
+                <path
+                    d="M11 2C15.968 2 20 6.032 20 11C20 15.968 15.968 20 11 20C6.032 20 2 15.968 2 11C2 6.032 6.032 2 11 2ZM11 18C14.8675 18 18 14.8675 18 11C18 7.1325 14.8675 4 11 4C7.1325 4 4 7.1325 4 11C4 14.8675 7.1325 18 11 18ZM19.4853 18.0711L22.3137 20.8995L20.8995 22.3137L18.0711 19.4853L19.4853 18.0711Z">
+                </path>
+            </svg>
+            <input type="text" placeholder="Search for food.."
+                class="w-[100%] py-[.3em] px-8 border outline-none rounded-md text-md text-black">
+            <svg class="absolute w-[6vw] top-[.3em] right-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
+                fill="black">
+                <path
+                    d="M11.9998 3C10.3429 3 8.99976 4.34315 8.99976 6V10C8.99976 11.6569 10.3429 13 11.9998 13C13.6566 13 14.9998 11.6569 14.9998 10V6C14.9998 4.34315 13.6566 3 11.9998 3ZM11.9998 1C14.7612 1 16.9998 3.23858 16.9998 6V10C16.9998 12.7614 14.7612 15 11.9998 15C9.23833 15 6.99976 12.7614 6.99976 10V6C6.99976 3.23858 9.23833 1 11.9998 1ZM3.05469 11H5.07065C5.55588 14.3923 8.47329 17 11.9998 17C15.5262 17 18.4436 14.3923 18.9289 11H20.9448C20.4837 15.1716 17.1714 18.4839 12.9998 18.9451V23H10.9998V18.9451C6.82814 18.4839 3.51584 15.1716 3.05469 11Z">
+                </path>
+            </svg>
+        </div>
+        <div class="w-[9vw] h-[9vw] rounded-md bg-orange-600 p-1">
+            <svg class="w-[7vw] h-[7vw]" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white">
+                <path
+                    d="M6.17071 18C6.58254 16.8348 7.69378 16 9 16C10.3062 16 11.4175 16.8348 11.8293 18H22V20H11.8293C11.4175 21.1652 10.3062 22 9 22C7.69378 22 6.58254 21.1652 6.17071 20H2V18H6.17071ZM12.1707 11C12.5825 9.83481 13.6938 9 15 9C16.3062 9 17.4175 9.83481 17.8293 11H22V13H17.8293C17.4175 14.1652 16.3062 15 15 15C13.6938 15 12.5825 14.1652 12.1707 13H2V11H12.1707ZM6.17071 4C6.58254 2.83481 7.69378 2 9 2C10.3062 2 11.4175 2.83481 11.8293 4H22V6H11.8293C11.4175 7.16519 10.3062 8 9 8C7.69378 8 6.58254 7.16519 6.17071 6H2V4H6.17071Z">
+                </path>
+            </svg>
+        </div>
+
+    </div>
+    <div class="w-full h-[7vh] flex  gap-2  overflow-x-auto overflow-y-hidden">
+        <button class="text-md h-[70%] px-6 rounded-lg bg-zinc-200">Burger</button>
+        <button class="text-md h-[70%] px-6 rounded-lg bg-zinc-200">Slides</button>
+        <button class="text-md h-[70%] px-6 rounded-lg bg-zinc-200">Snacks</button>
+        <button class="text-md h-[70%] px-6 rounded-lg bg-zinc-200">Drinks</button>
+        <button class="text-md h-[70%] px-6 rounded-lg bg-zinc-200">Pizza</button>
+    </div>
+    <div class="w-full h-[20vh] box-border  overflow-none  ">
+        <h1 class="font-bold text-2xl">Today's Special Offer</h1>
+        <div class=" w-full h-[90%] rounded-lg flex shadow-[15px_15px_15px_15px_rgba(0,0,0,0.25)] rounded-l-xl">
+            <div class="w-[50%] h-full overflow-none">
+                <img class="w-full h-[80%] object-cover" src="../images/Special.jpg" alt="burger">
+            </div>
+            <div class="w-[50%] h-full text-center bg-zinc-200 p-2 rounded-tr-lg rounded-br-lg">
+                <p class="font-semibold">Special Burger</p>
+                <p class="text-sm">New</p>
+                <p class="text-md font-bold">800</p>
+                <button
+                    class="mt-3 text-md py-1 px-5 border-2 border-orange-500 text-orange-500 bg-transparent rounded-md">Add
+                    to Cart</button>
+            </div>
+        </div>
+
+    </div>
+    <div class="w-full h-[30vh] box-border  ">
+        <h1 class="text-xl font-bold">Popular Now</h1>
+        <div class="w-full h-[90%] flex gap-2">
+            <div class="h-full w-[40vw] ">
+                <img src="" alt="">
+                <h2>Salad</h2>
+                <h2>200</h2>
+            </div>
+            <div></div>
+            <div></div>
+        </div>
+    </div>
+
+    <%- include('./partials/footer') %>

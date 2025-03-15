@@ -1,0 +1,33 @@
+<%- include('./partials/header') %>
+    <div class="w-full h-screen bg-white text-black pt-5">
+        <header class="relative w-full px-5">
+            <div class="w-full flex justify-around">
+                <h1 id="signup">Sign Up</h1>
+                <h1 id="signin">Sign In</h1>
+            </div>
+            <div id="border" class="absolute left-[10px] top-8 w-[50%] bg-orange-500 h-1 mt-2"></div>
+           
+        </header>
+        <main class="w-[80%] h-[40vh] flex flex-col gap-5  m-auto mt-10 ">
+            <form id="login" method="post" action="/login" class="hidden w-[100%] h-[40vh] flex flex-col gap-5  m-auto mt-10 ">
+                <input type="email" placeholder="Email" required class="bg-zinc-300 py-2 px-3 outline-none rounded-md"
+                    name="email">
+                <input type="password" placeholder="password" required
+                    class="bg-zinc-300 py-2 px-3 outline-none rounded-md" name="password">
+                <button class="font-bold px-10 py-2 bg-orange-600 rounded-full">Login</button>
+
+            </form>
+            <form id="register" method="post" action="/register" class="w-[100%] h-[40vh] flex flex-col gap-5  m-auto mt-10 ">
+                <input type="text" placeholder="Fullname" required class="bg-zinc-300 py-2 px-3 outline-none rounded-md"
+                    name="fullname">
+                <input type="email" placeholder="Email" required class="bg-zinc-300 py-2 px-3 outline-none rounded-md"
+                    name="email">
+                <input type="password" placeholder="password" required
+                    class="bg-zinc-300 py-2 px-3 outline-none rounded-md" name="password">
+                <button class="font-bold px-10 py-2 bg-orange-600 rounded-full">Register</button>
+
+            </form>
+
+        </main>
+    </div>
+    <%- include('./partials/footer') %>

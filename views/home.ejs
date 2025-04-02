@@ -1,76 +1,269 @@
 <%- include('./partials/header') %>
-    <nav class="flex justify-between box-border  text-black">
-        <svg class="w-[5vw]" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
-            <path d="M3 4H21V6H3V4ZM3 11H15V13H3V11ZM3 18H21V20H3V18Z"></path>
-        </svg>
-        <svg class="w-[5vw]" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
-            <path
-                d="M4.00436 6.41686L0.761719 3.17422L2.17593 1.76001L5.41857 5.00265H20.6603C21.2126 5.00265 21.6603 5.45037 21.6603 6.00265C21.6603 6.09997 21.6461 6.19678 21.6182 6.29L19.2182 14.29C19.0913 14.713 18.7019 15.0027 18.2603 15.0027H6.00436V17.0027H17.0044V19.0027H5.00436C4.45207 19.0027 4.00436 18.5549 4.00436 18.0027V6.41686ZM5.50436 23.0027C4.67593 23.0027 4.00436 22.3311 4.00436 21.5027C4.00436 20.6742 4.67593 20.0027 5.50436 20.0027C6.33279 20.0027 7.00436 20.6742 7.00436 21.5027C7.00436 22.3311 6.33279 23.0027 5.50436 23.0027ZM17.5044 23.0027C16.6759 23.0027 16.0044 22.3311 16.0044 21.5027C16.0044 20.6742 16.6759 20.0027 17.5044 20.0027C18.3328 20.0027 19.0044 20.6742 19.0044 21.5027C19.0044 22.3311 18.3328 23.0027 17.5044 23.0027Z">
-            </path>
-        </svg>
-    </nav>
-    <p class="text-black py-2">Hello, <span>Abhishek</span></p>
-    <p class=" text-3xl text-black">What would you like to <span class="text-orange-500 font-bold">eat?</span></p>
-    <div class="w-full h-[10vh] box-border flex items-center justify-center gap-1 ">
-        <div class="relative"><svg class=" absolute w-[6vw] top-[.35em] left-1" xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 24 24" fill="black">
-                <path
-                    d="M11 2C15.968 2 20 6.032 20 11C20 15.968 15.968 20 11 20C6.032 20 2 15.968 2 11C2 6.032 6.032 2 11 2ZM11 18C14.8675 18 18 14.8675 18 11C18 7.1325 14.8675 4 11 4C7.1325 4 4 7.1325 4 11C4 14.8675 7.1325 18 11 18ZM19.4853 18.0711L22.3137 20.8995L20.8995 22.3137L18.0711 19.4853L19.4853 18.0711Z">
-                </path>
-            </svg>
-            <input type="text" placeholder="Search for food.."
-                class="w-[100%] py-[.3em] px-8 border outline-none rounded-md text-md text-black">
-            <svg class="absolute w-[6vw] top-[.3em] right-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
-                fill="black">
-                <path
-                    d="M11.9998 3C10.3429 3 8.99976 4.34315 8.99976 6V10C8.99976 11.6569 10.3429 13 11.9998 13C13.6566 13 14.9998 11.6569 14.9998 10V6C14.9998 4.34315 13.6566 3 11.9998 3ZM11.9998 1C14.7612 1 16.9998 3.23858 16.9998 6V10C16.9998 12.7614 14.7612 15 11.9998 15C9.23833 15 6.99976 12.7614 6.99976 10V6C6.99976 3.23858 9.23833 1 11.9998 1ZM3.05469 11H5.07065C5.55588 14.3923 8.47329 17 11.9998 17C15.5262 17 18.4436 14.3923 18.9289 11H20.9448C20.4837 15.1716 17.1714 18.4839 12.9998 18.9451V23H10.9998V18.9451C6.82814 18.4839 3.51584 15.1716 3.05469 11Z">
-                </path>
-            </svg>
-        </div>
-        <div class="w-[9vw] h-[9vw] rounded-md bg-orange-600 p-1">
-            <svg class="w-[7vw] h-[7vw]" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white">
-                <path
-                    d="M6.17071 18C6.58254 16.8348 7.69378 16 9 16C10.3062 16 11.4175 16.8348 11.8293 18H22V20H11.8293C11.4175 21.1652 10.3062 22 9 22C7.69378 22 6.58254 21.1652 6.17071 20H2V18H6.17071ZM12.1707 11C12.5825 9.83481 13.6938 9 15 9C16.3062 9 17.4175 9.83481 17.8293 11H22V13H17.8293C17.4175 14.1652 16.3062 15 15 15C13.6938 15 12.5825 14.1652 12.1707 13H2V11H12.1707ZM6.17071 4C6.58254 2.83481 7.69378 2 9 2C10.3062 2 11.4175 2.83481 11.8293 4H22V6H11.8293C11.4175 7.16519 10.3062 8 9 8C7.69378 8 6.58254 7.16519 6.17071 6H2V4H6.17071Z">
-                </path>
-            </svg>
-        </div>
-
-    </div>
-    <div class="w-full h-[7vh] flex  gap-2  overflow-x-auto overflow-y-hidden">
-        <button class="text-md h-[70%] px-6 rounded-lg bg-zinc-200">Burger</button>
-        <button class="text-md h-[70%] px-6 rounded-lg bg-zinc-200">Slides</button>
-        <button class="text-md h-[70%] px-6 rounded-lg bg-zinc-200">Snacks</button>
-        <button class="text-md h-[70%] px-6 rounded-lg bg-zinc-200">Drinks</button>
-        <button class="text-md h-[70%] px-6 rounded-lg bg-zinc-200">Pizza</button>
-    </div>
-    <div class="w-full h-[20vh] box-border  overflow-none  ">
-        <h1 class="font-bold text-2xl">Today's Special Offer</h1>
-        <div class=" w-full h-[90%] rounded-lg flex shadow-[15px_15px_15px_15px_rgba(0,0,0,0.25)] rounded-l-xl">
-            <div class="w-[50%] h-full overflow-none">
-                <img class="w-full h-[80%] object-cover" src="../images/Special.jpg" alt="burger">
+    <div class="absolute hidden">Item added successfully</div>
+    <div class="w-full h-[100vh] flex gap-5">
+        <aside class="w-[18%] h-screen bg-white p-5 flex flex-col gap-5 fixed top-0 left-0">
+            <h1 class="text-3xl text-center text-black font-bold uppercase">Foddy.</h1>
+            <div id="das" onclick="goToSection(this, 'dashboard')"
+                class="cursor-pointer w-full flex gap-4 items-center justify-start bg-[#F8B602] py-2 pl-2 rounded-[1vw] ">
+                📊
+                <p class="text-lg">Dashboard</p>
             </div>
-            <div class="w-[50%] h-full text-center bg-zinc-200 p-2 rounded-tr-lg rounded-br-lg">
-                <p class="font-semibold">Special Burger</p>
-                <p class="text-sm">New</p>
-                <p class="text-md font-bold">800</p>
-                <button
-                    class="mt-3 text-md py-1 px-5 border-2 border-orange-500 text-orange-500 bg-transparent rounded-md">Add
-                    to Cart</button>
+            <div id="foo" onclick="goToSection(this, 'food-delivery')"
+                class="cursor-pointer w-full flex gap-4 items-center  justify-start  py-2  pl-2 rounded-[1vw] hover:bg-gray-200">
+                <img class="w-[1.7w] h-[1.7vw]" src="../images/Vector.svg" alt="">
+                <p class="text-lg">Food orders</p>
             </div>
-        </div>
-
-    </div>
-    <div class="w-full h-[30vh] box-border  ">
-        <h1 class="text-xl font-bold">Popular Now</h1>
-        <div class="w-full h-[90%] flex gap-2">
-            <div class="h-full w-[40vw] ">
-                <img src="" alt="">
-                <h2>Salad</h2>
-                <h2>200</h2>
+            <div id="fav" onclick="goToSection(this ,'favorite')"
+                class="cursor-pointer w-full flex gap-4 items-center justify-start  py-2  pl-2 rounded-[1vw] hover:bg-gray-200">
+                <img class="w-[1.7vw] h-[1.7vw]" src="../images/fav.svg" alt="">
+                <p class="text-lg">Favorite</p>
             </div>
-            <div></div>
-            <div></div>
-        </div>
-    </div>
+            <div id="ord" onclick="goToSection(this,'order-history')"
+                class="cursor-pointer w-full flex gap-4 items-center justify-start  py-2  pl-2 rounded-[1vw] hover:bg-gray-200">
+                <img class="w-[1.7vw] h-[1.7vw]" src="../images/order.svg" alt="">
+                <p class="text-lg">Order history</p>
+            </div>
+            <div id="mes" onclick="goToSection(this ,'messages')"
+                class="cursor-pointer w-full flex gap-4 items-center justify-start  py-2  pl-2 rounded-[1vw] hover:bg-gray-200">
+                <img class="w-[1.7vw] h-[1.7vw]" src="../images/message.svg" alt="">
+                <p class="text-lg">Messages</p>
+            </div>
+            <div id="bil" onclick="goToSection(this,'bills')"
+                class="cursor-pointer w-full flex gap-4 items-center justify-start  py-2  pl-2 rounded-[1vw] hover:bg-gray-200">
+                <img class="w-[1.7vw] h-[1.7vw]" src="../images/bills.svg" alt="">
+                <p class="text-lg">Cart</p>
+            </div>
+            <div id="set" onclick="goToSection(this,'setting')"
+                class="cursor-pointer w-full flex gap-4 items-center justify-start  py-2  pl-2 rounded-[1vw] hover:bg-gray-200">
+                <img class="w-[1.7vw] h-[1.7vw]" src="../images/setting.svg" alt="">
+                <p class="text-lg">
+                    Setting
+                </p>
+            </div>
 
+        </aside>
+        <main class="ml-[20%] w-[80%] min-h-screen overflow-y-auto  hide-scrollbar  py-2">
+            <div id="dashboard" class=" tabs w-full h-full flex flex-col gap-5 ">
+                <nav class="w-full h-[10%] flex items-center justify-between  py-5">
+                    <h1>HI, Abhi</h1>
+                    <div class="flex gap-5 items-center">
+                        <div class="relative">
+                            <span
+                                class="w-[1.5vw] h-[1.5vw] text-sm rounded-[50%] absolute bg-white text-black text-center -top-2 -left-2">1</span>
+                            <svg class="w-[2vw] h-[2vw]" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
+                                fill="currentColor">
+                                <path
+                                    d="M4.00436 6.41686L0.761719 3.17422L2.17593 1.76001L5.41857 5.00265H20.6603C21.2126 5.00265 21.6603 5.45037 21.6603 6.00265C21.6603 6.09997 21.6461 6.19678 21.6182 6.29L19.2182 14.29C19.0913 14.713 18.7019 15.0027 18.2603 15.0027H6.00436V17.0027H17.0044V19.0027H5.00436C4.45207 19.0027 4.00436 18.5549 4.00436 18.0027V6.41686ZM5.50436 23.0027C4.67593 23.0027 4.00436 22.3311 4.00436 21.5027C4.00436 20.6742 4.67593 20.0027 5.50436 20.0027C6.33279 20.0027 7.00436 20.6742 7.00436 21.5027C7.00436 22.3311 6.33279 23.0027 5.50436 23.0027ZM17.5044 23.0027C16.6759 23.0027 16.0044 22.3311 16.0044 21.5027C16.0044 20.6742 16.6759 20.0027 17.5044 20.0027C18.3328 20.0027 19.0044 20.6742 19.0044 21.5027C19.0044 22.3311 18.3328 23.0027 17.5044 23.0027Z">
+                                </path>
+                            </svg>
+                        </div>
+
+                        <div class="relative">
+                            <img class=" absolute top-2 left-2 w-[1.5vw] h-[1.5vw]" src="../images/magnifier.svg"
+                                alt="">
+                            <input class="w-[22vw] py-2 pl-10 text-black bg-white  outline-none border-none rounded-lg"
+                                type="text" placeholder="Search for food">
+                        </div>
+                    </div>
+
+                </nav>
+                <div class="w-full h-[20%] ">
+                    <img class="w-full h-full bg-cover" src="../images/banner.jpg" alt="">
+                </div>
+
+                <div class="w-full h-[17%] box-border">
+                    <h1 class="text-xl text-black font-semibold my-4 uppercase">Category</h1>
+                    <div class="w-full h-[80%] flex gap-5">
+
+                        <a href="/home/category"
+                            class="w-[15%] h-[100%] rounded-xl bg-white flex flex-col gap-2 p-2 box-border justify-center items-center">
+                            <div class="w-[4.5vw] h-[4.5vw]  rounded-[50%] overflow-hidden">
+                                <img class="w-[5vw] h-[5vw] object-cover  " src="../images/bakery.webp" alt="backery">
+                            </div>
+                            <p class="text-center text-md">Backery</p>
+                        </a>
+
+                        <div
+                            class="w-[15%] h-[100%] rounded-xl bg-white flex flex-col gap-2 p-2 box-border justify-center items-center">
+                            <div class="w-[4.5vw] h-[4.5vw]  rounded-[50%] overflow-hidden">
+                                <img class="w-full h-full object-cover " src="../images/burger.png" alt="backery">
+                            </div>
+                            <p class="text-center text-md">Burger</p>
+                        </div>
+                        <div
+                            class="w-[15%] h-[100%] rounded-xl bg-white flex flex-col gap-2 p-2 box-border justify-center items-center">
+                            <div class="w-[4.5vw] h-[4.5vw]  rounded-[50%] overflow-hidden">
+                                <img class="w-full h-full object-cover " src="../images/pizza.jpg" alt="backery">
+                            </div>
+                            <p class="text-center text-md">Pizza</p>
+                        </div>
+                        <div
+                            class="w-[15%] h-[100%] rounded-xl bg-white flex flex-col gap-2 p-2 box-border justify-center items-center">
+                            <div class="w-[4.5vw] h-[4.5vw]  rounded-[50%] overflow-hidden">
+                                <img class="w-full h-full object-cover " src="../images/gulab.jpg" alt="backery">
+                            </div>
+                            <p class="text-center text-md">GulabZamun</p>
+                        </div>
+                        <div
+                            class="w-[15%] h-[100%] rounded-xl bg-white flex flex-col gap-2 p-2 box-border justify-center items-center">
+                            <div class="w-[4.5vw] h-[4.5vw]  rounded-[50%] overflow-hidden">
+                                <img class="w-full h-full object-cover " src="../images/barfi.avif" alt="backery">
+                            </div>
+                            <p class="text-center text-md">Barfi</p>
+                        </div>
+                        <div
+                            class="w-[15%] h-[100%] rounded-xl bg-white flex flex-col gap-2 p-2 box-border justify-center items-center">
+                            <div class="w-[4.5vw] h-[4.5vw]  rounded-[50%] overflow-hidden">
+                                <img class="w-[5vw] h-[5vw] object-cover  " src="../images/bakery.webp" alt="backery">
+                            </div>
+                            <p class="text-center text-md">Backery</p>
+                        </div>
+                        <div
+                            class="w-[15%] h-[100%] rounded-xl bg-white flex flex-col gap-2 p-2 box-border justify-center items-center">
+                            <div class="w-[4.5vw] h-[4.5vw]  rounded-[50%] overflow-hidden">
+                                <img class="w-[5vw] h-[5vw] object-cover  " src="../images/bakery.webp" alt="backery">
+                            </div>
+                            <p class="text-center text-md">Backery</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="w-full h-[50%] box-border mt-4">
+                    <h1 class="text-xl text-black font-semibold my-4 uppercase">Popular dishes</h1>
+
+
+
+                    <div class="w-full h-[80%] flex gap-5">
+                        <%products.forEach((product)=> {%>
+                            <div class="w-[30%] h-[100%] rounded-xl bg-white">
+                                <div class="w-full h-[70%] flex flex-col justify-center items-center">
+                                    <img class="w-[70%] h-[70%] object-cover" src="../images/burger-3.jpg" alt="">
+                                </div>
+                                <div class="w-full box-border px-4 flex justify-between items-center">
+
+                                    <div>
+                                        <p>
+                                            <%=product.name%>
+                                        </p>
+                                        <p>$<%=product.price%>
+                                        </p>
+                                    </div>
+
+                                    <div onclick="addToCart('<%=product._id%>')"
+                                        class="w-[2vw] h-[2vw] bg-yellow-600 rounded-sm">
+                                        <svg class="w-[2vw] h-[2vw]" xmlns="http://www.w3.org/2000/svg"
+                                            viewBox="0 0 24 24" fill="currentColor">
+                                            <path d="M11 11V5H13V11H19V13H13V19H11V13H5V11H11Z"></path>
+                                        </svg>
+                                    </div>
+
+
+                                </div>
+                            </div>
+                            <%})%>
+                    </div>
+                </div>
+                <div class="w-full h-[50%] box-border ">
+                    <h1 class="text-xl text-black font-semibold my-4 uppercase">Recent Orders</h1>
+                    <div class="w-full h-[80%] flex gap-5">
+                        <div class="w-[30%] h-[100%] rounded-xl bg-white box-border">
+                            <div class="w-full h-[65%] flex flex-col justify-center items-center">
+                                <img class="w-[70%] h-[70%] object-cover" src="../images/burger-1.jpg" alt="">
+                            </div>
+                            <div class="w-full h-[30%] box-border px-4 flex flex-col justify-between items-center">
+
+                                <p>Burger </p>
+                                <p>$3490</p>
+                                <p>4.97km 21min</p>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <div id="food-delivery" class="tabs hidden">
+                food delivery
+            </div>
+            <div id="favorite" class="tabs hidden">
+                favorite
+            </div>
+            <div id="order-history" class="tabs hidden">
+                order History
+            </div>
+            <div id="messages" class="tabs hidden">
+                messages
+            </div>
+            <div id="bills" class="tabs hidden">
+                <div class="w-[100vw] h-screen flex gap-5 ">
+                    <div class="left w-[50%] h-full  flex flex-col gap-2 p-4">
+                        <div class="w-full border-b-2 h-[4vw] flex gap-1 items-center">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="16" height="16"
+                                fill="currentColor">
+                                <path
+                                    d="M8.3685 12L13.1162 3.03212L14.8838 3.9679L10.6315 12L14.8838 20.0321L13.1162 20.9679L8.3685 12Z">
+                                </path>
+                            </svg>
+                            <h1 class="text-2xl font-semibold">Continue Shpoping</h1>
+                        </div>
+                        <div class="w-full  flex flex-col justify-center ">
+                            <h1 class="text-2xl">Shopping cart</h1>
+                            <p class="text-md mb-4">You have 3 items in your cart</p>
+                            <div class="w-[95%] h-[80%] flex flex-col gap-5">
+                                <% user.cart.forEach((product)=>{%>
+
+
+                                    <div class="w-full h-[8vw] bg-white rounded-lg flex items-center px-4 box-border" data-product-id="<%= product._id %>">
+                                        <div class="flex gap-2 items-center w-[60%]">
+                                            <div class="w-[8vw] h-[7vw] bg-blue-300">
+                                                <img src="" alt="image">
+                                            </div>
+                                            <div
+                                                class="w-[70%] h-[10vw] flex flex-col justify-center items-start gap-2">
+                                                <p><%=product.productId.name%></p>
+                                                <p>extra cheeese and toping</p>
+                                            </div>
+                                        </div>
+                                        <div class="w-[10%] h-[10%] flex justify-center items-center gap-2">
+                                            <p><%=product.quantity%></p>
+                                            <div class="flex flex-col justify-center items-center gap-1">
+                                                <svg class="w-[1vw] h-[1vw]" xmlns="http://www.w3.org/2000/svg"
+                                                    viewBox="0 0 24 24" fill="currentColor">
+                                                    <path
+                                                        d="M11.9999 10.8284L7.0502 15.7782L5.63599 14.364L11.9999 8L18.3639 14.364L16.9497 15.7782L11.9999 10.8284Z">
+                                                    </path>
+                                                </svg>
+                                                <svg class="w-[1vw] h-[1vw]" xmlns="http://www.w3.org/2000/svg"
+                                                    viewBox="0 0 24 24" fill="currentColor">
+                                                    <path
+                                                        d="M11.9999 13.1714L16.9497 8.22168L18.3639 9.63589L11.9999 15.9999L5.63599 9.63589L7.0502 8.22168L11.9999 13.1714Z">
+                                                    </path>
+                                                </svg>
+
+                                            </div>
+                                        </div>
+                                        <div class="w-[30%] flex gap-4 items-center justify-center">
+                                            <p>$ <%=product.productId.price%></p>
+                                            <button onclick="Delete('<%=product._id%>')"  class="w-[2vw] h-[2vw]"><svg xmlns="http://www.w3.org/2000/svg"
+                                                    viewBox="0 0 24 24" fill="currentColor">
+                                                    <path
+                                                        d="M7 4V2H17V4H22V6H20V21C20 21.5523 19.5523 22 19 22H5C4.44772 22 4 21.5523 4 21V6H2V4H7ZM6 6V20H18V6H6ZM9 9H11V17H9V9ZM13 9H15V17H13V9Z">
+                                                    </path>
+                                                </svg></button>
+                                        </div>
+
+                                    </div>
+                                    <%})%>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="right w-[45%] h-[80%] bg-[#739AFF]">
+
+                    </div>
+                </div>
+            </div>
+            <div id="setting" class="tabs hidden">
+                setting
+            </div>
+        </main>
+        <aside></aside>
+    </div>
     <%- include('./partials/footer') %>

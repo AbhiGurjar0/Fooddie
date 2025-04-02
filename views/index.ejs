@@ -1,12 +1,40 @@
 <%- include('./partials/header') %>
-    <div class="bg-[url('../images/first.jpg')] w-full h-screen bg-no-repeat bg-cover">
-       
-        <div class="h-[60vh] w-full"></div>
+    <div class="bg-[FFFFFF] w-full h-[100vh] overflow-y-hidden">
+
+        <div class="w-full h-screen hidden">
+            <img src="../images/Splash Page_02.png" alt="logo" class="w-full h-full object-cover">
+
+        </div>
+        <div class="w-full h-screen">
+            <div class="w-full h-[80%] flex flex-col gap-10 justify-center box-border">
+                <div class="w-full h-[65%] overflow-hidden">
+                    <img src="../images/Onboarding_02.png" alt="" class="w-full h-[100vh]">
+                </div>
+                <div class="w-full h-[25%] ">
+                    <h1 class="text-xl text-black font-bold text-center p-2">All your favorites</h1>
+                    <p class="text-sm text-zinc-500 text-center">Get all your loved food in one once place,
+                        <br>
+                        you just place the order we do the rest
+                    </p>
+                </div>
+
+
+                <!-- <img src="../images/Onboarding_03.png" alt="" class="w-full h-[100vh]">
+                <img src="../images/Onboarding_04.png" alt="" class="w-full h-[100vh]"> -->
+            </div>
+            <div class="w-[100%] h-[20%]">
+                <button class="w-full h-[30%] bg-orange-600 text-black font-semibold text-xl">Next</button>
+            </div>
+           
+
+            </div>
+        </div>
+        <!-- <div class="h-[60vh] w-full"></div>
         <div class="w-full h-[20vh] flex flex-col items-center justify-center gap-5">
             <h1 class="text-3xl text-orange-500 font-bold">Yummies</h1>
             <h1 class="text-md w-[50vw] text-center">India's biggest food delivery app</h1>
             <a href="/signin"><button class="font-bold px-10 py-2 bg-orange-600 rounded-full">Get Started</button></a>
-        </div>
+        </div> -->
 
     </div>
     <%- include('./partials/footer') %>

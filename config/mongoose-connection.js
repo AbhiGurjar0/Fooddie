@@ -1,15 +1,12 @@
 const mongoose = require("mongoose")
 const config = require("config");
-const debugNamespace = process.env.NODE_ENV === "development" ? "dev:mongoose" : "prod:mongoose";
-const dbgr = require("debug")(debugNamespace);
 
-// const dbgr = require("debug")("development:mongoose");
-mongoose.connect(`${config.get("MONGODB_URI")}/Manipal`)
+mongoose.connect(`${config.get("MONGODB_URI")}/food_delivery`)
     .then(() => {
-        dbgr("MongoDB connected successfully!");
+       console.log("MongoDB connected successfully!");
     })
     .catch((error) => {
-        dbgr("MongoDB connection error:", error);
+        console.log("MongoDB connection error:", error);
     });
 
 module.exports = mongoose.connection;

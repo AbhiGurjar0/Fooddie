@@ -1,0 +1,12 @@
+<%- include('partials/header') %>
+    <h1>Add Products</h1>
+    <div class="w-[60%] h-[80%]">
+        <form action="/additems" method="post">
+            <input type="text" placeholder="name" name="name">
+            <input type="text" placeholder="category" name="category">
+            <input type="text" placeholder="discount" name="discount">
+            <input type="text" placeholder="price" name="price">
+            <button type="submit">submit</button>
+        </form>
+    </div>
+    <%- include('partials/footer')%>

@@ -15,8 +15,7 @@
 //     register.style.display = "none";
 // })
 
-//main section nevigation
-// let tabs = document.querySelectorAll(".tabs");
+
 
 
 var activeButton = document.getElementById("das");
@@ -28,25 +27,25 @@ function show(button, section) {
     });
     document.getElementById(section).classList.remove("hidden");
     if (activeButton) {
-        activeButton.classList.remove("bg-[#F8B602]");
-        activeButton.classList.add("hover:bg-gray-200");
+        activeButton.classList.remove("bg-purple-800");
+        activeButton.classList.add("hover:bg-purple-500");
     }
 
-    button.classList.add("bg-[#F8B602]");
-    button.classList.remove("hover:bg-gray-200");
+    button.classList.add("bg-purple-800");
+    button.classList.remove("hover:bg-purple-500");
     activeButton = button;
 }
 //on forward or previous
-window.addEventListener("hashchange", function () {
-    let section = window.location.hash.substring(1) || 'dashboard';
-    const buttonId = section.substr(0, 3);
-    const defaultButton = document.getElementById(buttonId);
-    show(defaultButton, section);
-});
+// window.addEventListener("hashchange", function () {
+//     let section = window.location.hash.substring(1) || 'dashboard';
+//     const buttonId = section.substr(0, 3);
+//     const defaultButton = document.getElementById(buttonId);
+//     show(defaultButton, section);
+// });
 
 //on click 
 function goToSection(button, section) {
-    localStorage.setItem("activeSection", button.getAttribute("id"));
+    localStorage.setItem("data", JSON.stringify(section));
     window.location.hash = section;
     show(button, section);
 
@@ -54,8 +53,8 @@ function goToSection(button, section) {
 
 //on reload
 document.addEventListener("DOMContentLoaded", function () {
-    const section = window.location.hash.substring(1) || "default-section"; // Default to a section if no hash
-    const buttonId = localStorage.getItem("activeSection");
+    const section = JSON.parse(localStorage.getItem("data")) || "dashboard";
+    let buttonId = section.substr(0, 3);
     const defaultButton = document.getElementById(buttonId);
     show(defaultButton, section); // Pass the button and section to the show function
 });
@@ -75,7 +74,7 @@ async function addToCart(productId) {
     })
         .then(response => response.json())
         .then(data => {
-             console.log(data)
+            
 
         }).catch(error => { console.log(error) });
 }
@@ -84,7 +83,7 @@ async function addToCart(productId) {
 // Delete product from cart
 
 async function Delete(productId) {
-    console.log("called");
+   
     const element = document.querySelector(`[data-product-id="${productId}"]`);
     await fetch("home/cart/delete", {
         method: "POST",
@@ -95,13 +94,34 @@ async function Delete(productId) {
     })
         .then(response => response.json())
         .then(data => {
-            console.log(data);
+          
             element.remove();
         }).catch(error => {
             console.log("error during deletion");
 
         })
-
-
 }
+
+//select category
+buttons = document.querySelectorAll(".category-btn");
+products = document.querySelectorAll(".product-card");
+// function showCategory(Category) {
+    buttons.forEach(btn => {
+        btn.addEventListener("click", () => {
+            const selected = btn.getAttribute("data-category");
+            
+            products.forEach(prod => {
+                if (prod.getAttribute("data-category") == selected) {
+
+                    prod.classList.remove("hidden");
+                } else {
+                    
+                    prod.classList.add("hidden");
+                }
+            })
+        })
+
+    })
+// }
+
 

@@ -5,12 +5,24 @@ const { registerUser, loginUser } = require("../controllers/login-controller");
 const userModel = require("../models/user-model");
 const productModel = require("../models/product-model")
 const isLoggedIn = require("../middleware/isLoggedIn");
+const upload = require("../config/multer");
 
 
-//index route 
-router.get("/", async (req, res) => {
-  res.render("index");
+
+router.get("/cart",isLoggedIn, async (req, res) => {
+  let user = await userModel.findOne({ _id: req.user._id }).populate("cart.productId");
+  cartItems = user.cart;
+  let total = 0;
+  cartItems.forEach(element => {
+    total+=element.productId.price;
+  });
+  res.render("cart",{cartItems,total}); 
 });
+router.get("/bills", async (req, res) => {
+  res.render("bills");
+});
+
+
 
 //sign in 
 router.get("/signin", (req, res) => {
@@ -19,11 +31,11 @@ router.get("/signin", (req, res) => {
 
 //home 
 
-router.get("/home", isLoggedIn, async (req, res) => {
+router.get("/", isLoggedIn, async (req, res) => {
   let products = await productModel.find();
   let user = await userModel.findOne({ _id: req.user._id }).populate("cart.productId");
-
-  res.render("home", { products, user });
+  let categories = await productModel.distinct("category");
+  res.render("home", { products, user ,categories});
 });
 
 //All categories
@@ -64,11 +76,11 @@ router.post("/home/cart/delete", isLoggedIn, async (req, res) => {
 });
 
 //add items by admin
-router.post("/additems",upload.single('uploaded'), async (req, res) => {
+router.post("/additems",upload.single("image"), async (req, res) => {
   let { name, price, discount, category } = req.body;
-  image = uploaded.buffer;
   await productModel.create({
-    name,
+    image : req.file.buffer,
+    name, 
     category,
     price,
     discount,

@@ -1,269 +1,849 @@
 <%- include('./partials/header') %>
-    <div class="absolute hidden">Item added successfully</div>
-    <div class="w-full h-[100vh] flex gap-5">
-        <aside class="w-[18%] h-screen bg-white p-5 flex flex-col gap-5 fixed top-0 left-0">
-            <h1 class="text-3xl text-center text-black font-bold uppercase">Foddy.</h1>
-            <div id="das" onclick="goToSection(this, 'dashboard')"
-                class="cursor-pointer w-full flex gap-4 items-center justify-start bg-[#F8B602] py-2 pl-2 rounded-[1vw] ">
-                📊
-                <p class="text-lg">Dashboard</p>
+    <!--  -->
+    <div class="flex">
+        <!-- Sidebar -->
+        <div class="bg-purple-600 text-white w-64 min-h-screen p-4">
+            <div class="text-3xl font-bold mb-8">
+                FoodMeal.
             </div>
-            <div id="foo" onclick="goToSection(this, 'food-delivery')"
-                class="cursor-pointer w-full flex gap-4 items-center  justify-start  py-2  pl-2 rounded-[1vw] hover:bg-gray-200">
-                <img class="w-[1.7w] h-[1.7vw]" src="../images/Vector.svg" alt="">
-                <p class="text-lg">Food orders</p>
-            </div>
-            <div id="fav" onclick="goToSection(this ,'favorite')"
-                class="cursor-pointer w-full flex gap-4 items-center justify-start  py-2  pl-2 rounded-[1vw] hover:bg-gray-200">
-                <img class="w-[1.7vw] h-[1.7vw]" src="../images/fav.svg" alt="">
-                <p class="text-lg">Favorite</p>
-            </div>
-            <div id="ord" onclick="goToSection(this,'order-history')"
-                class="cursor-pointer w-full flex gap-4 items-center justify-start  py-2  pl-2 rounded-[1vw] hover:bg-gray-200">
-                <img class="w-[1.7vw] h-[1.7vw]" src="../images/order.svg" alt="">
-                <p class="text-lg">Order history</p>
-            </div>
-            <div id="mes" onclick="goToSection(this ,'messages')"
-                class="cursor-pointer w-full flex gap-4 items-center justify-start  py-2  pl-2 rounded-[1vw] hover:bg-gray-200">
-                <img class="w-[1.7vw] h-[1.7vw]" src="../images/message.svg" alt="">
-                <p class="text-lg">Messages</p>
-            </div>
-            <div id="bil" onclick="goToSection(this,'bills')"
-                class="cursor-pointer w-full flex gap-4 items-center justify-start  py-2  pl-2 rounded-[1vw] hover:bg-gray-200">
-                <img class="w-[1.7vw] h-[1.7vw]" src="../images/bills.svg" alt="">
-                <p class="text-lg">Cart</p>
-            </div>
-            <div id="set" onclick="goToSection(this,'setting')"
-                class="cursor-pointer w-full flex gap-4 items-center justify-start  py-2  pl-2 rounded-[1vw] hover:bg-gray-200">
-                <img class="w-[1.7vw] h-[1.7vw]" src="../images/setting.svg" alt="">
-                <p class="text-lg">
-                    Setting
+            <nav class="space-y-4">
+                <a id="das" onclick="goToSection(this, 'dashboard')"
+                    class="flex items-center space-x-2 p-2 bg-purple-800 rounded-lg" href="#">
+                    <i class="fas fa-tachometer-alt">
+                    </i>
+                    <span>
+                        Dashboard
+                    </span>
+                </a>
+                <a id="foo" onclick="goToSection(this, 'food-orders')"
+                    class="flex items-center space-x-2 p-2 hover:bg-purple-500 rounded-lg" href="#">
+                    <i class="fas fa-shopping-cart">
+                    </i>
+                    <span>
+                        Food Order
+                    </span>
+                </a>
+                <a id="fav" onclick="goToSection(this, 'favorite')"
+                    class="flex items-center space-x-2 p-2 hover:bg-purple-500 rounded-lg" href="#">
+                    <i class="fas fa-heart">
+                    </i>
+                    <span>
+                        Favorite
+                    </span>
+                </a>
+
+
+                <a id="bil" onclick="goToSection(this, 'bills')"
+                    class="flex items-center space-x-2 p-2 hover:bg-purple-500 rounded-lg" href="#">
+                    <i class="fas fa-file-invoice-dollar">
+                    </i>
+                    <span>
+                        Bills
+                    </span>
+                </a>
+                <a id="set" onclick="goToSection(this, 'setting')"
+                    class="flex items-center space-x-2 p-2 hover:bg-purple-500 rounded-lg" href="#">
+                    <i class="fas fa-cog">
+                    </i>
+                    <span>
+                        Setting
+                    </span>
+                </a>
+            </nav>
+            <div class="mt-8 p-4 bg-purple-500 rounded-lg">
+                <p>
+                    Upgrade your Account to Get Free Voucher
                 </p>
+                <button class="mt-4 bg-purple-700 py-2 px-4 rounded-lg">
+                    Upgrade
+                </button>
             </div>
-
-        </aside>
-        <main class="ml-[20%] w-[80%] min-h-screen overflow-y-auto  hide-scrollbar  py-2">
-            <div id="dashboard" class=" tabs w-full h-full flex flex-col gap-5 ">
-                <nav class="w-full h-[10%] flex items-center justify-between  py-5">
-                    <h1>HI, Abhi</h1>
-                    <div class="flex gap-5 items-center">
-                        <div class="relative">
-                            <span
-                                class="w-[1.5vw] h-[1.5vw] text-sm rounded-[50%] absolute bg-white text-black text-center -top-2 -left-2">1</span>
-                            <svg class="w-[2vw] h-[2vw]" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
-                                fill="currentColor">
-                                <path
-                                    d="M4.00436 6.41686L0.761719 3.17422L2.17593 1.76001L5.41857 5.00265H20.6603C21.2126 5.00265 21.6603 5.45037 21.6603 6.00265C21.6603 6.09997 21.6461 6.19678 21.6182 6.29L19.2182 14.29C19.0913 14.713 18.7019 15.0027 18.2603 15.0027H6.00436V17.0027H17.0044V19.0027H5.00436C4.45207 19.0027 4.00436 18.5549 4.00436 18.0027V6.41686ZM5.50436 23.0027C4.67593 23.0027 4.00436 22.3311 4.00436 21.5027C4.00436 20.6742 4.67593 20.0027 5.50436 20.0027C6.33279 20.0027 7.00436 20.6742 7.00436 21.5027C7.00436 22.3311 6.33279 23.0027 5.50436 23.0027ZM17.5044 23.0027C16.6759 23.0027 16.0044 22.3311 16.0044 21.5027C16.0044 20.6742 16.6759 20.0027 17.5044 20.0027C18.3328 20.0027 19.0044 20.6742 19.0044 21.5027C19.0044 22.3311 18.3328 23.0027 17.5044 23.0027Z">
-                                </path>
-                            </svg>
-                        </div>
-
-                        <div class="relative">
-                            <img class=" absolute top-2 left-2 w-[1.5vw] h-[1.5vw]" src="../images/magnifier.svg"
-                                alt="">
-                            <input class="w-[22vw] py-2 pl-10 text-black bg-white  outline-none border-none rounded-lg"
-                                type="text" placeholder="Search for food">
-                        </div>
+        </div>
+        <!-- Main Content -->
+        <main class="w-[60%]">
+            <!-- DashBoard -->
+            <div id="dashboard" class="tabs flex-1 p-6 min-h-screen">
+                <div class="flex justify-between items-center mb-6">
+                    <h1 class="text-2xl font-bold">
+                        Hey, Zack
+                    </h1>
+                    <div class="flex items-center space-x-4">
+                        <input class="p-2 rounded-lg border border-gray-300" placeholder="What do you want eat today..."
+                            type="text" />
+                        <i class="fas fa-bell text-xl">
+                        </i>
+                        <i class="fas fa-comment-dots text-xl">
+                        </i>
+                        <i class="fas fa-user-circle text-xl">
+                        </i>
                     </div>
-
-                </nav>
-                <div class="w-full h-[20%] ">
-                    <img class="w-full h-full bg-cover" src="../images/banner.jpg" alt="">
                 </div>
+                <!-- <div class="flex space-x-4 h-[15%] mb-6">
+                    <img alt="Discount Voucher Image" class="rounded-lg w-2/3" height="200"
+                        src="https://storage.googleapis.com/a1aa/image/Kb05gZRqom_nLLrUE8mVkJ054EGvGBO0GwyXMefJxOU.jpg"
+                        width="600" />
+                    <div class="bg-white p-4 rounded-lg w-1/3">
+                        <h2 class="text-xl font-bold">
+                            Get Discount Voucher Up To 20%
+                        </h2>
+                        <p>
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt.
+                        </p>
+                    </div>
+                </div> -->
+                <div class="mb-6">
+                    <h2 class="text-xl font-bold mb-4">
+                        Category
+                    </h2>
+                    <div class="flex space-x-4">
+                        <%categories.forEach(category=>{%>
+                            <button class=" category-btn bg-purple-500 text-white py-2 px-4 rounded-lg uppercase"
+                                data-category="<%=category%>">
+                                <%=category%>
+                            </button>
+                            <% })%>
 
-                <div class="w-full h-[17%] box-border">
-                    <h1 class="text-xl text-black font-semibold my-4 uppercase">Category</h1>
-                    <div class="w-full h-[80%] flex gap-5">
-
-                        <a href="/home/category"
-                            class="w-[15%] h-[100%] rounded-xl bg-white flex flex-col gap-2 p-2 box-border justify-center items-center">
-                            <div class="w-[4.5vw] h-[4.5vw]  rounded-[50%] overflow-hidden">
-                                <img class="w-[5vw] h-[5vw] object-cover  " src="../images/bakery.webp" alt="backery">
-                            </div>
-                            <p class="text-center text-md">Backery</p>
+                    </div>
+                </div>
+                <div class="mb-6">
+                    <div class="flex justify-between items-center mb-4">
+                        <h2 class="text-xl font-bold">
+                            Popular Dishes
+                        </h2>
+                        <a class="text-purple-500" href="#">
+                            View all
                         </a>
-
-                        <div
-                            class="w-[15%] h-[100%] rounded-xl bg-white flex flex-col gap-2 p-2 box-border justify-center items-center">
-                            <div class="w-[4.5vw] h-[4.5vw]  rounded-[50%] overflow-hidden">
-                                <img class="w-full h-full object-cover " src="../images/burger.png" alt="backery">
-                            </div>
-                            <p class="text-center text-md">Burger</p>
-                        </div>
-                        <div
-                            class="w-[15%] h-[100%] rounded-xl bg-white flex flex-col gap-2 p-2 box-border justify-center items-center">
-                            <div class="w-[4.5vw] h-[4.5vw]  rounded-[50%] overflow-hidden">
-                                <img class="w-full h-full object-cover " src="../images/pizza.jpg" alt="backery">
-                            </div>
-                            <p class="text-center text-md">Pizza</p>
-                        </div>
-                        <div
-                            class="w-[15%] h-[100%] rounded-xl bg-white flex flex-col gap-2 p-2 box-border justify-center items-center">
-                            <div class="w-[4.5vw] h-[4.5vw]  rounded-[50%] overflow-hidden">
-                                <img class="w-full h-full object-cover " src="../images/gulab.jpg" alt="backery">
-                            </div>
-                            <p class="text-center text-md">GulabZamun</p>
-                        </div>
-                        <div
-                            class="w-[15%] h-[100%] rounded-xl bg-white flex flex-col gap-2 p-2 box-border justify-center items-center">
-                            <div class="w-[4.5vw] h-[4.5vw]  rounded-[50%] overflow-hidden">
-                                <img class="w-full h-full object-cover " src="../images/barfi.avif" alt="backery">
-                            </div>
-                            <p class="text-center text-md">Barfi</p>
-                        </div>
-                        <div
-                            class="w-[15%] h-[100%] rounded-xl bg-white flex flex-col gap-2 p-2 box-border justify-center items-center">
-                            <div class="w-[4.5vw] h-[4.5vw]  rounded-[50%] overflow-hidden">
-                                <img class="w-[5vw] h-[5vw] object-cover  " src="../images/bakery.webp" alt="backery">
-                            </div>
-                            <p class="text-center text-md">Backery</p>
-                        </div>
-                        <div
-                            class="w-[15%] h-[100%] rounded-xl bg-white flex flex-col gap-2 p-2 box-border justify-center items-center">
-                            <div class="w-[4.5vw] h-[4.5vw]  rounded-[50%] overflow-hidden">
-                                <img class="w-[5vw] h-[5vw] object-cover  " src="../images/bakery.webp" alt="backery">
-                            </div>
-                            <p class="text-center text-md">Backery</p>
-                        </div>
                     </div>
-                </div>
-                <div class="w-full h-[50%] box-border mt-4">
-                    <h1 class="text-xl text-black font-semibold my-4 uppercase">Popular dishes</h1>
+                    <div class="grid grid-cols-3 gap-4">
+                        <%products.forEach(product=>{%>
 
-
-
-                    <div class="w-full h-[80%] flex gap-5">
-                        <%products.forEach((product)=> {%>
-                            <div class="w-[30%] h-[100%] rounded-xl bg-white">
-                                <div class="w-full h-[70%] flex flex-col justify-center items-center">
-                                    <img class="w-[70%] h-[70%] object-cover" src="../images/burger-3.jpg" alt="">
-                                </div>
-                                <div class="w-full box-border px-4 flex justify-between items-center">
-
+                            <div class="product-card" class="bg-white p-4 rounded-lg "
+                                data-category="<%= product.category %>">
+                                <img alt="Beef Burger" class="rounded-lg mb-4  h-[60%] w-full" height="100"
+                                    src="data:image/jpeg;base64,<%= product.image ?product.image.toString('base64') : '' %>"
+                                    width="150" />
+                                <div class="flex justify-between items-center">
                                     <div>
-                                        <p>
+                                        <h3 class="font-bold">
                                             <%=product.name%>
+                                        </h3>
+                                        <p class="text-yellow-500">
+                                            ★★★★★
                                         </p>
-                                        <p>$<%=product.price%>
+                                        <p>
+                                            $<%=product.price%>
                                         </p>
                                     </div>
-
-                                    <div onclick="addToCart('<%=product._id%>')"
-                                        class="w-[2vw] h-[2vw] bg-yellow-600 rounded-sm">
-                                        <svg class="w-[2vw] h-[2vw]" xmlns="http://www.w3.org/2000/svg"
-                                            viewBox="0 0 24 24" fill="currentColor">
-                                            <path d="M11 11V5H13V11H19V13H13V19H11V13H5V11H11Z"></path>
-                                        </svg>
-                                    </div>
-
-
+                                    <button onclick="addToCart('<%=product._id%>')"
+                                        class="bg-purple-500 text-white py-2 px-4 rounded-lg">
+                                        +
+                                    </button>
                                 </div>
                             </div>
-                            <%})%>
-                    </div>
-                </div>
-                <div class="w-full h-[50%] box-border ">
-                    <h1 class="text-xl text-black font-semibold my-4 uppercase">Recent Orders</h1>
-                    <div class="w-full h-[80%] flex gap-5">
-                        <div class="w-[30%] h-[100%] rounded-xl bg-white box-border">
-                            <div class="w-full h-[65%] flex flex-col justify-center items-center">
-                                <img class="w-[70%] h-[70%] object-cover" src="../images/burger-1.jpg" alt="">
-                            </div>
-                            <div class="w-full h-[30%] box-border px-4 flex flex-col justify-between items-center">
 
-                                <p>Burger </p>
-                                <p>$3490</p>
-                                <p>4.97km 21min</p>
-                            </div>
-                        </div>
+                            <% })%>
+
 
                     </div>
                 </div>
-            </div>
-            <div id="food-delivery" class="tabs hidden">
-                food delivery
-            </div>
-            <div id="favorite" class="tabs hidden">
-                favorite
-            </div>
-            <div id="order-history" class="tabs hidden">
-                order History
-            </div>
-            <div id="messages" class="tabs hidden">
-                messages
-            </div>
-            <div id="bills" class="tabs hidden">
-                <div class="w-[100vw] h-screen flex gap-5 ">
-                    <div class="left w-[50%] h-full  flex flex-col gap-2 p-4">
-                        <div class="w-full border-b-2 h-[4vw] flex gap-1 items-center">
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="16" height="16"
-                                fill="currentColor">
-                                <path
-                                    d="M8.3685 12L13.1162 3.03212L14.8838 3.9679L10.6315 12L14.8838 20.0321L13.1162 20.9679L8.3685 12Z">
-                                </path>
-                            </svg>
-                            <h1 class="text-2xl font-semibold">Continue Shpoping</h1>
+                <div class="mb-6">
+                    <div class="flex justify-between items-center mb-4">
+                        <h2 class="text-xl font-bold">
+                            Recent Order
+                        </h2>
+                        <a class="text-purple-500" href="#">
+                            View all
+                        </a>
+                    </div>
+                    <div class="grid grid-cols-3 gap-4">
+                        <div class="bg-white p-4 rounded-lg">
+                            <img alt="Fish Burger" class="rounded-lg mb-4  h-[60%] w-full" height="100"
+                                src="https://storage.googleapis.com/a1aa/image/rCMWcfcoRU63onO6O1YDgXqA4Gx-58LBohGtMHuExXA.jpg"
+                                width="150" />
+                            <div>
+                                <h3 class="font-bold">
+                                    Fish Burger
+                                </h3>
+                                <p>
+                                    $5.59
+                                </p>
+                                <p>
+                                    4.97 km - 21 min
+                                </p>
+                            </div>
                         </div>
-                        <div class="w-full  flex flex-col justify-center ">
-                            <h1 class="text-2xl">Shopping cart</h1>
-                            <p class="text-md mb-4">You have 3 items in your cart</p>
-                            <div class="w-[95%] h-[80%] flex flex-col gap-5">
-                                <% user.cart.forEach((product)=>{%>
+                        <div class="bg-white p-4 rounded-lg">
+                            <img alt="Japan Ramen" class="rounded-lg mb-4  h-[60%] w-full" height="100"
+                                src="https://storage.googleapis.com/a1aa/image/JwgxPvFdPI-NXf4SAWVKC-ErwS-nkgHSl0epFBOj-2o.jpg"
+                                width="150" />
+                            <div>
+                                <h3 class="font-bold">
+                                    Japan Ramen
+                                </h3>
+                                <p>
+                                    $5.59
+                                </p>
+                                <p>
+                                    4.97 km - 21 min
+                                </p>
+                            </div>
+                        </div>
+                        <div class="bg-white p-4 rounded-lg">
+                            <img alt="Fried Rice" class="rounded-lg mb-4  h-[60%] w-full" height="100"
+                                src="https://storage.googleapis.com/a1aa/image/kReUv7MAESXVeQ6iuOKW8hbjBdKjEP80gOjf_pPW3-A.jpg"
+                                width="150" />
+                            <div>
+                                <h3 class="font-bold">
+                                    Fried Rice
+                                </h3>
+                                <p>
+                                    $5.59
+                                </p>
+                                <p>
+                                    4.97 km - 21 min
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Food Orders -->
+            <div id="food-orders" class="tabs flex flex-col min-h-screen hidden">
+                <!-- Header -->
+                <header class="bg-black text-white p-4 flex justify-between items-center shadow-lg">
+                    <h1 class="text-3xl font-bold">Food Orders</h1>
+                    <div class="flex items-center space-x-4">
+                        <input class="p-2 rounded-lg border border-gray-300" placeholder="Search for food..."
+                            type="text" />
+                        <i class="fas fa-bell text-xl"></i>
+                        <i class="fas fa-user-circle text-xl"></i>
+                    </div>
+                </header>
 
-
-                                    <div class="w-full h-[8vw] bg-white rounded-lg flex items-center px-4 box-border" data-product-id="<%= product._id %>">
-                                        <div class="flex gap-2 items-center w-[60%]">
-                                            <div class="w-[8vw] h-[7vw] bg-blue-300">
-                                                <img src="" alt="image">
-                                            </div>
-                                            <div
-                                                class="w-[70%] h-[10vw] flex flex-col justify-center items-start gap-2">
-                                                <p><%=product.productId.name%></p>
-                                                <p>extra cheeese and toping</p>
-                                            </div>
-                                        </div>
-                                        <div class="w-[10%] h-[10%] flex justify-center items-center gap-2">
-                                            <p><%=product.quantity%></p>
-                                            <div class="flex flex-col justify-center items-center gap-1">
-                                                <svg class="w-[1vw] h-[1vw]" xmlns="http://www.w3.org/2000/svg"
-                                                    viewBox="0 0 24 24" fill="currentColor">
-                                                    <path
-                                                        d="M11.9999 10.8284L7.0502 15.7782L5.63599 14.364L11.9999 8L18.3639 14.364L16.9497 15.7782L11.9999 10.8284Z">
-                                                    </path>
-                                                </svg>
-                                                <svg class="w-[1vw] h-[1vw]" xmlns="http://www.w3.org/2000/svg"
-                                                    viewBox="0 0 24 24" fill="currentColor">
-                                                    <path
-                                                        d="M11.9999 13.1714L16.9497 8.22168L18.3639 9.63589L11.9999 15.9999L5.63599 9.63589L7.0502 8.22168L11.9999 13.1714Z">
-                                                    </path>
-                                                </svg>
-
-                                            </div>
-                                        </div>
-                                        <div class="w-[30%] flex gap-4 items-center justify-center">
-                                            <p>$ <%=product.productId.price%></p>
-                                            <button onclick="Delete('<%=product._id%>')"  class="w-[2vw] h-[2vw]"><svg xmlns="http://www.w3.org/2000/svg"
-                                                    viewBox="0 0 24 24" fill="currentColor">
-                                                    <path
-                                                        d="M7 4V2H17V4H22V6H20V21C20 21.5523 19.5523 22 19 22H5C4.44772 22 4 21.5523 4 21V6H2V4H7ZM6 6V20H18V6H6ZM9 9H11V17H9V9ZM13 9H15V17H13V9Z">
-                                                    </path>
-                                                </svg></button>
-                                        </div>
-
+                <!-- Main Content -->
+                <main class="flex-1 p-6">
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                        <!-- Current Orders -->
+                        <section class="bg-white p-6 rounded-lg shadow-lg">
+                            <h2 class="text-2xl font-bold mb-4">Current Orders</h2>
+                            <div class="space-y-4">
+                                <div class="flex justify-between items-center p-4 bg-gray-50 rounded-lg shadow-sm">
+                                    <img alt="Pepperoni Pizza" class="rounded-lg" height="50"
+                                        src="https://storage.googleapis.com/a1aa/image/wDE2uJ5NKr8AfJIqpfTpKC3u6jetPI70myvMn8W_heU.jpg"
+                                        width="50" />
+                                    <div>
+                                        <h3 class="font-bold">Pepperoni Pizza</h3>
+                                        <p>$5.59</p>
+                                        <p class="text-gray-500">Estimated delivery: 20 mins</p>
                                     </div>
-                                    <%})%>
+                                    <button class="bg-red-500 text-white py-1 px-3 rounded-lg">Cancel</button>
+                                </div>
+                                <div class="flex justify-between items-center p-4 bg-gray-50 rounded-lg shadow-sm">
+                                    <img alt="Cheese Burger" class="rounded-lg" height="50"
+                                        src="https://storage.googleapis.com/a1aa/image/Qidv_ZL6QmbvjvAsXgVXDk-SbT4NE5XhR-bBoXzM6tc.jpg"
+                                        width="50" />
+                                    <div>
+                                        <h3 class="font-bold">Cheese Burger</h3>
+                                        <p>$5.59</p>
+                                        <p class="text-gray-500">Estimated delivery: 15 mins</p>
+                                    </div>
+                                    <button class="bg-red-500 text-white py-1 px-3 rounded-lg">Cancel</button>
+                                </div>
                             </div>
+                        </section>
+
+                        <!-- Previous Orders -->
+                        <section class="bg-white p-6 rounded-lg shadow-lg">
+                            <h2 class="text-2xl font-bold mb-4">Previous Orders</h2>
+                            <div class="space-y-4">
+                                <div class="flex justify-between items-center p-4 bg-gray-50 rounded-lg shadow-sm">
+                                    <img alt="Vegan Pizza" class="rounded-lg" height="50"
+                                        src="https://storage.googleapis.com/a1aa/image/4qqIpv8PIEW0R5TrEEv6vEBYGC1F8p2CldJTNnSWOLI.jpg"
+                                        width="50" />
+                                    <div>
+                                        <h3 class="font-bold">Vegan Pizza</h3>
+                                        <p>$5.59</p>
+                                        <p class="text-gray-500">Delivered on: 2023-10-01</p>
+                                    </div>
+                                </div>
+                                <div class="flex justify-between items-center p-4 bg-gray-50 rounded-lg shadow-sm">
+                                    <img alt="Fish Burger" class="rounded-lg" height="50"
+                                        src="https://storage.googleapis.com/a1aa/image/rCMWcfcoRU63onO6O1YDgXqA4Gx-58LBohGtMHuExXA.jpg"
+                                        width="50" />
+                                    <div>
+                                        <h3 class="font-bold">Fish Burger</h3>
+                                        <p>$5.59</p>
+                                        <p class="text-gray-500">Delivered on: 2023-09-28</p>
+                                    </div>
+                                </div>
+                                <div class="flex justify-between items-center p-4 bg-gray-50 rounded-lg shadow-sm">
+                                    <img alt="Japan Ramen" class="rounded-lg" height="50"
+                                        src="https://storage.googleapis.com/a1aa/image/JwgxPvFdPI-NXf4SAWVKC-ErwS-nkgHSl0epFBOj-2o.jpg"
+                                        width="50" />
+                                    <div>
+                                        <h3 class="font-bold">Japan Ramen</h3>
+                                        <p>$5.59</p>
+                                        <p class="text-gray-500">Delivered on: 2023-09-25</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+                    </div>
+                </main>
+            </div>
+            <!-- favorite -->
+            <div id="favorite" class="tabs w-full hidden">
+                <h1 class="font-bold text-3xl font-sans">Fevorite </h1>
+                <div class="grid grid-cols-3 gap-4">
+                    <div class="bg-white p-4 rounded-lg">
+                        <img alt="Fish Burger" class="rounded-lg mb-4 h-[60%] w-full" height="100"
+                            src="https://storage.googleapis.com/a1aa/image/rCMWcfcoRU63onO6O1YDgXqA4Gx-58LBohGtMHuExXA.jpg"
+                            width="150" />
+                        <div class="flex justify-between items-center">
+                            <div>
+                                <h3 class="font-bold">
+                                    Fish Burger
+                                </h3>
+                                <p class="text-yellow-500">
+                                    ★★★★★
+                                </p>
+                                <p>
+                                    $5.59
+                                </p>
+                            </div>
+                            <button class="bg-purple-500 text-white py-2 px-4 rounded-lg">
+                                +
+                            </button>
                         </div>
                     </div>
-                    <div class="right w-[45%] h-[80%] bg-[#739AFF]">
+                    <div class="bg-white p-4 rounded-lg">
+                        <img alt="Fish Burger" class="rounded-lg mb-4 h-[60%] w-full" height="100"
+                            src="https://storage.googleapis.com/a1aa/image/rCMWcfcoRU63onO6O1YDgXqA4Gx-58LBohGtMHuExXA.jpg"
+                            width="150" />
+                        <div class="flex justify-between items-center">
+                            <div>
+                                <h3 class="font-bold">
+                                    Fish Burger
+                                </h3>
+                                <p class="text-yellow-500">
+                                    ★★★★★
+                                </p>
+                                <p>
+                                    $5.59
+                                </p>
+                            </div>
+                            <button class="bg-purple-500 text-white py-2 px-4 rounded-lg">
+                                +
+                            </button>
+                        </div>
+                    </div>
+                    <div class="bg-white p-4 rounded-lg">
+                        <img alt="Fish Burger" class="rounded-lg mb-4 h-[60%] w-full" height="100"
+                            src="https://storage.googleapis.com/a1aa/image/rCMWcfcoRU63onO6O1YDgXqA4Gx-58LBohGtMHuExXA.jpg"
+                            width="150" />
+                        <div class="flex justify-between items-center">
+                            <div>
+                                <h3 class="font-bold">
+                                    Fish Burger
+                                </h3>
+                                <p class="text-yellow-500">
+                                    ★★★★★
+                                </p>
+                                <p>
+                                    $5.59
+                                </p>
+                            </div>
+                            <button class="bg-purple-500 text-white py-2 px-4 rounded-lg">
+                                +
+                            </button>
+                        </div>
+                    </div>
+                    <div class="bg-white p-4 rounded-lg">
+                        <img alt="Fish Burger" class="rounded-lg mb-4 h-[60%] w-full" height="100"
+                            src="https://storage.googleapis.com/a1aa/image/rCMWcfcoRU63onO6O1YDgXqA4Gx-58LBohGtMHuExXA.jpg"
+                            width="150" />
+                        <div class="flex justify-between items-center">
+                            <div>
+                                <h3 class="font-bold">
+                                    Fish Burger
+                                </h3>
+                                <p class="text-yellow-500">
+                                    ★★★★★
+                                </p>
+                                <p>
+                                    $5.59
+                                </p>
+                            </div>
+                            <button class="bg-purple-500 text-white py-2 px-4 rounded-lg">
+                                +
+                            </button>
+                        </div>
+                    </div>
 
+
+                </div>
+            </div>
+            <!-- Bills -->
+            <div id="bills" class="tabs container mx-auto p-4 hidden">
+                <div class="flex justify-between items-center mb-4">
+                    <h1 class="text-3xl font-bold text-purple-600">
+                        Bills
+                    </h1>
+                    <div class="flex space-x-4">
+                        <button class="bg-purple-600 text-white p-2 rounded-full">
+                            <i class="fas fa-file-alt">
+                            </i>
+                        </button>
+                        <button class="bg-yellow-400 text-white p-2 rounded-full">
+                            <i class="fas fa-bell">
+                            </i>
+                        </button>
+                        <button class="bg-orange-500 text-white p-2 rounded-full">
+                            <i class="fas fa-cog">
+                            </i>
+                        </button>
+                    </div>
+                </div>
+                <div class="relative mb-4">
+                    <input class="w-full p-3 pl-10 rounded-full shadow-sm focus:outline-none"
+                        placeholder="Search Bill..." type="text" />
+                    <i class="fas fa-search absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400">
+                    </i>
+                </div>
+                <div class="bg-white shadow rounded-lg overflow-hidden">
+                    <table class="min-w-full">
+                        <thead class="bg-gray-100">
+                            <tr>
+                                <th class="p-4 text-left">
+                                    Menu
+                                </th>
+                                <th class="p-4 text-left">
+                                    Status
+                                </th>
+                                <th class="p-4 text-left">
+                                    Date
+                                </th>
+                                <th class="p-4 text-left">
+                                    Address
+                                </th>
+                                <th class="p-4 text-left">
+                                    Total
+                                </th>
+                                <th class="p-4 text-left">
+                                    Payment Method
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="border-b">
+                                <td class="p-4">
+                                    <input class="mr-2" type="checkbox" />
+                                    Order #1
+                                </td>
+                                <td class="p-4">
+                                    <span class="bg-green-500 text-white px-3 py-1 rounded-full">
+                                        Completed
+                                    </span>
+                                </td>
+                                <td class="p-4">
+                                    June 1, 2020, 08:22 AM
+                                </td>
+                                <td class="p-4">
+                                    <i class="fas fa-map-marker-alt text-purple-600">
+                                    </i>
+                                    Elm Street, 23 Yogyakarta
+                                </td>
+                                <td class="p-4 text-purple-600">
+                                    $ 5.59
+                                </td>
+                                <td class="p-4">
+                                    Cash
+                                </td>
+                            </tr>
+                            <tr class="bg-purple-100 border-b">
+                                <td class="p-4">
+                                    <input class="mr-2" type="checkbox" />
+                                    Order #1
+                                </td>
+                                <td class="p-4">
+                                    <span class="bg-purple-600 text-white px-3 py-1 rounded-full">
+                                        Completed
+                                    </span>
+                                </td>
+                                <td class="p-4">
+                                    June 1, 2020, 08:22 AM
+                                </td>
+                                <td class="p-4">
+                                    <i class="fas fa-map-marker-alt text-purple-600">
+                                    </i>
+                                    Elm Street, 23 Yogyakarta
+                                </td>
+                                <td class="p-4 text-purple-600">
+                                    $ 5.59
+                                </td>
+                                <td class="p-4">
+                                    Cash
+                                </td>
+                            </tr>
+                            <tr class="bg-purple-100 border-b">
+                                <td class="p-4" colspan="6">
+                                    <div class="flex space-x-4">
+                                        <div class="w-1/3">
+                                            <h2 class="font-bold mb-2">
+                                                Order Menu
+                                            </h2>
+                                            <div class="flex items-center mb-2">
+                                                <img alt="Pepperoni Pizza" class="w-10 h-10 rounded-full mr-2"
+                                                    height="50"
+                                                    src="https://storage.googleapis.com/a1aa/image/HTYqH6oPdWT-HhgBSR9H2yWxhY8VHA61h5wN4AgtkpM.jpg"
+                                                    width="50" />
+                                                <div>
+                                                    <p>
+                                                        Pepperoni Pizza
+                                                    </p>
+                                                    <p class="text-purple-600">
+                                                        +$5.59
+                                                    </p>
+                                                </div>
+                                            </div>
+                                            <div class="flex items-center">
+                                                <img alt="Cheese Burger" class="w-10 h-10 rounded-full mr-2" height="50"
+                                                    src="https://storage.googleapis.com/a1aa/image/fngZlwVL2OOfq2xeW5lfbUYcZBUwPW8Gojuzmv2z_Ds.jpg"
+                                                    width="50" />
+                                                <div>
+                                                    <p>
+                                                        Cheese Burger
+                                                    </p>
+                                                    <p class="text-purple-600">
+                                                        +$5.59
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="w-1/3">
+                                            <h2 class="font-bold mb-2">
+                                                Fast Food Resto
+                                            </h2>
+                                            <p>
+                                                <i class="fas fa-star text-yellow-400">
+                                                </i>
+                                                5.0 • 1k+ Reviews
+                                            </p>
+                                            <p>
+                                                Delivery Time: 10 Min
+                                            </p>
+                                            <p>
+                                                Distance: 2.5 Km
+                                            </p>
+                                        </div>
+                                        <div class="w-1/3">
+                                            <h2 class="font-bold mb-2">
+                                                Status
+                                            </h2>
+                                            <p>
+                                                Completed
+                                            </p>
+                                            <h2 class="font-bold mb-2">
+                                                Date
+                                            </h2>
+                                            <p>
+                                                June 1, 2020
+                                            </p>
+                                            <h2 class="font-bold mb-2">
+                                                Bills
+                                            </h2>
+                                            <p>
+                                                Order #1
+                                            </p>
+                                            <h2 class="font-bold mb-2">
+                                                Date Paid
+                                            </h2>
+                                            <p>
+                                                June 1, 2020
+                                            </p>
+                                            <h2 class="font-bold mb-2">
+                                                Total
+                                            </h2>
+                                            <p class="text-purple-600 text-2xl">
+                                                $202.00
+                                            </p>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr class="border-b">
+                                <td class="p-4">
+                                    <input class="mr-2" type="checkbox" />
+                                    Order #1
+                                </td>
+                                <td class="p-4">
+                                    <span class="bg-green-500 text-white px-3 py-1 rounded-full">
+                                        Completed
+                                    </span>
+                                </td>
+                                <td class="p-4">
+                                    June 1, 2020, 08:22 AM
+                                </td>
+                                <td class="p-4">
+                                    <i class="fas fa-map-marker-alt text-purple-600">
+                                    </i>
+                                    Elm Street, 23 Yogyakarta
+                                </td>
+                                <td class="p-4 text-purple-600">
+                                    $ 5.59
+                                </td>
+                                <td class="p-4">
+                                    Cash
+                                </td>
+                            </tr>
+                            <tr class="border-b">
+                                <td class="p-4">
+                                    <input class="mr-2" type="checkbox" />
+                                    Order #1
+                                </td>
+                                <td class="p-4">
+                                    <span class="bg-green-500 text-white px-3 py-1 rounded-full">
+                                        Completed
+                                    </span>
+                                </td>
+                                <td class="p-4">
+                                    June 1, 2020, 08:22 AM
+                                </td>
+                                <td class="p-4">
+                                    <i class="fas fa-map-marker-alt text-purple-600">
+                                    </i>
+                                    Elm Street, 23 Yogyakarta
+                                </td>
+                                <td class="p-4 text-purple-600">
+                                    $ 5.59
+                                </td>
+                                <td class="p-4">
+                                    Cash
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div class="p-4 flex justify-between items-center">
+                        <p>
+                            Showing 1-5 from 100 data
+                        </p>
+                        <div class="flex space-x-2">
+                            <button class="bg-gray-200 text-gray-600 px-3 py-1 rounded-full">
+                                1
+                            </button>
+                            <button class="bg-purple-600 text-white px-3 py-1 rounded-full">
+                                2
+                            </button>
+                        </div>
                     </div>
                 </div>
             </div>
-            <div id="setting" class="tabs hidden">
-                setting
+            <!-- setting -->
+            <div id="setting" class="tabs flex min-h-screen hidden">
+                <!-- Sidebar -->
+                <div class="w-1/4 bg-white p-6">
+                    <h2 class="text-2xl font-bold mb-8">
+                        User Profile
+                    </h2>
+                    <nav class="space-y-4">
+                        <a class="flex items-center text-orange-500" href="#">
+                            <i class="fas fa-user mr-2">
+                            </i>
+                            User info
+                        </a>
+                        <a class="flex items-center text-gray-600" href="#">
+                            <i class="fas fa-heart mr-2">
+                            </i>
+                            Favorites
+                        </a>
+                        <a class="flex items-center text-gray-600" href="#">
+                            <i class="fas fa-star mr-2">
+                            </i>
+                            Watchlist
+                        </a>
+                        <a class="flex items-center text-gray-600" href="#">
+                            <i class="fas fa-cog mr-2">
+                            </i>
+                            Setting
+                        </a>
+                        <a class="flex items-center text-gray-600" href="#">
+                            <i class="fas fa-bell mr-2">
+                            </i>
+                            Notifications
+                        </a>
+                    </nav>
+                    <a class="flex items-center text-red-500 mt-8" href="#">
+                        <i class="fas fa-sign-out-alt mr-2">
+                        </i>
+                        Log out
+                    </a>
+                </div>
+                <!-- Main Content -->
+                <div class="w-3/4 bg-white p-10">
+                    <div class="flex items-center mb-8">
+                        <div class="relative">
+                            <img alt="Profile picture of a woman wearing sunglasses and a green top"
+                                class="rounded-full w-24 h-24" height="100"
+                                src="https://storage.googleapis.com/a1aa/image/_5rex6185-s03sf6lNtnbyWF30DNVNwfmxRbr600Lsw.jpg"
+                                width="100" />
+                            <button class="absolute bottom-0 right-0 bg-orange-500 text-white rounded-full p-1">
+                                <i class="fas fa-pencil-alt">
+                                </i>
+                            </button>
+                        </div>
+                        <div class="ml-6">
+                            <h2 class="text-2xl font-bold">
+                                Sara Tancredi
+                            </h2>
+                            <p class="text-gray-500">
+                                New York, USA
+                            </p>
+                        </div>
+                    </div>
+                    <form class="space-y-6">
+                        <div class="grid grid-cols-2 gap-6">
+                            <div>
+                                <label class="block text-gray-700" for="name">
+                                    Name
+                                </label>
+                                <input class="w-full p-2 border rounded-md" id="name" type="text" value="Sara" />
+                            </div>
+                            <div>
+                                <label class="block text-gray-700" for="full-name">
+                                    Full Name
+                                </label>
+                                <input class="w-full p-2 border rounded-md" id="full-name" type="text"
+                                    value="Tancredi" />
+                            </div>
+                        </div>
+                        <div class="grid grid-cols-2 gap-6">
+                            <div>
+                                <label class="block text-gray-700" for="email">
+                                    Email Address
+                                </label>
+                                <input class="w-full p-2 border rounded-md" id="email" type="email"
+                                    value="Sara Tancredi@gmail" />
+                            </div>
+                            <div>
+                                <label class="block text-gray-700" for="phone">
+                                    Phone Number
+                                </label>
+                                <input class="w-full p-2 border rounded-md" id="phone" type="text"
+                                    value="(+98) 9123728167" />
+                            </div>
+                        </div>
+                        <div class="grid grid-cols-2 gap-6">
+                            <div>
+                                <label class="block text-gray-700" for="location">
+                                    Location
+                                </label>
+                                <input class="w-full p-2 border rounded-md" id="location" type="text"
+                                    value="e.g. New York, USA" />
+                            </div>
+                            <div>
+                                <label class="block text-gray-700" for="postal-code">
+                                    Postal Code
+                                </label>
+                                <input class="w-full p-2 border rounded-md" id="postal-code" type="text"
+                                    value="23728167" />
+                            </div>
+                        </div>
+                        <div class="flex justify-center">
+                            <button class="bg-orange-500 text-white py-2 px-6 rounded-full" type="submit">
+                                Save Changes
+                            </button>
+                        </div>
+                    </form>
+                </div>
             </div>
         </main>
-        <aside></aside>
+        <!-- Right Sidebar -->
+        <div class="w-80 p-6">
+            <div class="bg-purple-100 p-4 rounded-lg mb-6">
+                <div class="flex justify-between items-center">
+                    <h2 class="text-xl font-bold">
+                        Balance
+                    </h2>
+                    <h2 class="text-2xl font-bold">
+                        $12.000
+                    </h2>
+                </div>
+                <div class="flex space-x-4 mt-4">
+                    <button class="bg-yellow-500 text-white py-2 px-4 rounded-lg">
+                        Top Up
+                    </button>
+                    <button class="bg-green-500 text-white py-2 px-4 rounded-lg">
+                        Transfer
+                    </button>
+                </div>
+            </div>
+            <div class="bg-white p-4 rounded-lg mb-6">
+                <h2 class="text-xl font-bold mb-4">
+                    Your Address
+                </h2>
+                <p>
+                    Elm Street, 23
+                </p>
+                <button class="bg-purple-500 text-white py-2 px-4 rounded-lg mt-4">
+                    Change
+                </button>
+            </div>
+            <div class="bg-white p-4 rounded-lg">
+                <h2 class="text-xl font-bold mb-4">
+                    Recent Orders
+                </h2>
+                <div class="space-y-4">
+                    <div class="flex gap-5 items-center">
+                        <img alt="Pepperoni Pizza" class="rounded-lg" height="50"
+                            src="https://storage.googleapis.com/a1aa/image/wDE2uJ5NKr8AfJIqpfTpKC3u6jetPI70myvMn8W_heU.jpg"
+                            width="50" />
+                        <div>
+                            <h3 class="font-bold">
+                                Pepperoni Pizza
+                            </h3>
+                            <p>
+                                $5.59
+                            </p>
+                        </div>
+                        <button class="bg-purple-500 text-white py-2 px-4 rounded-lg">
+                            +
+                        </button>
+                    </div>
+                    <div class="flex gap-5 items-center">
+                        <img alt="Cheese Burger" class="rounded-lg" height="50"
+                            src="https://storage.googleapis.com/a1aa/image/Qidv_ZL6QmbvjvAsXgVXDk-SbT4NE5XhR-bBoXzM6tc.jpg"
+                            width="50" />
+                        <div>
+                            <h3 class="font-bold">
+                                Cheese Burger
+                            </h3>
+                            <p>
+                                $5.59
+                            </p>
+                        </div>
+                        <button class="bg-purple-500 text-white py-2 px-4 rounded-lg">
+                            +
+                        </button>
+                    </div>
+                    <div class="flex gap-5 items-center">
+                        <img alt="Vegan Pizza" class="rounded-lg" height="50"
+                            src="https://storage.googleapis.com/a1aa/image/4qqIpv8PIEW0R5TrEEv6vEBYGC1F8p2CldJTNnSWOLI.jpg"
+                            width="50" />
+                        <div>
+                            <h3 class="font-bold">
+                                Vegan Pizza
+                            </h3>
+                            <p>
+                                $5.59
+                            </p>
+                        </div>
+                        <button class="bg-purple-500 text-white py-2 px-4 rounded-lg">
+                            +
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
     </div>
     <%- include('./partials/footer') %>

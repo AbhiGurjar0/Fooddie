@@ -1,5 +1,8 @@
 <%- include('./partials/header') %>
-    <!--  -->
+
+    <div id="deleted" class="bg-red absolute hidden top-10 left-40 ">Order is deleted 😥</div>
+
+
     <div class="flex">
         <!-- Sidebar -->
         <div class="bg-purple-600 text-white w-64 min-h-screen p-4">
@@ -65,17 +68,20 @@
             <div id="dashboard" class="tabs flex-1 p-6 min-h-screen">
                 <div class="flex justify-between items-center mb-6">
                     <h1 class="text-2xl font-bold">
-                        Hey, Zack
+                        <%if(user){%>
+                            <%=user.fullname%>
+                                <% }%>
                     </h1>
+
                     <div class="flex items-center space-x-4">
-                        <input class="p-2 rounded-lg border border-gray-300" placeholder="What do you want eat today..."
-                            type="text" />
-                        <i class="fas fa-bell text-xl">
-                        </i>
-                        <i class="fas fa-comment-dots text-xl">
-                        </i>
-                        <i class="fas fa-user-circle text-xl">
-                        </i>
+                        <a href="/cart"><i class="ri-shopping-cart-2-line"></i></a>
+                        <form action="/search" method="post">
+                            <input class="p-2 rounded-lg border border-gray-300"
+                                placeholder="What do you want eat today..." type="text" name="q" />
+
+
+                        </form>
+
                     </div>
                 </div>
                 <!-- <div class="flex space-x-4 h-[15%] mb-6">
@@ -115,6 +121,7 @@
                         </a>
                     </div>
                     <div class="grid grid-cols-3 gap-4">
+
                         <%products.forEach(product=>{%>
 
                             <div class="product-card" class="bg-white p-4 rounded-lg "
@@ -133,7 +140,13 @@
                                         <p>
                                             $<%=product.price%>
                                         </p>
+
                                     </div>
+                                    <div onclick="addToFav('<%=product._id%>')"
+                                        class="w-[3vw] h-[3vw] bg-red-500 flex justify-center items-center rounded-md shadow-lg">
+                                        <i class="ri-heart-fill"></i>
+                                    </div>
+
                                     <button onclick="addToCart('<%=product._id%>')"
                                         class="bg-purple-500 text-white py-2 px-4 rounded-lg">
                                         +
@@ -142,6 +155,8 @@
                             </div>
 
                             <% })%>
+
+
 
 
                     </div>
@@ -222,38 +237,34 @@
 
                 <!-- Main Content -->
                 <main class="flex-1 p-6">
-                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                    <div class="flex gap-6">
                         <!-- Current Orders -->
-                        <section class="bg-white p-6 rounded-lg shadow-lg">
+                        <section class="bg-white p-6 rounded-lg shadow-lg w-[50%] ">
                             <h2 class="text-2xl font-bold mb-4">Current Orders</h2>
-                            <div class="space-y-4">
-                                <div class="flex justify-between items-center p-4 bg-gray-50 rounded-lg shadow-sm">
-                                    <img alt="Pepperoni Pizza" class="rounded-lg" height="50"
-                                        src="https://storage.googleapis.com/a1aa/image/wDE2uJ5NKr8AfJIqpfTpKC3u6jetPI70myvMn8W_heU.jpg"
-                                        width="50" />
-                                    <div>
-                                        <h3 class="font-bold">Pepperoni Pizza</h3>
-                                        <p>$5.59</p>
-                                        <p class="text-gray-500">Estimated delivery: 20 mins</p>
+                            <div class="space-y-4 w-[100%] ">
+                                <%orders.forEach(order=>{%>
+                                    <div class="flex justify-between items-center p-4 bg-gray-50 rounded-lg shadow-sm">
+                                        <img alt="Pepperoni Pizza" class="rounded-lg" height="50"
+                                            src="data:image/jpeg;base64,<%= order.productId.image ?order.productId.image.toString('base64') : '' %>"
+                                            width="50" />
+                                        <div>
+                                            <h3 class="font-bold">
+                                                <%=order.productId.name%>
+                                            </h3>
+                                            <p>$<%=order.productId.price%>
+                                            </p>
+                                            <p class="text-gray-500">Estimated delivery: 20 mins</p>
+                                        </div>
+                                        <button onclick="deleteProduct('<%=order._id%>')"
+                                            class="bg-red-500 text-white py-1 px-3 rounded-lg">Cancel</button>
                                     </div>
-                                    <button class="bg-red-500 text-white py-1 px-3 rounded-lg">Cancel</button>
-                                </div>
-                                <div class="flex justify-between items-center p-4 bg-gray-50 rounded-lg shadow-sm">
-                                    <img alt="Cheese Burger" class="rounded-lg" height="50"
-                                        src="https://storage.googleapis.com/a1aa/image/Qidv_ZL6QmbvjvAsXgVXDk-SbT4NE5XhR-bBoXzM6tc.jpg"
-                                        width="50" />
-                                    <div>
-                                        <h3 class="font-bold">Cheese Burger</h3>
-                                        <p>$5.59</p>
-                                        <p class="text-gray-500">Estimated delivery: 15 mins</p>
-                                    </div>
-                                    <button class="bg-red-500 text-white py-1 px-3 rounded-lg">Cancel</button>
-                                </div>
+                                    <% });%>
+
                             </div>
                         </section>
 
                         <!-- Previous Orders -->
-                        <section class="bg-white p-6 rounded-lg shadow-lg">
+                        <section class="bg-white p-6 rounded-lg shadow-lg w-[40%]">
                             <h2 class="text-2xl font-bold mb-4">Previous Orders</h2>
                             <div class="space-y-4">
                                 <div class="flex justify-between items-center p-4 bg-gray-50 rounded-lg shadow-sm">
@@ -295,91 +306,32 @@
             <div id="favorite" class="tabs w-full hidden">
                 <h1 class="font-bold text-3xl font-sans">Fevorite </h1>
                 <div class="grid grid-cols-3 gap-4">
-                    <div class="bg-white p-4 rounded-lg">
-                        <img alt="Fish Burger" class="rounded-lg mb-4 h-[60%] w-full" height="100"
-                            src="https://storage.googleapis.com/a1aa/image/rCMWcfcoRU63onO6O1YDgXqA4Gx-58LBohGtMHuExXA.jpg"
-                            width="150" />
-                        <div class="flex justify-between items-center">
-                            <div>
-                                <h3 class="font-bold">
-                                    Fish Burger
-                                </h3>
-                                <p class="text-yellow-500">
-                                    ★★★★★
-                                </p>
-                                <p>
-                                    $5.59
-                                </p>
+                    <%favorite.forEach((product)=>{%>
+                        <div class="bg-white p-4 rounded-lg">
+                            <img alt="Fish Burger" class="rounded-lg mb-4 h-[60%] w-full" height="100"
+                                src="data:image/jpeg;base64,<%= product.productId.image ?product.productId.image.toString('base64') : '' %>"
+                                width="150" />
+                            <div class="flex justify-between items-center">
+                                <div>
+                                    <h3 class="font-bold">
+                                        <%= product.productId.name%>
+                                    </h3>
+                                    <p class="text-yellow-500">
+                                        ★★★★★
+                                    </p>
+                                    <p>
+                                        $<%=product.productId.price%>
+                                    </p>
+                                </div>
+                                <button onclick="addToCart('<%=product._id%>')"
+                                    class="bg-purple-500 text-white py-2 px-4 rounded-lg">
+                                    +
+                                </button>
                             </div>
-                            <button class="bg-purple-500 text-white py-2 px-4 rounded-lg">
-                                +
-                            </button>
                         </div>
-                    </div>
-                    <div class="bg-white p-4 rounded-lg">
-                        <img alt="Fish Burger" class="rounded-lg mb-4 h-[60%] w-full" height="100"
-                            src="https://storage.googleapis.com/a1aa/image/rCMWcfcoRU63onO6O1YDgXqA4Gx-58LBohGtMHuExXA.jpg"
-                            width="150" />
-                        <div class="flex justify-between items-center">
-                            <div>
-                                <h3 class="font-bold">
-                                    Fish Burger
-                                </h3>
-                                <p class="text-yellow-500">
-                                    ★★★★★
-                                </p>
-                                <p>
-                                    $5.59
-                                </p>
-                            </div>
-                            <button class="bg-purple-500 text-white py-2 px-4 rounded-lg">
-                                +
-                            </button>
-                        </div>
-                    </div>
-                    <div class="bg-white p-4 rounded-lg">
-                        <img alt="Fish Burger" class="rounded-lg mb-4 h-[60%] w-full" height="100"
-                            src="https://storage.googleapis.com/a1aa/image/rCMWcfcoRU63onO6O1YDgXqA4Gx-58LBohGtMHuExXA.jpg"
-                            width="150" />
-                        <div class="flex justify-between items-center">
-                            <div>
-                                <h3 class="font-bold">
-                                    Fish Burger
-                                </h3>
-                                <p class="text-yellow-500">
-                                    ★★★★★
-                                </p>
-                                <p>
-                                    $5.59
-                                </p>
-                            </div>
-                            <button class="bg-purple-500 text-white py-2 px-4 rounded-lg">
-                                +
-                            </button>
-                        </div>
-                    </div>
-                    <div class="bg-white p-4 rounded-lg">
-                        <img alt="Fish Burger" class="rounded-lg mb-4 h-[60%] w-full" height="100"
-                            src="https://storage.googleapis.com/a1aa/image/rCMWcfcoRU63onO6O1YDgXqA4Gx-58LBohGtMHuExXA.jpg"
-                            width="150" />
-                        <div class="flex justify-between items-center">
-                            <div>
-                                <h3 class="font-bold">
-                                    Fish Burger
-                                </h3>
-                                <p class="text-yellow-500">
-                                    ★★★★★
-                                </p>
-                                <p>
-                                    $5.59
-                                </p>
-                            </div>
-                            <button class="bg-purple-500 text-white py-2 px-4 rounded-lg">
-                                +
-                            </button>
-                        </div>
-                    </div>
 
+
+                        <% })%>
 
                 </div>
             </div>
@@ -435,192 +387,123 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr class="border-b">
-                                <td class="p-4">
-                                    <input class="mr-2" type="checkbox" />
-                                    Order #1
-                                </td>
-                                <td class="p-4">
-                                    <span class="bg-green-500 text-white px-3 py-1 rounded-full">
-                                        Completed
-                                    </span>
-                                </td>
-                                <td class="p-4">
-                                    June 1, 2020, 08:22 AM
-                                </td>
-                                <td class="p-4">
-                                    <i class="fas fa-map-marker-alt text-purple-600">
-                                    </i>
-                                    Elm Street, 23 Yogyakarta
-                                </td>
-                                <td class="p-4 text-purple-600">
-                                    $ 5.59
-                                </td>
-                                <td class="p-4">
-                                    Cash
-                                </td>
-                            </tr>
-                            <tr class="bg-purple-100 border-b">
-                                <td class="p-4">
-                                    <input class="mr-2" type="checkbox" />
-                                    Order #1
-                                </td>
-                                <td class="p-4">
-                                    <span class="bg-purple-600 text-white px-3 py-1 rounded-full">
-                                        Completed
-                                    </span>
-                                </td>
-                                <td class="p-4">
-                                    June 1, 2020, 08:22 AM
-                                </td>
-                                <td class="p-4">
-                                    <i class="fas fa-map-marker-alt text-purple-600">
-                                    </i>
-                                    Elm Street, 23 Yogyakarta
-                                </td>
-                                <td class="p-4 text-purple-600">
-                                    $ 5.59
-                                </td>
-                                <td class="p-4">
-                                    Cash
-                                </td>
-                            </tr>
-                            <tr class="bg-purple-100 border-b">
-                                <td class="p-4" colspan="6">
-                                    <div class="flex space-x-4">
-                                        <div class="w-1/3">
-                                            <h2 class="font-bold mb-2">
-                                                Order Menu
-                                            </h2>
-                                            <div class="flex items-center mb-2">
-                                                <img alt="Pepperoni Pizza" class="w-10 h-10 rounded-full mr-2"
-                                                    height="50"
-                                                    src="https://storage.googleapis.com/a1aa/image/HTYqH6oPdWT-HhgBSR9H2yWxhY8VHA61h5wN4AgtkpM.jpg"
-                                                    width="50" />
-                                                <div>
+                            <%orders.forEach(ord=>{%>
+                                <tr class="border-b">
+                                    <td class="p-4">
+                                        <img alt="Fish Burger" class="rounded-lg mb-4 h-[4vw] w-[5vw]" height="40"
+                                            src="data:image/jpeg;base64,<%=ord.productId.image ?ord.productId.image.toString('base64') : '' %>"
+                                            width="90" />
+                                    </td>
+                                    <td class="p-4">
+                                        <span class="bg-green-500 text-white px-3 py-1 rounded-full">
+                                            Completed
+                                        </span>
+                                    </td>
+                                    <td class="p-4">
+                                        <%=ord.orderDate%>
+                                    </td>
+                                    <td class="p-4">
+                                        <i class="fas fa-map-marker-alt text-purple-600">
+                                        </i>
+                                        Elm Street, 23 Yogyakarta
+                                    </td>
+                                    <td class="p-4 text-purple-600">
+                                        $ <%=ord.amount%>
+                                    </td>
+                                    <td class="p-4">
+                                        Cash
+                                    </td>
+                                </tr>
+                                <% })%>
+
+                                    <tr class="bg-purple-100 border-b">
+                                        <td class="p-4" colspan="6">
+                                            <div class="flex space-x-4">
+                                                <div class="w-1/3">
+                                                    <h2 class="font-bold mb-2">
+                                                        Order Menu
+                                                    </h2>
+                                                    <div class="flex items-center mb-2">
+                                                        <img alt="Pepperoni Pizza" class="w-10 h-10 rounded-full mr-2"
+                                                            height="50"
+                                                            src="https://storage.googleapis.com/a1aa/image/HTYqH6oPdWT-HhgBSR9H2yWxhY8VHA61h5wN4AgtkpM.jpg"
+                                                            width="50" />
+                                                        <div>
+                                                            <p>
+                                                                Pepperoni Pizza
+                                                            </p>
+                                                            <p class="text-purple-600">
+                                                                +$5.59
+                                                            </p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="flex items-center">
+                                                        <img alt="Cheese Burger" class="w-10 h-10 rounded-full mr-2"
+                                                            height="50"
+                                                            src="https://storage.googleapis.com/a1aa/image/fngZlwVL2OOfq2xeW5lfbUYcZBUwPW8Gojuzmv2z_Ds.jpg"
+                                                            width="50" />
+                                                        <div>
+                                                            <p>
+                                                                Cheese Burger
+                                                            </p>
+                                                            <p class="text-purple-600">
+                                                                +$5.59
+                                                            </p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="w-1/3">
+                                                    <h2 class="font-bold mb-2">
+                                                        Fast Food Resto
+                                                    </h2>
                                                     <p>
-                                                        Pepperoni Pizza
+                                                        <i class="fas fa-star text-yellow-400">
+                                                        </i>
+                                                        5.0 • 1k+ Reviews
                                                     </p>
-                                                    <p class="text-purple-600">
-                                                        +$5.59
+                                                    <p>
+                                                        Delivery Time: 10 Min
+                                                    </p>
+                                                    <p>
+                                                        Distance: 2.5 Km
+                                                    </p>
+                                                </div>
+                                                <div class="w-1/3">
+                                                    <h2 class="font-bold mb-2">
+                                                        Status
+                                                    </h2>
+                                                    <p>
+                                                        Completed
+                                                    </p>
+                                                    <h2 class="font-bold mb-2">
+                                                        Date
+                                                    </h2>
+                                                    <p>
+                                                        June 1, 2020
+                                                    </p>
+                                                    <h2 class="font-bold mb-2">
+                                                        Bills
+                                                    </h2>
+                                                    <p>
+                                                        Order #1
+                                                    </p>
+                                                    <h2 class="font-bold mb-2">
+                                                        Date Paid
+                                                    </h2>
+                                                    <p>
+                                                        June 1, 2020
+                                                    </p>
+                                                    <h2 class="font-bold mb-2">
+                                                        Total
+                                                    </h2>
+                                                    <p class="text-purple-600 text-2xl">
+                                                        $202.00
                                                     </p>
                                                 </div>
                                             </div>
-                                            <div class="flex items-center">
-                                                <img alt="Cheese Burger" class="w-10 h-10 rounded-full mr-2" height="50"
-                                                    src="https://storage.googleapis.com/a1aa/image/fngZlwVL2OOfq2xeW5lfbUYcZBUwPW8Gojuzmv2z_Ds.jpg"
-                                                    width="50" />
-                                                <div>
-                                                    <p>
-                                                        Cheese Burger
-                                                    </p>
-                                                    <p class="text-purple-600">
-                                                        +$5.59
-                                                    </p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="w-1/3">
-                                            <h2 class="font-bold mb-2">
-                                                Fast Food Resto
-                                            </h2>
-                                            <p>
-                                                <i class="fas fa-star text-yellow-400">
-                                                </i>
-                                                5.0 • 1k+ Reviews
-                                            </p>
-                                            <p>
-                                                Delivery Time: 10 Min
-                                            </p>
-                                            <p>
-                                                Distance: 2.5 Km
-                                            </p>
-                                        </div>
-                                        <div class="w-1/3">
-                                            <h2 class="font-bold mb-2">
-                                                Status
-                                            </h2>
-                                            <p>
-                                                Completed
-                                            </p>
-                                            <h2 class="font-bold mb-2">
-                                                Date
-                                            </h2>
-                                            <p>
-                                                June 1, 2020
-                                            </p>
-                                            <h2 class="font-bold mb-2">
-                                                Bills
-                                            </h2>
-                                            <p>
-                                                Order #1
-                                            </p>
-                                            <h2 class="font-bold mb-2">
-                                                Date Paid
-                                            </h2>
-                                            <p>
-                                                June 1, 2020
-                                            </p>
-                                            <h2 class="font-bold mb-2">
-                                                Total
-                                            </h2>
-                                            <p class="text-purple-600 text-2xl">
-                                                $202.00
-                                            </p>
-                                        </div>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr class="border-b">
-                                <td class="p-4">
-                                    <input class="mr-2" type="checkbox" />
-                                    Order #1
-                                </td>
-                                <td class="p-4">
-                                    <span class="bg-green-500 text-white px-3 py-1 rounded-full">
-                                        Completed
-                                    </span>
-                                </td>
-                                <td class="p-4">
-                                    June 1, 2020, 08:22 AM
-                                </td>
-                                <td class="p-4">
-                                    <i class="fas fa-map-marker-alt text-purple-600">
-                                    </i>
-                                    Elm Street, 23 Yogyakarta
-                                </td>
-                                <td class="p-4 text-purple-600">
-                                    $ 5.59
-                                </td>
-                                <td class="p-4">
-                                    Cash
-                                </td>
-                            </tr>
-                            <tr class="border-b">
-                                <td class="p-4">
-                                    <input class="mr-2" type="checkbox" />
-                                    Order #1
-                                </td>
-                                <td class="p-4">
-                                    <span class="bg-green-500 text-white px-3 py-1 rounded-full">
-                                        Completed
-                                    </span>
-                                </td>
-                                <td class="p-4">
-                                    June 1, 2020, 08:22 AM
-                                </td>
-                                <td class="p-4">
-                                    <i class="fas fa-map-marker-alt text-purple-600">
-                                    </i>
-                                    Elm Street, 23 Yogyakarta
-                                </td>
-                                <td class="p-4 text-purple-600">
-                                    $ 5.59
-                                </td>
-                                <td class="p-4">
-                                    Cash
-                                </td>
-                            </tr>
+                                        </td>
+                                    </tr>
+
                         </tbody>
                     </table>
                     <div class="p-4 flex justify-between items-center">

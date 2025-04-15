@@ -74,7 +74,7 @@ async function addToCart(productId) {
     })
         .then(response => response.json())
         .then(data => {
-            
+
 
         }).catch(error => { console.log(error) });
 }
@@ -83,7 +83,7 @@ async function addToCart(productId) {
 // Delete product from cart
 
 async function Delete(productId) {
-   
+
     const element = document.querySelector(`[data-product-id="${productId}"]`);
     await fetch("home/cart/delete", {
         method: "POST",
@@ -94,7 +94,7 @@ async function Delete(productId) {
     })
         .then(response => response.json())
         .then(data => {
-          
+
             element.remove();
         }).catch(error => {
             console.log("error during deletion");
@@ -106,22 +106,108 @@ async function Delete(productId) {
 buttons = document.querySelectorAll(".category-btn");
 products = document.querySelectorAll(".product-card");
 // function showCategory(Category) {
-    buttons.forEach(btn => {
-        btn.addEventListener("click", () => {
-            const selected = btn.getAttribute("data-category");
-            
-            products.forEach(prod => {
-                if (prod.getAttribute("data-category") == selected) {
+buttons.forEach(btn => {
+    btn.addEventListener("click", () => {
+        const selected = btn.getAttribute("data-category");
 
-                    prod.classList.remove("hidden");
-                } else {
-                    
-                    prod.classList.add("hidden");
-                }
-            })
+        products.forEach(prod => {
+            if (prod.getAttribute("data-category") == selected) {
+
+                prod.classList.remove("hidden");
+            } else {
+
+                prod.classList.add("hidden");
+            }
         })
-
     })
+
+})
 // }
 
 
+
+
+//Sign in 
+function signIn() {
+    document.getElementById("signin").classList.remove("hidden");
+    document.getElementById("signup").classList.add("hidden");
+}
+//sign Up
+function signUp() {
+    document.getElementById("signin").classList.add("hidden");
+    document.getElementById("signup").classList.remove("hidden");
+}
+
+
+//checkOut
+
+async function checkout() {
+    await fetch("home/cart/checkOut", {
+        method: "POST",
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({}),
+
+    })
+        .then(response => response.json())
+        .then(data => {
+
+        }).catch(error => {
+            console.log(error);
+        }
+        );
+}
+
+//cancel order
+async function deleteProduct(productId) {
+    try {
+      const response = await fetch("home/food_orders/cancel/", {
+        method: "POST",
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ productId }),
+      });
+  
+      const contentType = response.headers.get("content-type");
+  
+      if (contentType.includes("application/json")) {
+        const data = await response.json();
+        console.log("JSON Response:", data);
+      } else {
+        const html = await response.text();
+        console.log("HTML Response:", html);
+      }
+  
+      document.getElementById("deleted").classList.remove("hidden");
+      setTimeout(() => {
+        document.getElementById("deleted").classList.add("hidden");
+      }, 2000);
+  
+    } catch (error) {
+      console.error("Delete failed:", error);
+    }
+  }
+
+
+
+
+  //Add to favorite
+
+  function addToFav(productId){
+    fetch("addToFav",{
+        method:"POST",
+        headers:{
+            'Content-Type':'application/json',
+        },
+        body:JSON.stringify({productId}),
+    }).then(response =>response.json())
+    .then(data =>{
+       console.log("Successfully Added in Favorite Section");
+    })
+    .catch(error=>{
+        console.log(error);
+    })
+  }
+  

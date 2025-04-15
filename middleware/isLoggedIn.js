@@ -5,10 +5,10 @@ let keys = require("../config/keys");
 module.exports = async (req, res,next) => {
     try{
         let token = req.cookies.token;
-        if(!token){
+        if(!token){ 
            console.log("you are not logged in !");
            return res.status(401).json({ message: "You are not logged in!" });
-        }
+        } 
         
         let decoded = jwt.verify(token,keys.JWT_KEY);
         let user = await userModel.findOne({email:decoded.email}).select("-password");

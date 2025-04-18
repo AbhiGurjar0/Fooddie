@@ -8,15 +8,26 @@ const isLoggedIn = require("../middleware/isLoggedIn");
 const upload = require("../config/multer");
 const orderModel = require("../models/order-model");
 const favModel = require("../models/favorite-model");
+const transactionModel = require("../models/transaction-model");
 
 
+router.get("/address", isLoggedIn, async (req, res) => {
+  let user = await userModel.findOne({ _id: req.user._id });
+  res.render("address", { user });
+})
+router.post("/addAddress", isLoggedIn, async (req, res) => {
+  let { name, phoneNumber, pincode, nearPlace, address, city, state } = req.body;
+  
+
+})
 //Cart 
 router.get("/cart", isLoggedIn, async (req, res) => {
   let user = await userModel.findOne({ _id: req.user._id }).populate("cart.productId");
-  cartItems = user.cart; 
+  let cartItems = user.cart.filter(item => item.productId !== null);
+
   let total = 0;
   cartItems.forEach(element => {
-    total += element.productId.price;
+    total += (element.productId.price);
   });
   res.render("cart", { cartItems, total });
 });
@@ -24,22 +35,6 @@ router.get("/cart", isLoggedIn, async (req, res) => {
 router.get("/bills", async (req, res) => {
   res.render("bills");
 });
-// Search
-
-router.post("/search", isLoggedIn, async (req, res) => {
-  const query = req.body.q;
-  // console.log(query)
-  let products = await productModel.find();
-  const search = query.trim().toLowerCase();
-  const filtered = products.filter(product =>
-    product.name.toLowerCase().includes(search)
-  );
-  res.render("search", { filtered });
-});
-
-
-
-
 
 //sign in 
 router.get("/signin", (req, res) => {
@@ -54,8 +49,8 @@ router.get("/", isLoggedIn, async (req, res) => {
   let categories = await productModel.distinct("category");
   let orders = await orderModel.find({ userId: user._id }).populate("productId");
   let favorite = await favModel.find({ userId: user._id }).populate("productId");
-
-  res.render("home", { products, user, categories, orders, favorite });
+  let transaction = await transactionModel.find({ user: user._id });
+  res.render("home", { products, user, categories, orders, favorite, transaction });
 });
 
 //All categories
@@ -68,16 +63,18 @@ router.get("/home/category", async (req, res) => {
 router.post("/home/cart", isLoggedIn, async (req, res) => {
   let userId = req.user._id;
   let { productId } = req.body;
+
   let user = await userModel.findOne({ _id: userId });
   if (!user) {
     res.send("User not found");
   }
-  let existingProduct = user.cart.find(item => item.productId.toString() === productId);
+  let existingProduct = user.cart.find(item => item.productId.toString() == productId);
   if (existingProduct) {
     existingProduct.quantity += 1;
   }
   else {
     user.cart.push({ productId, quantity: 1 });
+
   }
   await user.save();
   res.json({ message: "Product added to cart successfully" });
@@ -86,7 +83,9 @@ router.post("/home/cart", isLoggedIn, async (req, res) => {
 //CheckOut
 router.post("/home/cart/checkout", isLoggedIn, async (req, res) => {
   let user = await userModel.findOne({ _id: req.user._id }).populate("cart.productId");
+  let total = 0;
   for (const product of user.cart) {
+    total += (product.productId.price * product.quantity);
     await orderModel.create({
       userId: user._id,
       orderDate: Date.now(),
@@ -94,6 +93,12 @@ router.post("/home/cart/checkout", isLoggedIn, async (req, res) => {
       productId: product.productId,
     });
   }
+  await transactionModel.create({
+    user: user._id,
+    amount: total,
+    date: Date.now(),
+    status: "Completed",
+  })
 
   user.cart = [];
   user.save();
@@ -135,16 +140,27 @@ router.post("/additems", upload.single("image"), async (req, res) => {
 //Add to Favorite
 
 router.post("/addToFav", isLoggedIn, async (req, res) => {
-  let productId = req.body.productId;
+  try {
+    let { productId } = req.body;
+    let userId = req.user._id;
+    let exist = await favModel.findOne({ productId, userId });
+    if (exist) {
+      await favModel.findOneAndDelete({ productId, userId });
+      return res.send("1");
+    }
 
-  let userId = await userModel.findOne({ _id: req.user._id });
+    await favModel.create({
+      productId,
+      userId,
+    })
+    res.send("0");
 
-  await favModel.create({
-    productId,
-    userId,
-  })
-  res.redirect("/");
+  }
+  catch (error) {
+    console.log(error)
+    res.status(500).send("something went wrong")
 
+  }
 })
 
 //Add items panel

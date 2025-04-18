@@ -74,7 +74,7 @@ async function addToCart(productId) {
     })
         .then(response => response.json())
         .then(data => {
-
+            console.log("added Successfully");
 
         }).catch(error => { console.log(error) });
 }
@@ -122,7 +122,47 @@ buttons.forEach(btn => {
     })
 
 })
-// }
+
+// search 
+
+let input = document.getElementById("INPUT");
+input.addEventListener("keydown", function (event) {
+    if (event.key === "Enter") {
+        // Call your function here
+        searched = input.value.trim().toLowerCase();
+        products.forEach(prod => {
+            if (prod.getAttribute("data-name").toLowerCase().includes(searched)) {
+                prod.classList.remove("hidden");
+            }
+            else {
+                prod.classList.add("hidden");
+
+            }
+        })
+    }
+});
+
+// view all
+
+for (let i = 0; i < products.length; i++) {
+    if (i < 3) {
+        products[i].classList.remove("hidden");
+    }
+    else {
+        products[i].classList.add("hidden");
+    }
+}
+
+
+let viewButton = document.getElementById("view");
+viewButton.addEventListener("click", () => {
+    products.forEach(prod => {
+        prod.classList.remove("hidden");
+    })
+})
+
+
+
 
 
 
@@ -162,52 +202,59 @@ async function checkout() {
 //cancel order
 async function deleteProduct(productId) {
     try {
-      const response = await fetch("home/food_orders/cancel/", {
+        const response = await fetch("home/food_orders/cancel/", {
+            method: "POST",
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ productId }),
+        });
+
+        const contentType = response.headers.get("content-type");
+
+        if (contentType.includes("application/json")) {
+            const data = await response.json();
+            console.log("JSON Response:", data);
+        } else {
+            const html = await response.text();
+            console.log("HTML Response:", html);
+        }
+
+        document.getElementById("deleted").classList.remove("hidden");
+        setTimeout(() => {
+            document.getElementById("deleted").classList.add("hidden");
+        }, 2000);
+
+    } catch (error) {
+        console.error("Delete failed:", error);
+    }
+}
+
+
+
+
+//Add to favorite
+function addToFav(productId) {
+    fetch("addToFav", {
         method: "POST",
         headers: {
-          'Content-Type': 'application/json',
+            'Content-Type': 'application/json',
         },
         body: JSON.stringify({ productId }),
-      });
-  
-      const contentType = response.headers.get("content-type");
-  
-      if (contentType.includes("application/json")) {
-        const data = await response.json();
-        console.log("JSON Response:", data);
-      } else {
-        const html = await response.text();
-        console.log("HTML Response:", html);
-      }
-  
-      document.getElementById("deleted").classList.remove("hidden");
-      setTimeout(() => {
-        document.getElementById("deleted").classList.add("hidden");
-      }, 2000);
-  
-    } catch (error) {
-      console.error("Delete failed:", error);
-    }
-  }
-
-
-
-
-  //Add to favorite
-
-  function addToFav(productId){
-    fetch("addToFav",{
-        method:"POST",
-        headers:{
-            'Content-Type':'application/json',
-        },
-        body:JSON.stringify({productId}),
-    }).then(response =>response.json())
-    .then(data =>{
-       console.log("Successfully Added in Favorite Section");
-    })
-    .catch(error=>{
-        console.log(error);
-    })
-  }
-  
+    }).then(response => response.json())
+        .then(data => {
+            
+            // if(data=="1"){
+            //     console.log("empty");
+            //     document.getElementById("favItem").setAttribute("fill", "blue");
+            // }
+            // else{
+            //     console.log("red")
+            //     document.getElementById("favItem").setAttribute("fill", "red");
+            // }
+           
+        })
+        .catch(error => {
+            console.log(error);
+        })
+}

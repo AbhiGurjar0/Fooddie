@@ -36,7 +36,7 @@ module.exports.loginUser = async (req, res) => {
             if (result) {
                 let token = generateToken(user);
                 res.cookie("token", token);
-                return res.redirect("/home");
+                return res.redirect("/");
             }
             else {
                 res.send("Invalid password");

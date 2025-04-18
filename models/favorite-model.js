@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 const favoriteSchema = new mongoose.Schema({
     productId: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'product'
+        ref: 'Product'
     },
     userId: {
         type: mongoose.Schema.Types.ObjectId,
@@ -12,4 +12,4 @@ const favoriteSchema = new mongoose.Schema({
 
 });
 
-module.exports = mongoose.model("fav", favoriteSchema);
+module.exports = mongoose.model("fav", favoriteSchema); 

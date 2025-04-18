@@ -26,7 +26,7 @@ const orderSchema = new mongoose.Schema({
     // createdAt: { type: Date, default: Date.now },
     productId: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'product', // Link to the Product model
+        ref: 'Product', // Link to the Product model
         required: true
     }
 });

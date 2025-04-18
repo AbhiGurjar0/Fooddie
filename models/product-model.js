@@ -5,10 +5,10 @@ const productSchema = new mongoose.Schema({
   category:String,
   price:Number,
   discount:{
-    type:Number,
+    type:Number, 
     default:0
   },
   
 });
 
-module.exports = mongoose.model("product",productSchema);
+module.exports = mongoose.model("Product",productSchema); 

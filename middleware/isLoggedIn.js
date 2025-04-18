@@ -21,6 +21,7 @@ module.exports = async (req, res,next) => {
     }
     catch(error){
         console.log("error in token verification");
-        return res.status(500).json({ message: "Token verification failed" });
+        return res.redirect("/signin");
+        // return res.status(500).json({ message: "Token verification failed" });
     }
 }

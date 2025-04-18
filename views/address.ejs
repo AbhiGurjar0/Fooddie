@@ -1,3 +1,34 @@
 <%- include("./partials/header")%>
 
-<% -include("./partials/footer")%>
+    <div class="bg-white min-h-screen flex items-center justify-center p-4">
+        <form class="w-full max-w-lg" method="post" action="/addAddress">
+            <h1 class="text-gray-800 text-lg font-normal mb-6">Add Shipping Addreass</h1>
+
+            <div class="flex gap-4 mb-4">
+                <input type="text" placeholder="Name"
+                    class="flex-1 border border-gray-300 rounded px-3 py-2 text-xs text-gray-600 placeholder-gray-400 focus:outline-none focus:ring-1 focus:ring-green-400 focus:border-green-400" name="name" />
+                <input type="text" placeholder="Phone Number"
+                    class="flex-1 border border-gray-300 rounded px-3 py-2 text-xs text-gray-600 placeholder-gray-400 focus:outline-none focus:ring-1 focus:ring-green-400 focus:border-green-400" name="phoneNumber" />
+            </div>
+            <div class="flex gap-4 mb-4">
+                <input type="text" placeholder="Pincode"
+                    class="flex-1 border border-gray-300 rounded px-3 py-2 text-xs text-gray-600 placeholder-gray-400 focus:outline-none focus:ring-1 focus:ring-green-400 focus:border-green-400" name="pincode" />
+                <input type="text" placeholder="Nearby place"
+                    class="flex-1 border border-gray-400 rounded px-3 py-2 text-xs text-gray-600 placeholder-gray-400 focus:outline-none focus:ring-1 focus:ring-green-400 focus:border-green-400"
+                    name="nearPlace" />
+            </div>
+            <textarea placeholder="Address (Area and Street)" rows="3"
+                class="w-full border border-gray-300 rounded px-3 py-2 mb-4 text-xs text-gray-600 placeholder-gray-400 resize-none focus:outline-none focus:ring-1 focus:ring-green-400 focus:border-green-400" name="address"></textarea>
+            <div class="flex gap-4 mb-4">
+                <input type="text" placeholder="City/District/Town"
+                    class="flex-1 border border-gray-300 rounded px-3 py-2 text-xs text-gray-600 placeholder-gray-400 focus:outline-none focus:ring-1 focus:ring-green-400 focus:border-green-400" name="city"/>
+                <input type="text" placeholder="State"
+                    class="flex-1 border border-gray-300 rounded px-3 py-2 text-xs text-gray-600 placeholder-gray-400 focus:outline-none focus:ring-1 focus:ring-green-400 focus:border-green-400" name="state"/>
+            </div>
+
+            <button type="submit" class="w-full bg-green-400 text-white text-xs font-normal py-3 rounded">
+                Save and Deliver here
+            </button>
+        </form>
+    </div>
+    <% -include("./partials/footer")%>

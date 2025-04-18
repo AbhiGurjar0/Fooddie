@@ -7,7 +7,7 @@ module.exports = async (req, res,next) => {
         let token = req.cookies.token;
         if(!token){ 
            console.log("you are not logged in !");
-           return res.status(401).json({ message: "You are not logged in!" });
+           return res.redirect("/signin");
         } 
         
         let decoded = jwt.verify(token,keys.JWT_KEY);

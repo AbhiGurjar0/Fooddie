@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const loginRouter = require("../controllers/login-controller");
-const { registerUser, loginUser } = require("../controllers/login-controller");
+const { registerUser, loginUser, logout } = require("../controllers/login-controller");
 const userModel = require("../models/user-model");
 const productModel = require("../models/product-model")
 const isLoggedIn = require("../middleware/isLoggedIn");
@@ -17,8 +17,20 @@ router.get("/address", isLoggedIn, async (req, res) => {
 })
 router.post("/addAddress", isLoggedIn, async (req, res) => {
   let { name, phoneNumber, pincode, nearPlace, address, city, state } = req.body;
-  
+  let user = await userModel.findOne({_id:req.user._id});
+  const newAddress = {
+    name,
+    phoneNumber,
+    pincode,
+    nearPlace,
+    address,
+    city,
+    state,
 
+  };
+  user.address.push(newAddress);
+  await user.save();
+  res.redirect("/");
 })
 //Cart 
 router.get("/cart", isLoggedIn, async (req, res) => {
@@ -50,7 +62,8 @@ router.get("/", isLoggedIn, async (req, res) => {
   let orders = await orderModel.find({ userId: user._id }).populate("productId");
   let favorite = await favModel.find({ userId: user._id }).populate("productId");
   let transaction = await transactionModel.find({ user: user._id });
-  res.render("home", { products, user, categories, orders, favorite, transaction });
+  let addresses = user.address;
+  res.render("home", { products, user, categories, orders, favorite, transaction, addresses });
 });
 
 //All categories
@@ -102,7 +115,7 @@ router.post("/home/cart/checkout", isLoggedIn, async (req, res) => {
 
   user.cart = [];
   user.save();
-  res.redirect("/home/cart");
+  res.redirect("/#food-orders");
 
 })
 //cancel Order
@@ -163,6 +176,10 @@ router.post("/addToFav", isLoggedIn, async (req, res) => {
   }
 })
 
+router.get("/addAddress", (req, res) => {
+  res.render("addAddress")
+})
+
 //Add items panel
 router.get("/home/additems", (req, res) => {
   res.render("addProducts");
@@ -172,5 +189,7 @@ router.post("/login", loginUser);
 
 //Register
 router.post("/register", registerUser);
+//Logout
+router.get("/logout", logout);
 
 module.exports = router; 

@@ -1,6 +1,6 @@
 <%- include('./partials/header') %>
 
-    <div id="deleted" class="bg-red absolute hidden top-10 left-40 ">Order is deleted 😥</div>
+
 
 
     <div class="flex">
@@ -63,20 +63,23 @@
             </div>
         </div>
         <!-- Main Content -->
-        <main class="w-[60%]">
+        <main class="w-[100%]">
             <!-- DashBoard -->
             <div id="dashboard" class="tabs flex-1 p-6 min-h-screen">
                 <div class="flex justify-between items-center mb-6">
+
                     <h1 class="text-2xl font-bold">
-                        <%if(user){%>
-                            <%=user.fullname%>
-                                <% }%>
+                        Welcome,<span class="text-purple-500">
+                            <%if(user){%>
+                                <%=user.fullname%>
+                                    <% }%>
+                        </span>
                     </h1>
 
                     <div class="flex items-center space-x-4">
                         <a href="/cart"><i class="ri-shopping-cart-2-line"></i></a>
                         <!-- <form onsubmit="search()" > -->
-                        <input onmouseenter="search()" id="INPUT" class="p-2 rounded-lg border border-gray-300"
+                        <input id="INPUT" class="p-2 rounded-lg border border-gray-300"
                             placeholder="What do you want eat today..." type="text" name="q" />
 
 
@@ -120,23 +123,21 @@
                             View all
                         </a>
                     </div>
-                    <div class="grid grid-cols-3 gap-4">
+                    <div class="grid grid-cols-5 gap-4 h-[32vh]">
 
                         <%products.forEach(product=>{%>
 
-                            <div class="product-card" class="bg-white p-4 rounded-lg "
+                            <div class="product-card" class="bg-white p-4 rounded-lg w-full h-full "
                                 data-category="<%= product.category %>" data-name="<%= product.name%>">
-                                <img alt="Beef Burger" class="rounded-lg mb-4  h-[60%] w-full" height="100"
+                                <img alt="Beef Burger" class="rounded-lg mb-4 h-[80%] w-full object-cover object-center"
                                     src="data:image/jpeg;base64,<%= product.image ?product.image.toString('base64') : '' %>"
-                                    width="150" />
+                                    width="200" />
                                 <div class="flex justify-between items-center">
                                     <div>
                                         <h3 class="font-bold">
                                             <%=product.name%>
                                         </h3>
-                                        <p class="text-yellow-500">
-                                            ★★★★★
-                                        </p>
+                                        <p class="text-yellow-500" ★★★★★ </p>
                                         <p>
                                             $<%=product.price%>
                                         </p>
@@ -144,12 +145,17 @@
                                     </div>
                                     <div onclick="addToFav('<%=product._id%>')"
                                         class="w-[3vw] h-[3vw] bg-gray-200 flex justify-center items-center rounded-md shadow-lg">
-                                        <svg id="favItem" class="w-[2vw] h-[2vw]" xmlns="http://www.w3.org/2000/svg"
-                                            viewBox="0 0 24 24" fill="">
-                                            <path
-                                                d="M20.2426 4.75736C22.5053 7.02472 22.583 10.637 20.4786 12.993L11.9999 21.485L3.52138 12.993C1.41705 10.637 1.49571 7.01901 3.75736 4.75736C5.51545 2.99926 8.09315 2.56029 10.2605 3.44044L6.34315 7.35843L7.75736 8.77264L12 4.53L11.9872 4.51617C11.9918 4.52028 11.9964 4.5244 12.001 4.52853C14.35 2.42 17.98 2.49 20.2426 4.75736Z">
-                                            </path>
-                                        </svg>
+
+                                        <% const isFav=favorite.some(fav=> {
+                                            return fav.productId._id.toString() == product._id;
+                                            }); %>
+
+                                            <svg id="favItem" class="w-[2vw] h-[2vw]" xmlns="http://www.w3.org/2000/svg"
+                                                viewBox="0 0 24 24" fill="<%= isFav ? 'red' : '' %>">
+                                                <path
+                                                    d="M20.2426 4.75736C22.5053 7.02472 22.583 10.637 20.4786 12.993L11.9999 21.485L3.52138 12.993C1.41705 10.637 1.49571 7.01901 3.75736 4.75736C5.51545 2.99926 8.09315 2.56029 10.2605 3.44044L6.34315 7.35843L7.75736 8.77264L12 4.53L11.9872 4.51617C11.9918 4.52028 11.9964 4.5244 12.001 4.52853C14.35 2.42 17.98 2.49 20.2426 4.75736Z">
+                                                </path>
+                                            </svg>
 
                                     </div>
 
@@ -176,8 +182,8 @@
                             View all
                         </a>
                     </div>
-                    <div class="grid grid-cols-3 gap-4">
-                        <div class="bg-white p-4 rounded-lg">
+                    <div class="grid grid-cols-5 gap-4 h-[32vh]">
+                        <div class="bg-white p-4 rounded-lg ">
                             <img alt="Fish Burger" class="rounded-lg mb-4  h-[60%] w-full" height="100"
                                 src="https://storage.googleapis.com/a1aa/image/rCMWcfcoRU63onO6O1YDgXqA4Gx-58LBohGtMHuExXA.jpg"
                                 width="150" />
@@ -233,12 +239,7 @@
                 <!-- Header -->
                 <header class="bg-black text-white p-4 flex justify-between items-center shadow-lg">
                     <h1 class="text-3xl font-bold">Food Orders</h1>
-                    <div class="flex items-center space-x-4">
-                        <input class="p-2 rounded-lg border border-gray-300" placeholder="Search for food..."
-                            type="text" />
-                        <i class="fas fa-bell text-xl"></i>
-                        <i class="fas fa-user-circle text-xl"></i>
-                    </div>
+
                 </header>
 
                 <!-- Main Content -->
@@ -249,7 +250,8 @@
                             <h2 class="text-2xl font-bold mb-4">Current Orders</h2>
                             <div class="space-y-4 w-[100%] ">
                                 <%orders.forEach(order=>{%>
-                                    <div class="flex justify-between items-center p-4 bg-gray-50 rounded-lg shadow-sm">
+                                    <div class="flex justify-between items-center p-4 bg-gray-50 rounded-lg shadow-sm"
+                                        data-product-id="<%=order._id%>">
                                         <img alt="Pepperoni Pizza" class="rounded-lg" height="50"
                                             src="data:image/jpeg;base64,<%= order.productId.image ?order.productId.image.toString('base64') : '' %>"
                                             width="50" />
@@ -313,11 +315,12 @@
             </div>
             <!-- favorite -->
             <div id="favorite" class="tabs w-full hidden">
-                <h1 class="font-bold text-3xl font-sans">Fevorite </h1>
-                <div class="grid grid-cols-3 gap-4">
+                <h1 class="font-bold text-3xl p-2 ">Favorite </h1>
+                <div class=" p-2 grid grid-cols-4 gap-4">
                     <%favorite.forEach((product)=>{%>
-                        <div class="bg-white p-4 rounded-lg">
-                            <img alt="Fish Burger" class="rounded-lg mb-4 h-[60%] w-full" height="100"
+                        <div class="bg-white p-4 rounded-lg shadow-lg box-border w-[15vw] h-[20vw]">
+                            <img alt="Fish Burger" class="rounded-lg mb-4 h-[70%] w-[100%] object-cover object-center "
+                                height="100"
                                 src="data:image/jpeg;base64,<%= product.productId.image ?product.productId.image.toString('base64') : '' %>"
                                 width="150" />
                             <div class="flex justify-between items-center">
@@ -343,6 +346,7 @@
                         <% })%>
 
                 </div>
+
             </div>
             <!-- Bills -->
             <div id="bills" class="tabs container mx-auto p-4 hidden">
@@ -534,24 +538,19 @@
                         User Profile
                     </h2>
                     <nav class="space-y-4">
-                        <a class="flex items-center text-orange-500" href="#">
+                        <a onclick="userShow(this,'myProfile')" class="flex items-center text-orange-500" href="#">
                             <i class="fas fa-user mr-2">
                             </i>
                             User info
                         </a>
-                        <a class="flex items-center text-gray-600" href="#">
-                            <i class="fas fa-bell mr-2">
-                            </i>
-                            Notifications
-                        </a>
-                        <a class="flex items-center text-orange-500" href="#">
-                            <i class="fas fa-user mr-2">
-                            </i>
-                            Address
+                        <a onclick="userShow(this,'Address')" class="flex items-center text-orange-500" href="#">
+                            <!-- <i class="fas fa-user mr-2"> -->
+                            <!-- </i> -->
+                            🏠 Address
                         </a>
 
                     </nav>
-                    <a class="flex items-center text-red-500 mt-8" href="#">
+                    <a class="flex items-center text-red-500 mt-8" href="/logout">
                         <i class="fas fa-sign-out-alt mr-2">
                         </i>
                         Log out
@@ -560,85 +559,88 @@
                 <!-- Main Content -->
 
                 <div class="w-3/4 bg-white p-10">
-                    <div class="flex items-center mb-8">
-                        <div class="relative">
-                            <img alt="Profile picture of a woman wearing sunglasses and a green top"
-                                class="rounded-full w-24 h-24" height="100"
-                                src="https://storage.googleapis.com/a1aa/image/_5rex6185-s03sf6lNtnbyWF30DNVNwfmxRbr600Lsw.jpg"
-                                width="100" />
-                            <button class="absolute bottom-0 right-0 bg-orange-500 text-white rounded-full p-1">
-                                <i class="fas fa-pencil-alt">
-                                </i>
-                            </button>
+
+                    <div id="myProfile" class="content">
+                        <div class="flex items-center mb-8">
+                            <div class="flex items-center mb-6">
+                                <div
+                                    class="capitalize w-20 h-20 bg-purple-500 text-white rounded-full flex items-center justify-center text-2xl font-bold">
+                                    <%=user.fullname.substring(0, 2)%>
+                                </div>
+                                <div class="ml-6">
+                                    <h2 class="text-2xl font-bold">
+                                        <%=user.fullname%>
+                                    </h2>
+                                    <p class="text-gray-500 capitalize">
+                                        <%if(user.address){%>
+                                            <%=user.address[0].city%>,
+                                                <%=user.address[0].state%>
+                                                    <% }%>
+                                    </p>
+                                </div>
+                            </div>
+
                         </div>
-                        <div class="ml-6">
-                            <h2 class="text-2xl font-bold">
+                        <h1 class="text-2xl font-bold mb-4">Personal Information</h1>
+                        <div class="flex flex-col bg-white shadow-lg rounded-xl p-6 md:grid grid-cols-2 gap-4">
+                            <p><strong>FullName:</strong>
                                 <%=user.fullname%>
-                            </h2>
-                            <p class="text-gray-500">
-                                New York, USA
+                            </p>
+                            <p><strong>Phone No:</strong>
+                                <% contactNumber=Number(user.contact) || "No Phone Number Added" ; %>
+                                    <%= contactNumber %>
+
+                            </p>
+                            <p><strong>Email:</strong>
+                                <%=user.email%>
                             </p>
                         </div>
                     </div>
-                    <form class="space-y-6">
-                        <div class="grid grid-cols-2 gap-6">
-                            <div>
-                                <label class="block text-gray-700" for="name">
-                                    <%=user.fullname%>
-                                </label>
-                                <input class="w-full p-2 border rounded-md" id="name" type="text" value="Sara" />
+                    <div id="Address" class="content hidden">
+                        <% if(addresses.length>0){%>
+                            <a href="/updateAddress"> 🖌️ Edit Address </a>
+                            <div class="border border-gray-300 p-6 rounded-md shadow-md">
+                                <h2 class="text-lg font-bold mb-4">Address Information</h2>
+                                <div class="bg-gray-100 p-4 rounded-md">
+                                    <p><strong>Full Name :-</strong>
+                                        <%=addresses[0].fullName%>
+                                    </p>
+                                    <p><strong>Phone Number :-</strong>
+                                        <%=addresses[0].phoneNumber%>
+                                    </p>
+                                    <p><strong>Address :-</strong>
+                                        <%=addresses[0].fullAddress%>
+                                    </p>
+
+                                    <div class="flex flex-col md:flex-row justify-between mt-4">
+                                        <p><strong>City :-</strong>
+                                            <%=addresses[0].city%>
+                                        </p>
+                                        <p><strong>State :-</strong>
+                                            <%=addresses[0].state%>
+                                        </p>
+                                        <p><strong>Country :-</strong>
+                                            <%=addresses[0].country%>
+                                        </p>
+                                        <p><strong>Pin Code :-</strong>
+                                            <%=addresses[0].zipCode%>
+                                        </p>
+                                    </div>
+                                    <div class="mt-4">
+                                        <p><strong>Address Type :-</strong>
+                                            <%=addresses[0].addressType%>
+                                        </p>
+                                        <p><strong>Default Address :-</strong>
+                                            <%=addresses[0].isDefault%>
+                                        </p>
+                                    </div>
+                                </div>
                             </div>
-                            <div>
-                                <label class="block text-gray-700" for="full-name">
-                                    Full Name
-                                </label>
-                                <input class="w-full p-2 border rounded-md" id="full-name" type="text"
-                                    value="Tancredi" />
-                            </div>
-                        </div>
-                        <div class="grid grid-cols-2 gap-6">
-                            <div>
-                                <label class="block text-gray-700" for="email">
-                                    Email Address
-                                </label>
-                                <input class="w-full p-2 border rounded-md" id="email" type="email"
-                                    value="Sara Tancredi@gmail" />
-                            </div>
-                            <div>
-                                <label class="block text-gray-700" for="phone">
-                                    Phone Number
-                                </label>
-                                <input class="w-full p-2 border rounded-md" id="phone" type="text"
-                                    value="(+98) 9123728167" />
-                            </div>
-                        </div>
-                        <div class="grid grid-cols-2 gap-6">
-                            <div>
-                                <label class="block text-gray-700" for="location">
-                                    Location
-                                </label>
-                                <input class="w-full p-2 border rounded-md" id="location" type="text"
-                                    value="e.g. New York, USA" />
-                            </div>
-                            <div>
-                                <label class="block text-gray-700" for="postal-code">
-                                    Postal Code
-                                </label>
-                                <input class="w-full p-2 border rounded-md" id="postal-code" type="text"
-                                    value="23728167" />
-                            </div>
-                        </div>
-                        <div class="flex justify-center">
-                            <button class="bg-orange-500 text-white py-2 px-6 rounded-full" type="submit">
-                                Save Changes
-                            </button>
-                        </div>
-                    </form>
+                            <%}else{%>
+                                <a href="/addAddress" class="hover:text-blue-500">+ Add address 🏠</a>
+                                <% }%>
+                    </div>
                 </div>
-               
-
-                
-
             </div>
         </main>
         <!-- Right Sidebar -->

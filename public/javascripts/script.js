@@ -59,6 +59,16 @@ document.addEventListener("DOMContentLoaded", function () {
     show(defaultButton, section); // Pass the button and section to the show function
 });
 
+//Setting section show 
+
+function userShow(section, Id) {
+    let content = document.querySelectorAll('.content');
+    content.forEach(con => {
+        con.classList.add("hidden");
+    })
+    document.getElementById(Id).classList.remove("hidden");
+}
+
 
 //Add to cart 
 
@@ -74,7 +84,13 @@ async function addToCart(productId) {
     })
         .then(response => response.json())
         .then(data => {
-            console.log("added Successfully");
+            let el = document.getElementById("Added");
+            el.classList.remove("opacity-0", "scale-95", "pointer-events-none");
+            el.classList.add("opacity-100", "scale-100");
+            setTimeout(() => {
+                el.classList.remove("opacity-100", "scale-100");
+                el.classList.add("opacity-0", "scale-95", "pointer-events-none");
+            }, 2000);
 
         }).catch(error => { console.log(error) });
 }
@@ -94,8 +110,8 @@ async function Delete(productId) {
     })
         .then(response => response.json())
         .then(data => {
-
             element.remove();
+
         }).catch(error => {
             console.log("error during deletion");
 
@@ -181,27 +197,28 @@ function signUp() {
 
 //checkOut
 
-async function checkout() {
-    await fetch("home/cart/checkOut", {
-        method: "POST",
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({}),
+// async function checkout() {
+//     await fetch("home/cart/checkOut", {
+//         method: "POST",
+//         headers: {
+//             'Content-Type': 'application/json'
+//         },
+//         body: JSON.stringify({}),
 
-    })
-        .then(response => response.json())
-        .then(data => {
+//     })
+//         .then(response => response.json())
+//         .then(data => {
 
-        }).catch(error => {
-            console.log(error);
-        }
-        );
-}
+//         }).catch(error => {
+//             console.log(error);
+//         }
+//         );
+// }
 
 //cancel order
 async function deleteProduct(productId) {
     try {
+        const element = document.querySelector(`[data-product-id="${productId}"]`);
         const response = await fetch("home/food_orders/cancel/", {
             method: "POST",
             headers: {
@@ -219,6 +236,14 @@ async function deleteProduct(productId) {
             const html = await response.text();
             console.log("HTML Response:", html);
         }
+        element.remove();
+        let el = document.getElementById("deleted");
+        el.classList.remove("opacity-0", "scale-95", "pointer-events-none");
+        el.classList.add("opacity-100", "scale-100");
+        setTimeout(() => {
+            el.classList.remove("opacity-100", "scale-100");
+            el.classList.add("opacity-0", "scale-95", "pointer-events-none");
+        }, 2000);
 
         document.getElementById("deleted").classList.remove("hidden");
         setTimeout(() => {
@@ -243,16 +268,14 @@ function addToFav(productId) {
         body: JSON.stringify({ productId }),
     }).then(response => response.json())
         .then(data => {
-            
-            // if(data=="1"){
-            //     console.log("empty");
-            //     document.getElementById("favItem").setAttribute("fill", "blue");
-            // }
-            // else{
-            //     console.log("red")
-            //     document.getElementById("favItem").setAttribute("fill", "red");
-            // }
-           
+            //   console.log(data)
+            if (data == "1") {
+                document.getElementById("favItem").setAttribute("fill", "black");
+            }
+            else {
+                document.getElementById("favItem").setAttribute("fill", "red");
+            }
+
         })
         .catch(error => {
             console.log(error);

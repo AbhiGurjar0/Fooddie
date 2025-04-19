@@ -9,7 +9,7 @@ module.exports.registerUser = async (req, res) => {
         const { fullname, email, password } = req.body;
         let user = await userModel.findOne({ email })
         if(user){
-            res.send("User already exists ");
+            res.send("User already exists "); 
         }
         const salt = await bcrypt.genSalt(10);
         const hashedPassword = await bcrypt.hash(password, salt);
@@ -17,10 +17,11 @@ module.exports.registerUser = async (req, res) => {
         await userModel.create({
             fullname,
             email,
-            password: hashedPassword,
+            password: hashedPassword, 
         })
         res.redirect("/signin");
     } catch (e) {
+        console.log(e)
         res.send("error");
     }
 }
@@ -30,7 +31,7 @@ module.exports.loginUser = async (req, res) => {
         const {email, password } = req.body;
         let user = await userModel.findOne({ email});
         if (!user) {
-            res.send("User not found");
+            return res.send("User not found");
         }
         bcrypt.compare(password, user.password, (err, result) => {
             if (result) {
@@ -45,4 +46,9 @@ module.exports.loginUser = async (req, res) => {
     } catch (e) {
         res.send(e);
     }
+}
+
+module.exports.logout = async(req,res)=>{
+    res.cookie("token","");
+    return res.redirect("/signin");
 }

@@ -143,14 +143,14 @@
                                         </p>
 
                                     </div>
-                                    <div onclick="addToFav('<%=product._id%>')"
+                                    <div onclick="addToFav('<%=product._id%>',this)"
                                         class="w-[3vw] h-[3vw] bg-gray-200 flex justify-center items-center rounded-md shadow-lg">
 
                                         <% const isFav=favorite.some(fav=> {
                                             return fav.productId._id.toString() == product._id;
                                             }); %>
 
-                                            <svg id="favItem" class="w-[2vw] h-[2vw]" xmlns="http://www.w3.org/2000/svg"
+                                            <svg  class="w-[2vw] h-[2vw]" xmlns="http://www.w3.org/2000/svg"
                                                 viewBox="0 0 24 24" fill="<%= isFav ? 'red' : '' %>">
                                                 <path
                                                     d="M20.2426 4.75736C22.5053 7.02472 22.583 10.637 20.4786 12.993L11.9999 21.485L3.52138 12.993C1.41705 10.637 1.49571 7.01901 3.75736 4.75736C5.51545 2.99926 8.09315 2.56029 10.2605 3.44044L6.34315 7.35843L7.75736 8.77264L12 4.53L11.9872 4.51617C11.9918 4.52028 11.9964 4.5244 12.001 4.52853C14.35 2.42 17.98 2.49 20.2426 4.75736Z">
@@ -252,9 +252,9 @@
                                 <%orders.forEach(order=>{%>
                                     <div class="flex justify-between items-center p-4 bg-gray-50 rounded-lg shadow-sm"
                                         data-product-id="<%=order._id%>">
-                                        <img alt="Pepperoni Pizza" class="rounded-lg" height="50"
+                                        <img alt="Pepperoni Pizza" class="rounded-lg " height="100"
                                             src="data:image/jpeg;base64,<%= order.productId.image ?order.productId.image.toString('base64') : '' %>"
-                                            width="50" />
+                                            width="100" />
                                         <div>
                                             <h3 class="font-bold">
                                                 <%=order.productId.name%>
@@ -263,8 +263,9 @@
                                             </p>
                                             <p class="text-gray-500">Estimated delivery: 20 mins</p>
                                         </div>
-                                        <button onclick="deleteProduct('<%=order._id%>')"
-                                            class="bg-red-500 text-white py-1 px-3 rounded-lg">Cancel</button>
+                                        <p class="p-2 text-blue-500"><%=order.productId.status||"Pending"%></p>
+                                        <!-- <button onclick="deleteProduct('<%=order._id%>')"
+                                            class="bg-red-500 text-white py-1 px-3 rounded-lg">Cancel</button> -->
                                     </div>
                                     <% });%>
 
@@ -315,7 +316,9 @@
             </div>
             <!-- favorite -->
             <div id="favorite" class="tabs w-full hidden">
-                <h1 class="font-bold text-3xl p-2 ">Favorite </h1>
+                <h1 class="text-3xl font-bold text-purple-600 m-3">
+                    Favorite
+                </h1>
                 <div class=" p-2 grid grid-cols-4 gap-4">
                     <%favorite.forEach((product)=>{%>
                         <div class="bg-white p-4 rounded-lg shadow-lg box-border w-[15vw] h-[20vw]">
@@ -354,27 +357,10 @@
                     <h1 class="text-3xl font-bold text-purple-600">
                         Bills
                     </h1>
-                    <div class="flex space-x-4">
-                        <button class="bg-purple-600 text-white p-2 rounded-full">
-                            <i class="fas fa-file-alt">
-                            </i>
-                        </button>
-                        <button class="bg-yellow-400 text-white p-2 rounded-full">
-                            <i class="fas fa-bell">
-                            </i>
-                        </button>
-                        <button class="bg-orange-500 text-white p-2 rounded-full">
-                            <i class="fas fa-cog">
-                            </i>
-                        </button>
-                    </div>
+                   
+                    
                 </div>
-                <div class="relative mb-4">
-                    <input class="w-full p-3 pl-10 rounded-full shadow-sm focus:outline-none"
-                        placeholder="Search Bill..." type="text" />
-                    <i class="fas fa-search absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400">
-                    </i>
-                </div>
+                
                 <div class="bg-white shadow rounded-lg overflow-hidden">
                     <table class="min-w-full">
                         <thead class="bg-gray-100">
@@ -399,17 +385,17 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <%transaction.forEach(ord=>{%>
+                            <%transaction.reverse().forEach(ord=>{%>
                                 <tr class="border-b">
 
 
                                     <td class="p-4">
-                                        <%=ord.date%>
+                                        <%=ord.date.toString().substr(0,24)%>
                                     </td>
                                     <td class="p-4">
                                         <i class="fas fa-map-marker-alt text-purple-600">
                                         </i>
-                                        Elm Street, 23 Yogyakarta
+                                        <%=user.address[0].address%>
                                     </td>
                                     <td class="p-4 text-purple-600">
                                         $ <%=ord.amount%>
@@ -538,16 +524,12 @@
                         User Profile
                     </h2>
                     <nav class="space-y-4">
-                        <a onclick="userShow(this,'myProfile')" class="flex items-center text-orange-500" href="#">
+                        <a  class="flex items-center text-orange-500" href="#">
                             <i class="fas fa-user mr-2">
                             </i>
                             User info
                         </a>
-                        <a onclick="userShow(this,'Address')" class="flex items-center text-orange-500" href="#">
-                            <!-- <i class="fas fa-user mr-2"> -->
-                            <!-- </i> -->
-                            🏠 Address
-                        </a>
+                       
 
                     </nav>
                     <a class="flex items-center text-red-500 mt-8" href="/logout">
@@ -558,9 +540,9 @@
                 </div>
                 <!-- Main Content -->
 
-                <div class="w-3/4 bg-white p-10">
+                <div class="w-3/4 bg-white p-10 ">
 
-                    <div id="myProfile" class="content">
+                    <div id="myProfile" class="content my-5">
                         <div class="flex items-center mb-8">
                             <div class="flex items-center mb-6">
                                 <div
@@ -573,8 +555,8 @@
                                     </h2>
                                     <p class="text-gray-500 capitalize">
                                         <%if(user.address){%>
-                                            <%=user.address[0].city%>,
-                                                <%=user.address[0].state%>
+                                            <%=user.address[0]?user.address[0].city:''%>,
+                                                <%=user.address[0]?user.address[0].state:''%>
                                                     <% }%>
                                     </p>
                                 </div>
@@ -596,20 +578,20 @@
                             </p>
                         </div>
                     </div>
-                    <div id="Address" class="content hidden">
+                    <div id="Address" class="content">
                         <% if(addresses.length>0){%>
                             <a href="/updateAddress"> 🖌️ Edit Address </a>
                             <div class="border border-gray-300 p-6 rounded-md shadow-md">
                                 <h2 class="text-lg font-bold mb-4">Address Information</h2>
                                 <div class="bg-gray-100 p-4 rounded-md">
                                     <p><strong>Full Name :-</strong>
-                                        <%=addresses[0].fullName%>
+                                        <%=addresses[0].name%>
                                     </p>
                                     <p><strong>Phone Number :-</strong>
                                         <%=addresses[0].phoneNumber%>
                                     </p>
                                     <p><strong>Address :-</strong>
-                                        <%=addresses[0].fullAddress%>
+                                        <%=addresses[0].address%>
                                     </p>
 
                                     <div class="flex flex-col md:flex-row justify-between mt-4">
@@ -620,20 +602,13 @@
                                             <%=addresses[0].state%>
                                         </p>
                                         <p><strong>Country :-</strong>
-                                            <%=addresses[0].country%>
+                                           India
                                         </p>
                                         <p><strong>Pin Code :-</strong>
-                                            <%=addresses[0].zipCode%>
+                                            <%=addresses[0].pinCode%>
                                         </p>
                                     </div>
-                                    <div class="mt-4">
-                                        <p><strong>Address Type :-</strong>
-                                            <%=addresses[0].addressType%>
-                                        </p>
-                                        <p><strong>Default Address :-</strong>
-                                            <%=addresses[0].isDefault%>
-                                        </p>
-                                    </div>
+                                    
                                 </div>
                             </div>
                             <%}else{%>

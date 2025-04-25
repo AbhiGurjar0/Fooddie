@@ -1,14 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <title>Cart</title>
-    <script defer src="/js/cart.js"></script>
-    <script src="https://cdn.tailwindcss.com"></script>
-</head>
-
-<body class="bg-gray-100 p-6">
+<%- include('./partials/header') %>
     <div class="max-w-4xl mx-auto bg-white p-6 rounded-xl shadow-md">
         <h2 class="text-2xl font-semibold mb-4">Your Shopping Cart</h2>
         <form action="/home/cart/checkout" method="post">
@@ -31,19 +21,17 @@
                             <span class="quantity">
                                 <%= item.quantity %>
                             </span>
-                            <button class="increment px-2 py-1 bg-gray-200 rounded">+</button>
-                            <button class="remove ml-4 text-red-500 hover:underline">Remove</button>
+                            <div onclick="addToCart('<%=item.productId._id%>')" class="increment px-2 py-1
+                                bg-gray-200 rounded">+</div>
+                            <div onclick="deleteItem('<%=item._id%>','<%=index%>')"
+                                class="remove ml-4 text-red-500 hover:text-blue-800 cursor-pointer">
+                                Remove</div>
                         </div>
                     </div>
                     <% }) %>
             </div>
 
-            <div class="mt-8">
-                <h3 class="font-semibold mb-2">Select Address</h3>
-                <select id="addressSelect" class="w-full border rounded p-2">
-
-                </select>
-            </div>
+           
 
             <div class="flex justify-between items-center mt-8">
                 <div class="text-lg font-bold">Total: $<span id="totalPrice">
@@ -54,7 +42,4 @@
             </div>
         </form>
     </div>
-    <script src="../javascripts/script.js"></script>
-</body>
-
-</html>
+    <%- include('./partials/footer') %>

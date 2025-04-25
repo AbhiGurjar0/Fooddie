@@ -61,13 +61,13 @@ document.addEventListener("DOMContentLoaded", function () {
 
 //Setting section show 
 
-function userShow(section, Id) {
-    let content = document.querySelectorAll('.content');
-    content.forEach(con => {
-        con.classList.add("hidden");
-    })
-    document.getElementById(Id).classList.remove("hidden");
-}
+// function userShow(Section, Id) {
+//     let content = document.querySelectorAll('.content');
+//     content.forEach(con => {
+//         con.classList.add("hidden");
+//     })
+//     document.getElementById(Id).classList.remove("hidden");
+// }
 
 
 //Add to cart 
@@ -259,7 +259,7 @@ async function deleteProduct(productId) {
 
 
 //Add to favorite
-function addToFav(productId) {
+function addToFav(productId, SVG) {
     fetch("addToFav", {
         method: "POST",
         headers: {
@@ -268,16 +268,41 @@ function addToFav(productId) {
         body: JSON.stringify({ productId }),
     }).then(response => response.json())
         .then(data => {
-            //   console.log(data)
+            //   console.log(SVG)
             if (data == "1") {
-                document.getElementById("favItem").setAttribute("fill", "black");
+                SVG.children[0].setAttribute("fill", "black");
             }
             else {
-                document.getElementById("favItem").setAttribute("fill", "red");
+                SVG.children[0].setAttribute("fill", "red");
             }
 
         })
         .catch(error => {
             console.log(error);
         })
+}
+
+
+
+
+//delete from cart
+function deleteItem(productId,index) {
+    let item = document.querySelector(`[data-index="${index}"]`);
+    console.log(item);
+    fetch("/home/cart/delete", {
+        method: "POST",
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ productId })
+    })
+    .then(response => response.json())
+    .then(data => {
+        item.remove();
+        console.log("Item deleted:", data);
+        // You can update UI here, like removing the item from the DOM
+    })
+    .catch(err => {
+        console.log("Error in deletion ", err);
+    });
 }

@@ -1,0 +1,935 @@
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1" name="viewport" />
+    <title>
+        Orders Dashboard
+    </title>
+    <script src="https://cdn.tailwindcss.com">
+    </script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&amp;display=swap" rel="stylesheet" />
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+    </style>
+</head>
+
+<body class="bg-[#f9fafb] text-gray-700 min-h-screen">
+    <div class="flex min-h-screen">
+        <!-- Sidebar -->
+        <aside class="w-72 bg-white border-r border-gray-200 flex flex-col p-6">
+            <div class="flex items-center space-x-3 mb-10">
+                <img alt="Profile picture of Floyd Miles, a man with dark skin and short hair, wearing a dark jacket"
+                    class="rounded-full w-10 h-10 object-cover" height="40"
+                    src="https://static.vecteezy.com/system/resources/thumbnails/020/765/399/small/default-profile-account-unknown-icon-black-silhouette-free-vector.jpg"
+                    width="40" />
+                <div>
+                    <p class="text-gray-900 font-semibold text-sm leading-tight">
+                        Abhishek Gurjar
+                    </p>
+                    <p class="text-gray-400 text-xs leading-tight">
+                        Abhi@mail.com
+                    </p>
+                </div>
+
+            </div>
+            <nav class="flex flex-col space-y-4 text-sm font-normal">
+                <p class="text-black uppercase text-xs mb-2 select-none">
+                    Menu
+                </p>
+                <a onclick="showContent(this,'dashboard')"
+                    class="flex items-center space-x-3 text-gray-500 hover:text-black" href="#">
+                    <i class="far fa-th-large text-lg">
+                    </i>
+                    <span>
+                        Dashboard
+                    </span>
+                </a>
+                <a onclick="showContent(this,'orders')"
+                    class="flex items-center space-x-3  text-gray-500 hover:text-black rounded-lg py-2" href="#">
+                    <i class="fas fa-shopping-bag text-sm">
+                    </i>
+                    <span>
+                        Orders
+                    </span>
+                </a>
+                <a onclick="showContent(this,'inventory')"
+                    class="flex items-center space-x-3 text-gray-500 hover:text-black " href="#" tabindex="-1">
+                    <i class="far fa-store text-sm">
+                    </i>
+                    <span>
+                        Inventory
+                    </span>
+                </a>
+                <a onclick="showContent(this,'customers')"
+                    class="flex items-center space-x-3 text-gray-500 hover:text-black " href="#" tabindex="-1">
+                    <i class="far fa-user-friends text-sm">
+                    </i>
+                    <span>
+                        Customers
+                    </span>
+                </a>
+
+
+
+
+                <a onclick="showContent(this,'setting')"
+                    class="flex items-center space-x-3 text-gray-500 hover:text-black " href="#" tabindex="-1">
+                    <i class="fas fa-cog text-sm">
+                    </i>
+                    <span>
+                        Settings
+                    </span>
+                </a>
+
+            </nav>
+        </aside>
+        <!-- Main content -->
+        <main class="flex-1 p-8 bg-white">
+            <!--Dashboard section-->
+            <div id="dashboard" class="tabs">
+                <div class="bg-[#f5faf7] min-h-screen text-gray-800">
+                    <!-- Main content -->
+                    <main class="flex-1 p-6 md:p-8 lg:p-10">
+                        <!-- Greeting and controls -->
+                        <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-6 gap-4">
+                            <div>
+                                <h1 class="text-lg font-semibold text-gray-900">
+                                    Hi, Abhishek
+                                </h1>
+
+                            </div>
+                            <div class="flex gap-3">
+                                <button
+                                    class="flex items-center gap-2 border border-gray-300 rounded-md px-3 py-1 text-sm text-gray-700 hover:bg-gray-100 transition"
+                                    type="button">
+                                    <i class="fas fa-th-large text-xs">
+                                    </i>
+                                    Customize
+                                </button>
+                                <a href="/home/additems"><button
+                                        class="bg-[#0f4f3f] text-white rounded-md px-4 py-1 text-sm font-semibold hover:bg-[#0d3e31] transition"
+                                        type="button">
+                                        + Add new
+                                    </button>
+                                </a>
+                            </div>
+                        </div>
+                        <!-- Cards row 1 -->
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+                            <!-- Total Sales -->
+                            <section aria-label="Total Sales"
+                                class="bg-white rounded-lg border border-gray-200 p-4 relative">
+                                <div class="flex items-center justify-between mb-2 text-gray-600 text-xs font-semibold">
+                                    <div class="flex items-center gap-2">
+                                        <i class="fas fa-box-open text-sm">
+                                        </i>
+                                        <span>
+                                            Total Sales
+                                        </span>
+                                    </div>
+                                    <button aria-label="More options" class="text-gray-400 hover:text-gray-600">
+                                        <i class="fas fa-ellipsis-v text-xs">
+                                        </i>
+                                    </button>
+                                </div>
+                                <p class="text-2xl font-normal text-gray-900 leading-none">
+                                    $
+                                    <span>
+                                        275.825
+                                    </span>
+                                    <span class="text-gray-400">
+                                        ,00
+                                    </span>
+                                </p>
+                                <p class="text-xs mt-2 flex items-center gap-1 text-green-600 font-semibold">
+                                    <i class="fas fa-arrow-up text-[10px]">
+                                    </i>
+                                    0%
+                                    <span class="text-gray-400 font-normal ml-1">
+                                        vs Last month
+                                    </span>
+                                </p>
+                            </section>
+                            <!-- Total Product -->
+                            <section aria-label="Total Product"
+                                class="bg-white rounded-lg border border-gray-200 p-4 relative">
+                                <div class="flex items-center justify-between mb-2 text-gray-600 text-xs font-semibold">
+                                    <div class="flex items-center gap-2">
+                                        <i class="far fa-box text-sm">
+                                        </i>
+                                        <span>
+                                            Total Product
+                                        </span>
+                                    </div>
+                                    <button aria-label="More options" class="text-gray-400 hover:text-gray-600">
+                                        <i class="fas fa-ellipsis-v text-xs">
+                                        </i>
+                                    </button>
+                                </div>
+                                <p class="text-2xl font-normal text-gray-900 leading-none">
+
+                                    <span>
+                                        9755
+                                    </span>
+                                    <span class="text-gray-400">
+
+                                    </span>
+                                </p>
+                                <p class="text-xs mt-2 flex items-center gap-1 text-red-500 font-semibold">
+                                    <i class="fas fa-arrow-down text-[10px]">
+                                    </i>
+                                    0%
+                                    <span class="text-gray-400 font-normal ml-1">
+                                        vs Last month
+                                    </span>
+                                </p>
+                            </section>
+                            <!-- Total Customer -->
+                            <section aria-label="Total Customer"
+                                class="bg-white rounded-lg border border-gray-200 p-4 relative">
+                                <div class="flex items-center justify-between mb-2 text-gray-600 text-xs font-semibold">
+                                    <div class="flex items-center gap-2">
+                                        <i class="fas fa-user-friends text-sm">
+                                        </i>
+                                        <span>
+                                            Total Customer
+                                        </span>
+                                    </div>
+                                    <button aria-label="More options" class="text-gray-400 hover:text-gray-600">
+                                        <i class="fas fa-ellipsis-v text-xs">
+                                        </i>
+                                    </button>
+                                </div>
+                                <p class="text-2xl font-normal text-gray-900 leading-none">
+
+                                    <span>
+                                        28990
+                                    </span>
+
+                                </p>
+                                <p class="text-xs mt-2 flex items-center gap-1 text-green-600 font-semibold">
+                                    <i class="fas fa-arrow-up text-[10px]">
+                                    </i>
+                                    0%
+                                    <span class="text-gray-400 font-normal ml-1">
+                                        vs Last month
+                                    </span>
+                                </p>
+                            </section>
+                        </div>
+                        <!-- Cards row 2 -->
+
+                        <!-- Cards row 3 -->
+                        <div class="grid grid-cols-1 lg:grid-cols-1 gap-4">
+                            <!-- Top Selling -->
+                            <section aria-label="Top Selling"
+                                class="bg-white rounded-lg border border-gray-200 p-4 relative">
+                                <div class="flex items-center justify-between mb-3 text-gray-700 text-xs font-semibold">
+                                    <div class="flex items-center gap-2">
+                                        <i class="fas fa-chart-bar text-sm">
+                                        </i>
+                                        <span>
+                                            Top Selling
+                                        </span>
+                                    </div>
+                                    <button aria-label="More options" class="text-gray-400 hover:text-gray-600">
+                                        <i class="fas fa-ellipsis-v text-xs">
+                                        </i>
+                                    </button>
+                                </div>
+                                <table
+                                    class="w-full text-xs text-left text-gray-700 border-separate border-spacing-y-2">
+                                    <thead>
+                                        <tr class="border-b border-gray-200">
+                                            <th class="pb-2 font-semibold">
+                                                Product
+                                            </th>
+                                            <th class="pb-2 font-semibold">
+                                                Category
+                                            </th>
+                                            <th class="pb-2 font-semibold">
+                                                Price
+                                            </th>
+                                            <th class="pb-2 font-semibold">
+                                                Product Status
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr class="bg-[#f5faf7] rounded-lg">
+                                            <td class="py-2 flex items-center gap-2 font-semibold">
+                                                <img alt="Small image of orange running shoes"
+                                                    class="w-6 h-6 object-cover rounded" height="24" loading="lazy"
+                                                    src="https://storage.googleapis.com/a1aa/image/2bdca630-49c6-4d50-a5e0-f5740329514e.jpg"
+                                                    width="24" />
+                                                Running shoes H320
+                                            </td>
+                                            <td class="text-[#0f4f3f] font-semibold">
+                                                Footwear
+                                            </td>
+                                            <td class="font-normal">
+                                                $440.00
+                                            </td>
+                                            <td>
+                                                <span
+                                                    class="inline-block bg-[#f9d9a7] text-[#b27a00] text-[10px] font-semibold rounded-full px-2 py-0.5">
+                                                    Sold out
+                                                </span>
+                                            </td>
+                                        </tr>
+                                        <tr class="bg-[#f5faf7] rounded-lg">
+                                            <td class="py-2 flex items-center gap-2 font-semibold">
+                                                <img alt="Small image of beige windbreaker jacket"
+                                                    class="w-6 h-6 object-cover rounded" height="24" loading="lazy"
+                                                    src="https://storage.googleapis.com/a1aa/image/1037c314-752f-46d6-930b-a512a26a4e38.jpg"
+                                                    width="24" />
+                                                Windbreaker HJ2356
+                                            </td>
+                                            <td class="text-[#0f4f3f] font-semibold">
+                                                Sportwear
+                                            </td>
+                                            <td class="font-normal">
+                                                $324.00
+                                            </td>
+                                            <td>
+                                                <span
+                                                    class="inline-block bg-[#f9d9a7] text-[#b27a00] text-[10px] font-semibold rounded-full px-2 py-0.5">
+                                                    Sold out
+                                                </span>
+                                            </td>
+                                        </tr>
+                                        <tr class="bg-[#f5faf7] rounded-lg">
+                                            <td class="py-2 flex items-center gap-2 font-semibold">
+                                                <img alt="Small image of tennis racquet"
+                                                    class="w-6 h-6 object-cover rounded" height="24" loading="lazy"
+                                                    src="https://storage.googleapis.com/a1aa/image/9e19d923-c62c-4081-8329-2e7b4fcbd500.jpg"
+                                                    width="24" />
+                                                Boom PRO Tennis Racquet
+                                            </td>
+                                            <td class="text-[#0f4f3f] font-semibold">
+                                                Accessories
+                                            </td>
+                                            <td class="font-normal">
+                                                $389.00
+                                            </td>
+                                            <td>
+                                                <span
+                                                    class="inline-block bg-[#7fcf8e] text-[#0f4f3f] text-[10px] font-semibold rounded-full px-2 py-0.5">
+                                                    In Stock
+                                                </span>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </section>
+
+
+                        </div>
+                    </main>
+
+                </div>
+            </div>
+            <!--Orders section-->
+            <div id="orders" class="tabs hidden">
+                <!-- Header -->
+                <header class="mb-6">
+                    <h1 class="text-lg font-semibold text-gray-900 mb-1">
+                        Orders
+                    </h1>
+                    <p class="text-gray-600 text-sm">
+                        Organize the all of ordered products
+                    </p>
+                </header>
+                <!-- Stats cards -->
+                <section class="flex space-x-4 mb-8 max-w-full overflow-x-auto">
+                    <div class="flex items-center space-x-3 border border-gray-200 rounded-lg px-4 py-3 min-w-[180px]">
+                        <div
+                            class="border border-gray-300 rounded-md p-2 flex items-center justify-center text-gray-700">
+                            <i class="fas fa-box-open text-lg">
+                            </i>
+                        </div>
+                        <div class="text-sm text-gray-700">
+                            <p class="mb-1">
+                                Total orders
+                            </p>
+                            <p class="font-semibold text-lg text-gray-900">
+                                <%=orders.length%>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="flex items-center space-x-3 border border-gray-200 rounded-lg px-4 py-3 min-w-[180px]">
+                        <div
+                            class="border border-gray-300 rounded-md p-2 flex items-center justify-center text-gray-700">
+                            <i class="fas fa-truck text-lg">
+                            </i>
+                        </div>
+                        <div class="text-sm text-gray-700">
+                            <p class="mb-1">
+                                Delivered over time
+                            </p>
+                            <p class="font-semibold text-lg text-gray-900">
+                                24
+                            </p>
+                        </div>
+                    </div>
+                    <div class="flex items-center space-x-3 border border-gray-200 rounded-lg px-4 py-3 min-w-[180px]">
+                        <div
+                            class="border border-gray-300 rounded-md p-2 flex items-center justify-center text-gray-700">
+                            <i class="fas fa-box text-lg">
+                            </i>
+                        </div>
+                        <div class="text-sm text-gray-700">
+                            <p class="mb-1">
+                                Returned
+                            </p>
+                            <p class="font-semibold text-lg text-gray-900">
+                                5
+                            </p>
+                        </div>
+                    </div>
+                </section>
+                <!-- Tabs -->
+                <section class="flex space-x-8 border-b border-gray-200 mb-6 text-sm font-normal select-none">
+                    <button onclick="show(this,'all')" aria-current="true"
+                        class="text-blue-600 border-b-2 border-blue-600 pb-1 flex items-center space-x-1">
+                        <span>
+                            All
+                        </span>
+
+                    </button>
+                    <button onclick="show(this,'completed')"
+                        class="text-gray-700 hover:text-gray-900 flex items-center space-x-1">
+                        <span>
+                            Completed
+                        </span>
+
+                    </button>
+                    <button onclick="show(this,'processed')"
+                        class="text-gray-700 hover:text-gray-900 flex items-center space-x-1">
+                        <span>
+                            Processed
+                        </span>
+
+                    </button>
+
+                    <button onclick="show(this,'cancelled')"
+                        class="text-gray-700 hover:text-gray-900 flex items-center space-x-1">
+                        <span>
+                            Cancelled
+                        </span>
+
+                    </button>
+                </section>
+                <!-- Search -->
+                <section class="mb-4 max-w-xs">
+                    <label class="sr-only" for="search">
+                        Search products
+                    </label>
+                    <div class="relative text-gray-400 focus-within:text-gray-600">
+                        <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                            <i class="fas fa-search text-sm">
+                            </i>
+                        </div>
+                        <input
+                            class="block w-full rounded-md border border-gray-200 bg-white py-2 pl-9 pr-3 text-sm placeholder-gray-400 focus:outline-none focus:ring-1 focus:ring-blue-600 focus:border-blue-600"
+                            id="search" placeholder="Search products..." type="search" />
+                    </div>
+                </section>
+                <!-- Table -->
+                <section class="overflow-x-auto">
+                    <table
+                        class="w-full text-left text-sm border-separate border-spacing-y-3 border-collapse border-spacing-x-0">
+                        <thead>
+                            <tr class="text-gray-500 font-normal border-b border-gray-200">
+                                <th class="w-12 pl-4">
+                                    <!-- <input aria-label="Select all orders"
+                                        class="rounded border-gray-300 text-blue-600 focus:ring-blue-600"
+                                        type="checkbox" /> -->
+                                </th>
+                                <th class="pl-2">
+                                    Name
+                                </th>
+                                <th class="w-32 text-center ">
+                                    Price
+                                </th>
+                                <th class="w-24  text-center">
+                                    Status
+                                </th>
+                                <th class="w-32  text-center">
+                                    Order date
+                                </th>
+                                <th class="w-32 text-center">
+                                    Change Status
+                                </th>
+
+                            </tr>
+                        </thead>
+                        <tbody id="all" class="detail">
+                            <%orders.forEach(order=>{%>
+                                <tr class="bg-white rounded-lg shadow-sm">
+                                    <td class="pl-4 align-middle">
+                                        <input aria-label="Select Sports Jacket order"
+                                            class="rounded border-gray-300 text-blue-600 focus:ring-blue-600"
+                                            type="checkbox" />
+                                    </td>
+                                    <td class="flex items-center space-x-3 py-3 pl-2 align-middle">
+                                        <img alt="Black sports jacket folded on white background"
+                                            class="rounded-md w-10 h-10 object-cover" height="40"
+                                            src="data:image/jpeg;base64,<%= order.productId ?order.productId.image.toString('base64') : '' %>"
+                                            width="40" />
+                                        <div>
+                                            <p class="font-semibold text-gray-900 text-sm leading-tight">
+                                                <%=order.productId.name%>
+                                            </p>
+                                            <p class="text-gray-400 text-xs leading-tight">
+                                                #<%= order._id.toString().substr(8, 13) %>
+
+                                            </p>
+                                        </div>
+                                    </td>
+                                    <td class="text-center pr-4 align-middle font-semibold text-gray-900">
+                                        $ <%=order.productId.price%>
+                                    </td>
+                                    <td class="text-center px-5 align-middle">
+                                        <span
+                                            class="inline-block rounded px-2 py-1 text-xs font-semibold text-yellow-600 bg-yellow-100 select-none">
+                                            <%=order.status%>
+                                        </span>
+                                    </td>
+                                    <td class="text-center align-middle font-semibold text-gray-900">
+                                        <%= order.orderDate.toString().substr(0, 15) %>
+
+                                    </td>
+                                    <td class="openPopup" class="text-center">
+
+                                        <span class="px-3 py-2 bg-blue-100 rounded-md text-blue-500"> <i
+                                                class="fa-solid fa-pen-to-square"></i></span>
+
+                                    </td>
+
+                                </tr>
+                                <div 
+                                    class=" popup fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center hidden">
+                                    <div class="bg-white p-8 rounded-2xl shadow-lg w-11/12 max-w-md">
+                                        <h2 class="text-2xl font-bold mb-6 text-center">Select an Option</h2>
+
+                                        <!-- Options -->
+                                        <form  method="POST" action="/updateStatus/<%=order._id%>"
+                                            class="flex flex-col gap-2 optionForm">
+                                            <button type="submit" name="status" value="Shipped"
+                                                class="px-4 py-2 bg-blue-500 text-white rounded  w-full my-2">
+                                                Shipped
+                                            </button>
+                                            <button type="submit" name="status" value="Processed"
+                                                class="px-4 py-2 bg-yellow-500 text-white rounded  w-full">
+                                                Processed
+                                            </button>
+                                            <button type="submit" name="status" value="Delivered"
+                                                class="px-4 py-2 bg-green-500 text-white rounded  w-full my-2">
+                                                Delivered
+                                            </button>
+                                        </form>
+
+                                        <!-- Close Button -->
+                                        <button 
+                                            class="closePopup mt-6 text-gray-500 hover:text-gray-800 block mx-auto">
+                                            Close
+                                        </button>
+                                    </div>
+                                </div>
+                                <% })%>
+
+
+                        </tbody>
+                        <tbody id="completed" class="detail hidden">
+                            <%orders.forEach(order=>{%>
+                                <% if(order.status.toString().substr(0,1)=="D" ){%>
+                                    <tr class="bg-white rounded-lg shadow-sm">
+                                        <td class="pl-4 align-middle">
+                                            <input aria-label="Select Sports Jacket order"
+                                                class="rounded border-gray-300 text-blue-600 focus:ring-blue-600"
+                                                type="checkbox" />
+                                        </td>
+                                        <td class="flex items-center space-x-3 py-3 pl-2 align-middle">
+                                            <img alt="Black sports jacket folded on white background"
+                                                class="rounded-md w-10 h-10 object-cover" height="40"
+                                                src="data:image/jpeg;base64,<%= order.productId ?order.productId.image.toString('base64') : '' %>"
+                                                width="40" />
+                                            <div>
+                                                <p class="font-semibold text-gray-900 text-sm leading-tight">
+                                                    <%=order.productId.name%>
+                                                </p>
+                                                <p class="text-gray-400 text-xs leading-tight">
+                                                    #<%= order._id.toString().substr(8, 13) %>
+
+                                                </p>
+                                            </div>
+                                        </td>
+                                        <td class="text-center pr-4 align-middle font-semibold text-gray-900">
+                                            $ <%=order.productId.price%>
+                                        </td>
+                                        <td class="text-center px-5 align-middle">
+                                            <span
+                                                class="inline-block rounded px-2 py-1 text-xs font-semibold text-yellow-600 bg-yellow-100 select-none">
+                                                <%=order.status%>
+                                            </span>
+                                        </td>
+                                        <td class="text-center align-middle font-semibold text-gray-900">
+                                            <%= order.orderDate.toString().substr(0, 15) %>
+
+                                        </td>
+                                        <td id="openPopup" class="text-center">
+
+                                            <span class="px-3 py-2 bg-blue-100 rounded-md text-blue-500"> <i
+                                                    class="fa-solid fa-pen-to-square"></i></span>
+
+                                        </td>
+
+                                    </tr>
+                                    <div id="popup"
+                                        class="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center hidden">
+                                        <div class="bg-white p-8 rounded-2xl shadow-lg w-11/12 max-w-md">
+                                            <h2 class="text-2xl font-bold mb-6 text-center">Select an Option</h2>
+
+                                            <!-- Options -->
+                                            <form id="optionForm" method="POST" action="/updateStatus/<%=order._id%>"
+                                                class="flex flex-col gap-2 ">
+                                                <button type="submit" name="status" value="Shipped"
+                                                    class="px-4 py-2 bg-blue-500 text-white rounded  w-full my-2">
+                                                    Shipped
+                                                </button>
+                                                <button type="submit" name="status" value="Processed"
+                                                    class="px-4 py-2 bg-yellow-500 text-white rounded  w-full">
+                                                    Processed
+                                                </button>
+                                                <button type="submit" name="status" value="Delivered"
+                                                    class="px-4 py-2 bg-green-500 text-white rounded  w-full my-2">
+                                                    Delivered
+                                                </button>
+                                            </form>
+
+                                            <!-- Close Button -->
+                                            <button id="closePopup"
+                                                class=" mt-6 text-gray-500 hover:text-gray-800 block mx-auto">
+                                                Close
+                                            </button>
+                                        </div>
+                                    </div>
+
+                                    <% }%>
+
+                                        <% })%>
+
+                        </tbody>
+                        <tbody id="processed" class="detail hidden">
+                            <%orders.forEach(order=>{%>
+                                <% if(order.status.toString().substr(0,2)=="Pr" ){%>
+                                    <tr class="bg-white rounded-lg shadow-sm">
+                                        <td class="pl-4 align-middle">
+                                            <input aria-label="Select Sports Jacket order"
+                                                class="rounded border-gray-300 text-blue-600 focus:ring-blue-600"
+                                                type="checkbox" />
+                                        </td>
+                                        <td class="flex items-center space-x-3 py-3 pl-2 align-middle">
+                                            <img alt="Black sports jacket folded on white background"
+                                                class="rounded-md w-10 h-10 object-cover" height="40"
+                                                src="data:image/jpeg;base64,<%= order.productId ?order.productId.image.toString('base64') : '' %>"
+                                                width="40" />
+                                            <div>
+                                                <p class="font-semibold text-gray-900 text-sm leading-tight">
+                                                    <%=order.productId.name%>
+                                                </p>
+                                                <p class="text-gray-400 text-xs leading-tight">
+                                                    #<%= order._id.toString().substr(8, 13) %>
+
+                                                </p>
+                                            </div>
+                                        </td>
+                                        <td class="text-center pr-4 align-middle font-semibold text-gray-900">
+                                            $ <%=order.productId.price%>
+                                        </td>
+                                        <td class="text-center px-5 align-middle">
+                                            <span
+                                                class="inline-block rounded px-2 py-1 text-xs font-semibold text-yellow-600 bg-yellow-100 select-none">
+                                                <%=order.status%>
+                                            </span>
+                                        </td>
+                                        <td class="text-center align-middle font-semibold text-gray-900">
+                                            <%= order.orderDate.toString().substr(0, 15) %>
+
+                                        </td>
+                                        <td id="openPopup" class="text-center">
+
+                                            <span class="px-3 py-2 bg-blue-100 rounded-md text-blue-500"> <i
+                                                    class="fa-solid fa-pen-to-square"></i></span>
+
+                                        </td>
+
+                                    </tr>
+                                    <div id="popup"
+                                        class="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center hidden">
+                                        <div class="bg-white p-8 rounded-2xl shadow-lg w-11/12 max-w-md">
+                                            <h2 class="text-2xl font-bold mb-6 text-center">Select an Option</h2>
+
+                                            <!-- Options -->
+                                            <form id="optionForm" method="POST" action="/updateStatus/<%=order._id%>"
+                                                class="flex flex-col gap-2 ">
+                                                <button type="submit" name="status" value="Shipped"
+                                                    class="px-4 py-2 bg-blue-500 text-white rounded  w-full my-2">
+                                                    Shipped
+                                                </button>
+                                                <button type="submit" name="status" value="Processed"
+                                                    class="px-4 py-2 bg-yellow-500 text-white rounded  w-full">
+                                                    Processed
+                                                </button>
+                                                <button type="submit" name="status" value="Delivered"
+                                                    class="px-4 py-2 bg-green-500 text-white rounded  w-full my-2">
+                                                    Delivered
+                                                </button>
+                                            </form>
+
+                                            <!-- Close Button -->
+                                            <button id="closePopup"
+                                                class=" mt-6 text-gray-500 hover:text-gray-800 block mx-auto">
+                                                Close
+                                            </button>
+                                        </div>
+                                    </div>
+
+                                    <% }%>
+
+                                        <% })%>
+
+                        </tbody>
+                        <tbody id="cancelled" class="detail hidden">
+                            <%orders.forEach(order=>{%>
+                                <% if(order.status.toString().substr(0,1)=="C" ){%>
+                                    <tr class="bg-white rounded-lg shadow-sm">
+                                        <td class="pl-4 align-middle">
+                                            <input aria-label="Select Sports Jacket order"
+                                                class="rounded border-gray-300 text-blue-600 focus:ring-blue-600"
+                                                type="checkbox" />
+                                        </td>
+                                        <td class="flex items-center space-x-3 py-3 pl-2 align-middle">
+                                            <img alt="Black sports jacket folded on white background"
+                                                class="rounded-md w-10 h-10 object-cover" height="40"
+                                                src="data:image/jpeg;base64,<%= order.productId ?order.productId.image.toString('base64') : '' %>"
+                                                width="40" />
+                                            <div>
+                                                <p class="font-semibold text-gray-900 text-sm leading-tight">
+                                                    <%=order.productId.name%>
+                                                </p>
+                                                <p class="text-gray-400 text-xs leading-tight">
+                                                    #<%= order._id.toString().substr(8, 13) %>
+
+                                                </p>
+                                            </div>
+                                        </td>
+                                        <td class="text-center pr-4 align-middle font-semibold text-gray-900">
+                                            $ <%=order.productId.price%>
+                                        </td>
+                                        <td class="text-center px-5 align-middle">
+                                            <span
+                                                class="inline-block rounded px-2 py-1 text-xs font-semibold text-yellow-600 bg-yellow-100 select-none">
+                                                <%=order.status%>
+                                            </span>
+                                        </td>
+                                        <td class="text-center align-middle font-semibold text-gray-900">
+                                            <%= order.orderDate.toString().substr(0, 15) %>
+
+                                        </td>
+                                        <td id="openPopup" class="text-center">
+
+                                            <span class="px-3 py-2 bg-blue-100 rounded-md text-blue-500"> <i
+                                                    class="fa-solid fa-pen-to-square"></i></span>
+
+                                        </td>
+
+                                    </tr>
+                                    <div id="popup"
+                                        class="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center hidden">
+                                        <div class="bg-white p-8 rounded-2xl shadow-lg w-11/12 max-w-md">
+                                            <h2 class="text-2xl font-bold mb-6 text-center">Select an Option</h2>
+
+                                            <!-- Options -->
+                                            <form id="optionForm" method="POST" action="/updateStatus/<%=order._id%>"
+                                                class="flex flex-col gap-2 ">
+                                                <button type="submit" name="status" value="Shipped"
+                                                    class="px-4 py-2 bg-blue-500 text-white rounded  w-full my-2">
+                                                    Shipped
+                                                </button>
+                                                <button type="submit" name="status" value="Processed"
+                                                    class="px-4 py-2 bg-yellow-500 text-white rounded  w-full">
+                                                    Processed
+                                                </button>
+                                                <button type="submit" name="status" value="Delivered"
+                                                    class="px-4 py-2 bg-green-500 text-white rounded  w-full my-2">
+                                                    Delivered
+                                                </button>
+                                            </form>
+
+                                            <!-- Close Button -->
+                                            <button id="closePopup"
+                                                class=" mt-6 text-gray-500 hover:text-gray-800 block mx-auto">
+                                                Close
+                                            </button>
+                                        </div>
+                                    </div>
+
+                                    <% }%>
+
+                                        <% })%>
+
+                        </tbody>
+                    </table>
+                </section>
+            </div>
+            <!--Inventory section-->
+            <div id="inventory" class="tabs hidden">
+                <h1 class="w-full font-arial text-2xl p-2">All Products</h1>
+                <div class="grid grid-cols-1 lg:grid-cols-1 gap-5">
+                    <section aria-label="Top Selling" class="bg-white rounded-lg border border-gray-200 p-4 relative">
+                        <table class="w-full text-xs text-left text-gray-700 border-separate border-spacing-y-2">
+                            <thead>
+                                <tr class="border-b border-gray-200">
+                                    <th class="pb-2 font-semibold">
+                                        Product
+                                    </th>
+                                    <th class="pb-2 font-semibold">
+                                        Quantity
+                                    </th>
+                                    <th class="pb-2 font-semibold">
+                                        Category
+                                    </th>
+                                    <th class="pb-2 font-semibold">
+                                        Price
+                                    </th>
+                                    <th class="pb-2 font-semibold">
+                                        Total
+                                    </th>
+                                    <th class="pb-2 font-semibold">
+                                        Product Status
+                                    </th>
+                                    <th class="pb-2 font-semibold">
+                                        Actions
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <%products.forEach(product=>{%>
+                                    <tr class="bg-[#f5faf7] rounded-lg h-[12vh]">
+                                        <td class=" h-full py-2 flex items-center gap-2 font-semibold">
+                                            <img class=" h-[80%] w-[5vw] object-cover rounded" height="24"
+                                                loading="lazy"
+                                                src="data:image/jpeg;base64,<%= product.image ?product.image.toString('base64') : '' %>"
+                                                width="24" />
+                                            <%=product.name%>
+                                        </td>
+                                        <td class="font-normal">
+                                            <%=product.quantity%> pieces
+                                        </td>
+
+                                        <td class="text-[#0f4f3f] font-semibold">
+                                            <%=product.category%>
+                                        </td>
+                                        <td class="font-normal">
+                                            $<%=product.price%>
+                                        </td>
+                                        <td class="font-normal">
+                                            $<%=(product.quantity*product.price)%>
+
+                                        </td>
+                                        <td>
+                                            <span
+                                                class="inline-block bg-[#f9d9a7] text-[#b27a00] text-[10px] font-semibold rounded-full px-2 py-0.5">
+                                                In stock
+                                            </span>
+                                        </td>
+                                        <td>
+
+                                            <span class=" px-3 py-2 bg-red-100 rounded-md text-red-500"> <i
+                                                    class="fa-solid fa-trash "></i></span>
+                                            <span class="px-3 py-2 bg-blue-100 rounded-md text-blue-500"> <i
+                                                    class="fa-solid fa-pen-to-square"></i></span>
+
+                                        </td>
+                                    </tr>
+                                    <%})%>
+
+
+                            </tbody>
+                        </table>
+                    </section>
+
+
+                </div>
+            </div>
+            <!--customers section-->
+            <div id="customers" class="tabs hidden">
+                <table class="w-full text-xs text-left text-gray-700 border-separate border-spacing-y-2">
+                    <thead>
+                        <tr class="border-b border-gray-200">
+                            <th class="pb-2 font-semibold">
+                                Name
+                            </th>
+                            <th class="pb-2 font-semibold">
+                                Email
+                            </th>
+                            <th class="pb-2 font-semibold">
+                                Status
+                            </th>
+                            <th class="pb-2 font-semibold">
+                                Total ordered
+                            </th>
+
+                        </tr>
+                    </thead>
+                    <tbody class="px-5">
+                        <%users.forEach(user=>{%>
+                            <tr class="bg-[#f5faf7] rounded-lg h-[8vh]">
+
+                                <td class="font-normal">
+                                    <%=user.fullname%>
+                                </td>
+
+                                <td class="text-[#0f4f3f] font-semibold">
+                                    <%=user.email%>
+                                </td>
+                                <td class="font-normal">
+                                    Active
+                                </td>
+                                <td class="font-normal">
+                                    $440.00
+
+                                </td>
+
+                                <td>
+
+                                    <span class=" px-3 py-2 bg-red-100 rounded-md text-red-500"> <i
+                                            class="fa-solid fa-trash "></i></span>
+                                    <span class=" px-3 py-2 bg-red-100 rounded-md text-red-500"> <i
+                                            class="fa-solid fa-arrow-up-right-from-square"></i></span>
+
+
+                                </td>
+                            </tr>
+                            <%})%>
+
+
+
+                    </tbody>
+                </table>
+            </div>
+            <!--Setting section-->
+            <div id="setting" class="tabs hidden">Setting</div>
+        </main>
+    </div>
+</body>
+<script src="../javascripts/adminScript.js"></script>
+
+</html>

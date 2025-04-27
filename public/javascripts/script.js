@@ -259,7 +259,10 @@ async function deleteProduct(productId) {
 
 
 //Add to favorite
-function addToFav(productId, SVG) {
+function addToFav(productId) {
+    let SVG = document.querySelectorAll(`[fav="${productId}"]`);
+    let favItem = document.querySelector(`[fav-item="${productId}"]`);
+
     fetch("addToFav", {
         method: "POST",
         headers: {
@@ -270,10 +273,18 @@ function addToFav(productId, SVG) {
         .then(data => {
             //   console.log(SVG)
             if (data == "1") {
-                SVG.children[0].setAttribute("fill", "black");
+                SVG.forEach((svg) => {
+                    svg.children[0].setAttribute("fill", "black");
+
+                })
+                favItem.remove();
             }
             else {
-                SVG.children[0].setAttribute("fill", "red");
+                SVG.forEach((svg) => {
+                    svg.children[0].setAttribute("fill", "red");
+
+                })
+
             }
 
         })
@@ -286,7 +297,7 @@ function addToFav(productId, SVG) {
 
 
 //delete from cart
-function deleteItem(productId,index) {
+function deleteItem(productId, index) {
     let item = document.querySelector(`[data-index="${index}"]`);
     console.log(item);
     fetch("/home/cart/delete", {
@@ -296,13 +307,13 @@ function deleteItem(productId,index) {
         },
         body: JSON.stringify({ productId })
     })
-    .then(response => response.json())
-    .then(data => {
-        item.remove();
-        console.log("Item deleted:", data);
-        // You can update UI here, like removing the item from the DOM
-    })
-    .catch(err => {
-        console.log("Error in deletion ", err);
-    });
+        .then(response => response.json())
+        .then(data => {
+            item.remove();
+            console.log("Item deleted:", data);
+            // You can update UI here, like removing the item from the DOM
+        })
+        .catch(err => {
+            console.log("Error in deletion ", err);
+        });
 }

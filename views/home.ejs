@@ -117,7 +117,7 @@
                 <div class="mb-6">
                     <div class="flex justify-between items-center mb-4">
                         <h2 class="text-xl font-bold">
-                            Popular Dishes
+                            All Dishes
                         </h2>
                         <a id="view" class="text-purple-500" href="#">
                             View all
@@ -143,14 +143,14 @@
                                         </p>
 
                                     </div>
-                                    <div onclick="addToFav('<%=product._id%>',this)"
-                                        class="w-[3vw] h-[3vw] bg-gray-200 flex justify-center items-center rounded-md shadow-lg">
+                                    <div onclick="addToFav('<%=product._id%>')"
+                                        class="w-[3vw] h-[3vw] bg-gray-200 flex justify-center items-center rounded-md shadow-lg" fav="<%=product._id%>">
 
                                         <% const isFav=favorite.some(fav=> {
-                                            return fav.productId._id.toString() == product._id;
+                                            return fav.productId?fav.productId._id.toString() == product._id:" ";
                                             }); %>
 
-                                            <svg  class="w-[2vw] h-[2vw]" xmlns="http://www.w3.org/2000/svg"
+                                            <svg class="w-[2vw] h-[2vw]" xmlns="http://www.w3.org/2000/svg"
                                                 viewBox="0 0 24 24" fill="<%= isFav ? 'red' : '' %>">
                                                 <path
                                                     d="M20.2426 4.75736C22.5053 7.02472 22.583 10.637 20.4786 12.993L11.9999 21.485L3.52138 12.993C1.41705 10.637 1.49571 7.01901 3.75736 4.75736C5.51545 2.99926 8.09315 2.56029 10.2605 3.44044L6.34315 7.35843L7.75736 8.77264L12 4.53L11.9872 4.51617C11.9918 4.52028 11.9964 4.5244 12.001 4.52853C14.35 2.42 17.98 2.49 20.2426 4.75736Z">
@@ -173,66 +173,7 @@
 
                     </div>
                 </div>
-                <div class="mb-6">
-                    <div class="flex justify-between items-center mb-4">
-                        <h2 class="text-xl font-bold">
-                            Recent Order
-                        </h2>
-                        <a class="text-purple-500" href="#">
-                            View all
-                        </a>
-                    </div>
-                    <div class="grid grid-cols-5 gap-4 h-[32vh]">
-                        <div class="bg-white p-4 rounded-lg ">
-                            <img alt="Fish Burger" class="rounded-lg mb-4  h-[60%] w-full" height="100"
-                                src="https://storage.googleapis.com/a1aa/image/rCMWcfcoRU63onO6O1YDgXqA4Gx-58LBohGtMHuExXA.jpg"
-                                width="150" />
-                            <div>
-                                <h3 class="font-bold">
-                                    Fish Burger
-                                </h3>
-                                <p>
-                                    $5.59
-                                </p>
-                                <p>
-                                    4.97 km - 21 min
-                                </p>
-                            </div>
-                        </div>
-                        <div class="bg-white p-4 rounded-lg">
-                            <img alt="Japan Ramen" class="rounded-lg mb-4  h-[60%] w-full" height="100"
-                                src="https://storage.googleapis.com/a1aa/image/JwgxPvFdPI-NXf4SAWVKC-ErwS-nkgHSl0epFBOj-2o.jpg"
-                                width="150" />
-                            <div>
-                                <h3 class="font-bold">
-                                    Japan Ramen
-                                </h3>
-                                <p>
-                                    $5.59
-                                </p>
-                                <p>
-                                    4.97 km - 21 min
-                                </p>
-                            </div>
-                        </div>
-                        <div class="bg-white p-4 rounded-lg">
-                            <img alt="Fried Rice" class="rounded-lg mb-4  h-[60%] w-full" height="100"
-                                src="https://storage.googleapis.com/a1aa/image/kReUv7MAESXVeQ6iuOKW8hbjBdKjEP80gOjf_pPW3-A.jpg"
-                                width="150" />
-                            <div>
-                                <h3 class="font-bold">
-                                    Fried Rice
-                                </h3>
-                                <p>
-                                    $5.59
-                                </p>
-                                <p>
-                                    4.97 km - 21 min
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+
             </div>
             <!-- Food Orders -->
             <div id="food-orders" class="tabs flex flex-col min-h-screen hidden">
@@ -263,7 +204,9 @@
                                             </p>
                                             <p class="text-gray-500">Estimated delivery: 20 mins</p>
                                         </div>
-                                        <p class="p-2 text-blue-500"><%=order.productId.status||"Pending"%></p>
+                                        <p class="p-2 text-blue-500">
+                                            <%=order.status||"Pending"%>
+                                        </p>
                                         <!-- <button onclick="deleteProduct('<%=order._id%>')"
                                             class="bg-red-500 text-white py-1 px-3 rounded-lg">Cancel</button> -->
                                     </div>
@@ -319,34 +262,49 @@
                 <h1 class="text-3xl font-bold text-purple-600 m-3">
                     Favorite
                 </h1>
-                <div class=" p-2 grid grid-cols-4 gap-4">
-                    <%favorite.forEach((product)=>{%>
-                        <div class="bg-white p-4 rounded-lg shadow-lg box-border w-[15vw] h-[20vw]">
-                            <img alt="Fish Burger" class="rounded-lg mb-4 h-[70%] w-[100%] object-cover object-center "
-                                height="100"
-                                src="data:image/jpeg;base64,<%= product.productId.image ?product.productId.image.toString('base64') : '' %>"
-                                width="150" />
-                            <div class="flex justify-between items-center">
-                                <div>
-                                    <h3 class="font-bold">
-                                        <%= product.productId.name%>
-                                    </h3>
-                                    <p class="text-yellow-500">
-                                        ★★★★★
-                                    </p>
-                                    <p>
-                                        $<%=product.productId.price%>
-                                    </p>
+                <div id="favItems" class=" p-2 grid grid-cols-4 ">
+                    <%if(favorite.length>0){%>
+
+                        <%favorite.forEach((product)=>{%>
+                            <div class="bg-white p-4 rounded-lg shadow-lg box-border w-[18vw] h-[20vw]" fav-item="<%=product.productId._id%>">
+                                <img alt="Fish Burger"
+                                    class="rounded-lg mb-4 h-[70%] w-[100%] object-cover object-center " height="100"
+                                    src="data:image/jpeg;base64,<%= product.productId.image ?product.productId.image.toString('base64') : '' %>"
+                                    width="150" />
+                                <div class="flex justify-between items-center">
+                                    <div>
+                                        <h3 class="font-bold">
+                                            <%= product.productId.name%>
+                                        </h3>
+                                        <p class="text-yellow-500">
+                                            ★★★★★
+                                        </p>
+                                        <p>
+                                            $<%=product.productId.price%>
+                                        </p>
+                                    </div>
+                                    <div class="flex gap-2">
+                                    <div onclick="addToFav('<%=product.productId._id%>')"
+                                        class="w-[3vw] h-[3vw] bg-gray-200 flex justify-center items-center rounded-md shadow-lg" fav="<%=product.productId._id%>">
+                                        
+
+                                            <svg class="w-[2vw] h-[2vw]" xmlns="http://www.w3.org/2000/svg"
+                                            viewBox="0 0 24 24" fill="red">
+                                            <path
+                                                d="M20.2426 4.75736C22.5053 7.02472 22.583 10.637 20.4786 12.993L11.9999 21.485L3.52138 12.993C1.41705 10.637 1.49571 7.01901 3.75736 4.75736C5.51545 2.99926 8.09315 2.56029 10.2605 3.44044L6.34315 7.35843L7.75736 8.77264L12 4.53L11.9872 4.51617C11.9918 4.52028 11.9964 4.5244 12.001 4.52853C14.35 2.42 17.98 2.49 20.2426 4.75736Z">
+                                            </path>
+                                        </svg></div>
+                                    <button onclick="addToCart('<%=product.productId._id%>')"
+                                        class="bg-purple-500 text-white py-2 px-4 rounded-lg">
+                                        +
+                                    </button>
                                 </div>
-                                <button onclick="addToCart('<%=product._id%>')"
-                                    class="bg-purple-500 text-white py-2 px-4 rounded-lg">
-                                    +
-                                </button>
+                                </div>
                             </div>
-                        </div>
 
 
-                        <% })%>
+                            <% })%>
+                                <%}%>
 
                 </div>
 
@@ -357,10 +315,10 @@
                     <h1 class="text-3xl font-bold text-purple-600">
                         Bills
                     </h1>
-                   
-                    
+
+
                 </div>
-                
+
                 <div class="bg-white shadow rounded-lg overflow-hidden">
                     <table class="min-w-full">
                         <thead class="bg-gray-100">
@@ -524,12 +482,12 @@
                         User Profile
                     </h2>
                     <nav class="space-y-4">
-                        <a  class="flex items-center text-orange-500" href="#">
+                        <a class="flex items-center text-orange-500" href="#">
                             <i class="fas fa-user mr-2">
                             </i>
                             User info
                         </a>
-                       
+
 
                     </nav>
                     <a class="flex items-center text-red-500 mt-8" href="/logout">
@@ -602,13 +560,13 @@
                                             <%=addresses[0].state%>
                                         </p>
                                         <p><strong>Country :-</strong>
-                                           India
+                                            India
                                         </p>
                                         <p><strong>Pin Code :-</strong>
                                             <%=addresses[0].pinCode%>
                                         </p>
                                     </div>
-                                    
+
                                 </div>
                             </div>
                             <%}else{%>

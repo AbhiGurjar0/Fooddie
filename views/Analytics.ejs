@@ -1,0 +1,599 @@
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1" name="viewport" />
+    <title>
+        Shopcart Dashboard
+    </title>
+    <script src="https://cdn.tailwindcss.com">
+    </script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&amp;display=swap" rel="stylesheet" />
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+    </style>
+</head>
+
+<body class="bg-[#f5faf7] min-h-screen text-gray-800">
+    <div class="flex min-h-screen">
+        <!-- Sidebar -->
+        <aside class="flex flex-col bg-[#e9f0ec] w-64 p-5 border-r border-gray-200 select-none">
+            <div class="mb-8">
+                <button
+                    class="flex items-center gap-2 bg-[#dce7e1] rounded-lg px-3 py-2 w-full text-gray-800 font-semibold text-sm"
+                    type="button">
+                    <div class="bg-gray-700 rounded-md p-1.5">
+                        <i class="fas fa-store text-white text-lg">
+                        </i>
+                    </div>
+                    <span>
+                        Store
+                    </span>
+                    <span class="ml-auto text-gray-600 text-sm font-normal">
+                        Shopcart
+                    </span>
+                    <i class="fas fa-chevron-down text-gray-600 text-xs">
+                    </i>
+                </button>
+            </div>
+            <nav class="flex flex-col gap-2 text-sm font-normal text-gray-800">
+                <a class="flex items-center gap-3 bg-[#0f4f3f] text-white rounded-lg px-4 py-2" href="#">
+                    <i class="fas fa-tachometer-alt text-sm">
+                    </i>
+                    Dashboard
+                </a>
+                <a class="flex items-center gap-3 hover:text-[#0f4f3f] transition-colors" href="#">
+                    <i class="fas fa-chart-bar text-xs">
+                    </i>
+                    Analytics
+                </a>
+                <a class="flex items-center gap-3 hover:text-[#0f4f3f] transition-colors" href="#">
+                    <i class="fas fa-tag text-xs">
+                    </i>
+                    Orders
+                </a>
+                <a class="flex items-center gap-3 hover:text-[#0f4f3f] transition-colors" href="#">
+                    <i class="fas fa-box-open text-xs">
+                    </i>
+                    Products
+                </a>
+                <a class="flex items-center gap-3 hover:text-[#0f4f3f] transition-colors" href="#">
+                    <i class="fas fa-users text-xs">
+                    </i>
+                    Customers
+                </a>
+                <a class="flex items-center gap-3 hover:text-[#0f4f3f] transition-colors" href="#">
+                    <i class="fas fa-wallet text-xs">
+                    </i>
+                    Finances
+                </a>
+                <a class="flex items-center gap-3 hover:text-[#0f4f3f] transition-colors" href="#">
+                    <i class="fas fa-bullhorn text-xs">
+                    </i>
+                    Marketing
+                </a>
+                <a class="flex items-center gap-3 hover:text-[#0f4f3f] transition-colors" href="#">
+                    <i class="fas fa-percent text-xs">
+                    </i>
+                    Discounts
+                </a>
+            </nav>
+            <div class="mt-auto flex flex-col gap-4 text-gray-700 text-sm font-normal">
+                <button class="flex items-center gap-3 hover:text-[#0f4f3f] transition-colors" type="button">
+                    <i class="fas fa-question-circle text-xs">
+                    </i>
+                    Help Center
+                </button>
+                <button class="flex items-center gap-3 hover:text-[#0f4f3f] transition-colors" type="button">
+                    <i class="fas fa-cog text-xs">
+                    </i>
+                    Setting
+                </button>
+            </div>
+        </aside>
+        <!-- Main content -->
+        <main class="flex-1 p-6 md:p-8 lg:p-10">
+            <!-- Top bar -->
+            <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-6">
+                <form aria-label="Search"
+                    class="flex items-center bg-white rounded-lg border border-gray-200 px-3 py-2 w-full max-w-xs"
+                    role="search">
+                    <i class="fas fa-search text-gray-400 text-sm">
+                    </i>
+                    <input aria-label="Search"
+                        class="ml-2 w-full text-sm text-gray-700 placeholder-gray-400 focus:outline-none"
+                        placeholder="Search" type="search" />
+                    <span class="ml-2 text-gray-400 text-xs border-l border-gray-300 pl-2 select-none">
+                        ⌘F
+                    </span>
+                </form>
+                <div class="flex items-center gap-6">
+                    <button aria-label="Messages" class="relative text-gray-600 hover:text-gray-800 transition-colors"
+                        type="button">
+                        <i class="far fa-envelope text-lg">
+                        </i>
+                        <span
+                            class="absolute -top-1 -right-1 bg-red-600 text-white text-xs font-semibold rounded-full w-5 h-5 flex items-center justify-center">
+                            2
+                        </span>
+                    </button>
+                    <button aria-label="Notifications"
+                        class="relative text-gray-600 hover:text-gray-800 transition-colors" type="button">
+                        <i class="far fa-bell text-lg">
+                        </i>
+                        <span
+                            class="absolute -top-1 -right-1 bg-red-600 text-white text-xs font-semibold rounded-full w-5 h-5 flex items-center justify-center">
+                            4
+                        </span>
+                    </button>
+                    <button aria-label="User menu"
+                        class="flex items-center gap-2 text-gray-700 hover:text-gray-900 transition-colors"
+                        type="button">
+                        <img alt="Profile picture of Erin Aminoff, a woman with brown hair and light skin"
+                            class="w-8 h-8 rounded-full object-cover" height="32" loading="lazy"
+                            src="https://storage.googleapis.com/a1aa/image/1721453a-eaca-457f-0260-b81e3b0c5c70.jpg"
+                            width="32" />
+                        <span class="text-sm font-semibold">
+                            Erin Aminoff
+                        </span>
+                        <i class="fas fa-chevron-down text-xs">
+                        </i>
+                    </button>
+                </div>
+            </div>
+            <!-- Greeting and controls -->
+            <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-6 gap-4">
+                <div>
+                    <h1 class="text-lg font-semibold text-gray-900">
+                        Hi, Erin Amioff
+                    </h1>
+                    <p class="text-xs text-gray-500 mt-1">
+                        Sort subtitle will be replaced here!
+                    </p>
+                </div>
+                <div class="flex gap-3">
+                    <button
+                        class="flex items-center gap-2 border border-gray-300 rounded-md px-3 py-1 text-sm text-gray-700 hover:bg-gray-100 transition"
+                        type="button">
+                        <i class="fas fa-th-large text-xs">
+                        </i>
+                        Customize
+                    </button>
+                    <button
+                        class="bg-[#0f4f3f] text-white rounded-md px-4 py-1 text-sm font-semibold hover:bg-[#0d3e31] transition"
+                        type="button">
+                        + Add new
+                    </button>
+                </div>
+            </div>
+            <!-- Cards row 1 -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+                <!-- Total Sales -->
+                <section aria-label="Total Sales" class="bg-white rounded-lg border border-gray-200 p-4 relative">
+                    <div class="flex items-center justify-between mb-2 text-gray-600 text-xs font-semibold">
+                        <div class="flex items-center gap-2">
+                            <i class="fas fa-box-open text-sm">
+                            </i>
+                            <span>
+                                Total Sales
+                            </span>
+                        </div>
+                        <button aria-label="More options" class="text-gray-400 hover:text-gray-600">
+                            <i class="fas fa-ellipsis-v text-xs">
+                            </i>
+                        </button>
+                    </div>
+                    <p class="text-2xl font-normal text-gray-900 leading-none">
+                        $
+                        <span>
+                            275.825
+                        </span>
+                        <span class="text-gray-400">
+                            ,00
+                        </span>
+                    </p>
+                    <p class="text-xs mt-2 flex items-center gap-1 text-green-600 font-semibold">
+                        <i class="fas fa-arrow-up text-[10px]">
+                        </i>
+                        28%
+                        <span class="text-gray-400 font-normal ml-1">
+                            vs Last month
+                        </span>
+                    </p>
+                </section>
+                <!-- Total Product -->
+                <section aria-label="Total Product" class="bg-white rounded-lg border border-gray-200 p-4 relative">
+                    <div class="flex items-center justify-between mb-2 text-gray-600 text-xs font-semibold">
+                        <div class="flex items-center gap-2">
+                            <i class="far fa-box text-sm">
+                            </i>
+                            <span>
+                                Total Product
+                            </span>
+                        </div>
+                        <button aria-label="More options" class="text-gray-400 hover:text-gray-600">
+                            <i class="fas fa-ellipsis-v text-xs">
+                            </i>
+                        </button>
+                    </div>
+                    <p class="text-2xl font-normal text-gray-900 leading-none">
+                        $
+                        <span>
+                            275.825
+                        </span>
+                        <span class="text-gray-400">
+                            ,00
+                        </span>
+                    </p>
+                    <p class="text-xs mt-2 flex items-center gap-1 text-red-500 font-semibold">
+                        <i class="fas fa-arrow-down text-[10px]">
+                        </i>
+                        28%
+                        <span class="text-gray-400 font-normal ml-1">
+                            vs Last month
+                        </span>
+                    </p>
+                </section>
+                <!-- Total Customer -->
+                <section aria-label="Total Customer" class="bg-white rounded-lg border border-gray-200 p-4 relative">
+                    <div class="flex items-center justify-between mb-2 text-gray-600 text-xs font-semibold">
+                        <div class="flex items-center gap-2">
+                            <i class="fas fa-user-friends text-sm">
+                            </i>
+                            <span>
+                                Total Customer
+                            </span>
+                        </div>
+                        <button aria-label="More options" class="text-gray-400 hover:text-gray-600">
+                            <i class="fas fa-ellipsis-v text-xs">
+                            </i>
+                        </button>
+                    </div>
+                    <p class="text-2xl font-normal text-gray-900 leading-none">
+                        $
+                        <span>
+                            275.825
+                        </span>
+                        <span class="text-gray-400">
+                            ,00
+                        </span>
+                    </p>
+                    <p class="text-xs mt-2 flex items-center gap-1 text-green-600 font-semibold">
+                        <i class="fas fa-arrow-up text-[10px]">
+                        </i>
+                        28%
+                        <span class="text-gray-400 font-normal ml-1">
+                            vs Last month
+                        </span>
+                    </p>
+                </section>
+            </div>
+            <!-- Cards row 2 -->
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-4 mb-6">
+                <!-- Sales Performance -->
+                <section aria-label="Sales Performance"
+                    class="bg-white rounded-lg border border-gray-200 p-4 relative lg:col-span-2">
+                    <div class="flex items-center justify-between mb-3 text-gray-700 text-xs font-semibold">
+                        <div class="flex items-center gap-2">
+                            <i class="fas fa-chart-bar text-sm">
+                            </i>
+                            <span>
+                                Sales Performance
+                            </span>
+                        </div>
+                        <button aria-label="More options" class="text-gray-400 hover:text-gray-600">
+                            <i class="fas fa-ellipsis-v text-xs">
+                            </i>
+                        </button>
+                    </div>
+                    <div class="flex items-center gap-4 text-xs mb-2">
+                        <div class="flex items-center gap-1">
+                            <span class="w-3 h-3 rounded-sm bg-[#0f4f3f] block">
+                            </span>
+                            Revenue
+                        </div>
+                        <div class="flex items-center gap-1">
+                            <span class="w-3 h-3 rounded-sm bg-[#7fcf8e] block">
+                            </span>
+                            Sales
+                        </div>
+                    </div>
+                    <div class="relative">
+                        <img alt="Line chart showing sales performance from January to December with revenue and sales lines, highlight on May 2024 with revenue $254 and sales 1267"
+                            class="w-full rounded-md" height="220" loading="lazy"
+                            src="https://storage.googleapis.com/a1aa/image/d5d517cb-558e-46bf-6491-253dfc2a9315.jpg"
+                            width="600" />
+                        <button aria-label="Select year"
+                            class="absolute top-3 right-3 bg-white border border-gray-300 rounded-md px-3 py-1 text-xs text-gray-700 hover:bg-gray-100 transition"
+                            type="button">
+                            Yearly
+                            <i class="fas fa-chevron-down text-[10px] ml-1">
+                            </i>
+                        </button>
+                    </div>
+                </section>
+                <!-- Order & Fulfillment Tracking -->
+                <section aria-label="Order and Fulfillment Tracking"
+                    class="bg-white rounded-lg border border-gray-200 p-4 relative">
+                    <div class="flex items-center justify-between mb-3 text-gray-700 text-xs font-semibold">
+                        <div class="flex items-center gap-2">
+                            <i class="fas fa-percent text-sm">
+                            </i>
+                            <span>
+                                Order &amp; Fulfillment Tracking
+                            </span>
+                        </div>
+                        <button aria-label="More options" class="text-gray-400 hover:text-gray-600">
+                            <i class="fas fa-ellipsis-v text-xs">
+                            </i>
+                        </button>
+                    </div>
+                    <div class="mb-2 flex justify-between text-xs font-semibold">
+                        <div>
+                            <p class="text-orange-500">
+                                Total Orders
+                            </p>
+                            <p class="text-gray-900 text-lg font-bold">
+                                3210
+                            </p>
+                        </div>
+                        <div>
+                            <p class="text-green-600">
+                                Pending Orders
+                            </p>
+                            <p class="text-gray-900 text-lg font-bold">
+                                264
+                            </p>
+                        </div>
+                    </div>
+                    <img alt="Bar chart showing order processing, shipped/in transit, and delivered orders with color-coded bars in orange, green, and dark green"
+                        class="w-full rounded-md mb-3" height="60" loading="lazy"
+                        src="https://storage.googleapis.com/a1aa/image/4118f780-9e5d-424a-2553-502957af1c46.jpg"
+                        width="280" />
+                    <ul class="text-xs space-y-1">
+                        <li class="flex justify-between items-center">
+                            <div class="flex items-center gap-2">
+                                <span class="w-3 h-3 rounded-sm bg-orange-400 block">
+                                </span>
+                                Order Processing
+                            </div>
+                            <span class="text-gray-900 font-semibold">
+                                248
+                            </span>
+                        </li>
+                        <li class="flex justify-between items-center">
+                            <div class="flex items-center gap-2">
+                                <span class="w-3 h-3 rounded-sm bg-green-400 block">
+                                </span>
+                                Shipped/In Transit
+                            </div>
+                            <span class="text-gray-900 font-semibold">
+                                863
+                            </span>
+                        </li>
+                        <li class="flex justify-between items-center">
+                            <div class="flex items-center gap-2">
+                                <span class="w-3 h-3 rounded-sm bg-[#0f4f3f] block">
+                                </span>
+                                Delivered
+                            </div>
+                            <span class="text-gray-900 font-semibold">
+                                1835
+                            </span>
+                        </li>
+                    </ul>
+                </section>
+            </div>
+            <!-- Cards row 3 -->
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-4">
+                <!-- Top Selling -->
+                <section aria-label="Top Selling" class="bg-white rounded-lg border border-gray-200 p-4 relative">
+                    <div class="flex items-center justify-between mb-3 text-gray-700 text-xs font-semibold">
+                        <div class="flex items-center gap-2">
+                            <i class="fas fa-chart-bar text-sm">
+                            </i>
+                            <span>
+                                Top Selling
+                            </span>
+                        </div>
+                        <button aria-label="More options" class="text-gray-400 hover:text-gray-600">
+                            <i class="fas fa-ellipsis-v text-xs">
+                            </i>
+                        </button>
+                    </div>
+                    <table class="w-full text-xs text-left text-gray-700 border-separate border-spacing-y-2">
+                        <thead>
+                            <tr class="border-b border-gray-200">
+                                <th class="pb-2 font-semibold">
+                                    Product
+                                </th>
+                                <th class="pb-2 font-semibold">
+                                    Category
+                                </th>
+                                <th class="pb-2 font-semibold">
+                                    Price
+                                </th>
+                                <th class="pb-2 font-semibold">
+                                    Product Status
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="bg-[#f5faf7] rounded-lg">
+                                <td class="py-2 flex items-center gap-2 font-semibold">
+                                    <img alt="Small image of orange running shoes" class="w-6 h-6 object-cover rounded"
+                                        height="24" loading="lazy"
+                                        src="https://storage.googleapis.com/a1aa/image/2bdca630-49c6-4d50-a5e0-f5740329514e.jpg"
+                                        width="24" />
+                                    Running shoes H320
+                                </td>
+                                <td class="text-[#0f4f3f] font-semibold">
+                                    Footwear
+                                </td>
+                                <td class="font-normal">
+                                    $440.00
+                                </td>
+                                <td>
+                                    <span
+                                        class="inline-block bg-[#f9d9a7] text-[#b27a00] text-[10px] font-semibold rounded-full px-2 py-0.5">
+                                        Sold out
+                                    </span>
+                                </td>
+                            </tr>
+                            <tr class="bg-[#f5faf7] rounded-lg">
+                                <td class="py-2 flex items-center gap-2 font-semibold">
+                                    <img alt="Small image of beige windbreaker jacket"
+                                        class="w-6 h-6 object-cover rounded" height="24" loading="lazy"
+                                        src="https://storage.googleapis.com/a1aa/image/1037c314-752f-46d6-930b-a512a26a4e38.jpg"
+                                        width="24" />
+                                    Windbreaker HJ2356
+                                </td>
+                                <td class="text-[#0f4f3f] font-semibold">
+                                    Sportwear
+                                </td>
+                                <td class="font-normal">
+                                    $324.00
+                                </td>
+                                <td>
+                                    <span
+                                        class="inline-block bg-[#f9d9a7] text-[#b27a00] text-[10px] font-semibold rounded-full px-2 py-0.5">
+                                        Sold out
+                                    </span>
+                                </td>
+                            </tr>
+                            <tr class="bg-[#f5faf7] rounded-lg">
+                                <td class="py-2 flex items-center gap-2 font-semibold">
+                                    <img alt="Small image of tennis racquet" class="w-6 h-6 object-cover rounded"
+                                        height="24" loading="lazy"
+                                        src="https://storage.googleapis.com/a1aa/image/9e19d923-c62c-4081-8329-2e7b4fcbd500.jpg"
+                                        width="24" />
+                                    Boom PRO Tennis Racquet
+                                </td>
+                                <td class="text-[#0f4f3f] font-semibold">
+                                    Accessories
+                                </td>
+                                <td class="font-normal">
+                                    $389.00
+                                </td>
+                                <td>
+                                    <span
+                                        class="inline-block bg-[#7fcf8e] text-[#0f4f3f] text-[10px] font-semibold rounded-full px-2 py-0.5">
+                                        In Stock
+                                    </span>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </section>
+                <!-- Activity -->
+                <section aria-label="Activity" class="bg-white rounded-lg border border-gray-200 p-4 relative">
+                    <div class="flex items-center justify-between mb-3 text-gray-700 text-xs font-semibold">
+                        <div class="flex items-center gap-2">
+                            <i class="fas fa-clock text-sm">
+                            </i>
+                            <span>
+                                Activity
+                            </span>
+                        </div>
+                        <button aria-label="More options" class="text-gray-400 hover:text-gray-600">
+                            <i class="fas fa-ellipsis-v text-xs">
+                            </i>
+                        </button>
+                    </div>
+                    <div class="text-xs text-gray-700 space-y-4 max-h-[320px] overflow-y-auto pr-2">
+                        <div>
+                            <p class="font-semibold mb-1">
+                                Today
+                            </p>
+                            <ul class="space-y-2">
+                                <li class="flex items-start gap-2">
+                                    <span aria-hidden="true" class="mt-1 block w-2 h-2 rounded-full bg-[#0f4f3f]">
+                                    </span>
+                                    <p class="leading-tight text-gray-700">
+                                        You changed the status of
+                                        <span class="text-blue-300 underline cursor-pointer">
+                                            Order processing
+                                        </span>
+                                        to
+                                        <span class="bg-[#7fcf8e] text-[#0f4f3f] rounded px-1.5 py-0.5 ml-1">
+                                            Shipped
+                                        </span>
+                                        <br />
+                                        <span class="text-gray-400 text-[10px] ml-1">
+                                            2:45 PM
+                                        </span>
+                                    </p>
+                                </li>
+                                <li class="flex items-start gap-2">
+                                    <span aria-hidden="true" class="mt-1 block w-2 h-2 rounded-full bg-[#0f4f3f]">
+                                    </span>
+                                    <p class="leading-tight text-gray-700">
+                                        <span class="text-red-400 font-semibold">
+                                            total revenue
+                                        </span>
+                                        has been successfully transferred to your
+                                        <span class="bg-[#f9d9a7] text-[#b27a00] rounded px-1.5 py-0.5 ml-1">
+                                            debit account
+                                        </span>
+                                        <br />
+                                        <span class="text-gray-400 text-[10px] ml-1">
+                                            10:45 AM
+                                        </span>
+                                    </p>
+                                </li>
+                                <li class="flex items-start gap-2">
+                                    <span aria-hidden="true" class="mt-1 block w-2 h-2 rounded-full bg-[#0f4f3f]">
+                                    </span>
+                                    <p class="leading-tight text-gray-700">
+                                        24 of your
+                                        <span class="bg-purple-200 text-purple-700 rounded px-1.5 py-0.5 ml-1">
+                                            Products
+                                        </span>
+                                        are awaiting
+                                        <span class="bg-cyan-200 text-cyan-700 rounded px-1.5 py-0.5 ml-1">
+                                            Shipment
+                                        </span>
+                                        <br />
+                                        <span class="text-gray-400 text-[10px] ml-1">
+                                            9:23 AM
+                                        </span>
+                                    </p>
+                                </li>
+                            </ul>
+                        </div>
+                        <div>
+                            <p class="font-semibold mb-1">
+                                Yesterday
+                            </p>
+                            <ul class="space-y-2">
+                                <li class="flex items-start gap-2">
+                                    <span aria-hidden="true" class="mt-1 block w-2 h-2 rounded-full bg-[#0f4f3f]">
+                                    </span>
+                                    <p class="leading-tight text-gray-700">
+                                        You changed the status of 348 products
+                                        <span class="text-blue-300 underline cursor-pointer">
+                                            Order processing
+                                        </span>
+                                        to
+                                        <span class="bg-[#7fcf8e] text-[#0f4f3f] rounded px-1.5 py-0.5 ml-1">
+                                            Shipped
+                                        </span>
+                                        <br />
+                                        <span class="text-gray-400 text-[10px] ml-1">
+                                            Yesterday • 10:45 AM
+                                        </span>
+                                    </p>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </main>
+    </div>
+</body>
+
+</html>

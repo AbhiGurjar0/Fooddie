@@ -11,10 +11,11 @@ const favModel = require("../models/favorite-model");
 const transactionModel = require("../models/transaction-model");
 
 
-router.get("/address", isLoggedIn, async (req, res) => {
-  let user = await userModel.findOne({ _id: req.user._id });
-  res.render("address", { user });
-})
+// router.get("/address", isLoggedIn, async (req, res) => {
+//   let user = await userModel.findOne({ _id: req.user._id });
+//   res.render("address", { user });
+// })
+// Adding Address
 router.post("/addAddress", isLoggedIn, async (req, res) => {
   let { name, phoneNumber, pincode, nearPlace, address, city, state } = req.body;
   let user = await userModel.findOne({ _id: req.user._id });
@@ -39,6 +40,7 @@ router.get("/cart", isLoggedIn, async (req, res) => {
 
   let total = 0;
   cartItems.forEach(element => {
+
     total += (element.productId.price) * (element.quantity);
   });
   res.render("cart", { cartItems, total });
@@ -54,7 +56,6 @@ router.get("/signin", (req, res) => {
 });
 
 //home   
-
 router.get("/", isLoggedIn, async (req, res) => {
   let products = await productModel.find();
   let user = await userModel.findOne({ _id: req.user._id }).populate("cart.productId");
@@ -66,17 +67,17 @@ router.get("/", isLoggedIn, async (req, res) => {
   res.render("home", { products, user, categories, orders, favorite, transaction, addresses });
 });
 
+
 //All categories
 router.get("/home/category", async (req, res) => {
   let products = await productModel.find();
   res.render("category", { products });
 });
 
-//add to cart
+//add to cart 
 router.post("/home/cart", isLoggedIn, async (req, res) => {
   let userId = req.user._id;
   let { productId } = req.body;
-
   let user = await userModel.findOne({ _id: userId });
   if (!user) {
     res.send("User not found");
@@ -126,14 +127,20 @@ router.post("/home/cart/checkout", isLoggedIn, async (req, res) => {
 })
 //cancel Order
 router.post("/home/food_orders/cancel", isLoggedIn, async (req, res) => {
-  let productId = req.body.productId;
+  // let productId = req.body.productId;
   let order = await orderModel.findOneAndDelete({ _id: req.body.productId });
   res.redirect("/home#food_orders");
 
 })
 
-//delete Items
+router.post("/updateStatus/:id", async (req, res) => {
+  let { status } = req.body;
+  console.log(status);
+  let order = await orderModel.findOneAndUpdate({_id:req.params.id},{status});
+  res.redirect("/admin");
+})
 
+//delete Items
 router.post("/home/cart/delete", isLoggedIn, async (req, res) => {
   let user = await userModel.findOne({ _id: req.user._id });
   let productID = req.body;
@@ -145,24 +152,14 @@ router.post("/home/cart/delete", isLoggedIn, async (req, res) => {
   res.json({ message: "Product deleted successfully" });
 });
 
-//add items by admin
-router.post("/additems", upload.single("image"), async (req, res) => {
-  let { name, price, discount, category } = req.body;
-  await productModel.create({
-    image: req.file.buffer,
-    name,
-    category,
-    price,
-    discount,
-  })
-  res.redirect("/home/additems");
-})
+
 //Add to Favorite
 
 router.post("/addToFav", isLoggedIn, async (req, res) => {
   try {
     let { productId } = req.body;
     let userId = req.user._id;
+    // console.log(productId);
     let exist = await favModel.findOne({ productId, userId });
     if (exist) {
       await favModel.findOneAndDelete({ productId, userId });
@@ -183,15 +180,19 @@ router.post("/addToFav", isLoggedIn, async (req, res) => {
   }
 })
 
+// Add Address(user)
 router.get("/addAddress", (req, res) => {
   res.render("addAddress");
 })
+
+// Update Address
 router.get("/updateAddress", isLoggedIn, async (req, res) => {
   let user = await userModel.findOne({ email: req.user.email });
 
   // console.log(user);
   res.render("editAddress", { user });
 })
+// Updating.. Address
 router.post("/updateAddress", isLoggedIn, async (req, res) => {
   let { name, phoneNumber, pincode, address, nearPlace, state, city } = req.body;
   await userModel.findOneAndUpdate(
@@ -212,16 +213,38 @@ router.post("/updateAddress", isLoggedIn, async (req, res) => {
   );
   res.redirect("/");
 })
-//Add items panel
+// Add items panel
 router.get("/home/additems", (req, res) => {
-  res.render("addProducts");
+  res.render("admin");
 })
-//Login
+// Login
 router.post("/login", loginUser);
 
 //Register
 router.post("/register", registerUser);
 //Logout
 router.get("/logout", logout);
+//admin panel
+router.get("/admin", async (req, res) => {
+  let products = await productModel.find();
+  let users = await userModel.find();
+  let orders = await orderModel.find().populate("productId");
+  res.render("dashboard", { products, users, orders });
+
+})
+
+//add items by admin
+router.post("/additems", upload.single("image"), async (req, res) => {
+  let { name, price, discount, category, quantity } = req.body;
+  await productModel.create({
+    image: req.file.buffer,
+    name,
+    category,
+    price,
+    discount,
+    quantity,
+  })
+  res.redirect("/home/additems");
+})
 
 module.exports = router; 

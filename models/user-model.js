@@ -12,9 +12,9 @@ const addressSchema = new mongoose.Schema(
    { timestamps: true }
 );
 
-const userSchema = new mongoose.Schema({
+const userSchema = new mongoose.Schema({ 
 
-   fullname: String,
+   fullname: String, 
    email: String,
    password: String,
    address: [addressSchema],

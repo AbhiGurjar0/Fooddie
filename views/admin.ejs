@@ -1,20 +1,21 @@
-<%- include('partials/header') %>
-    <div class="w-[80vw] h-[50vh] m-auto bg-gray-200 p-10">
+<%-include('partials/header')%>
+
+
+ <div class="w-[80vw] h-[50vh] m-auto bg-gray-200 p-10">
         <h3 class="text-lg font-semibold mb-4">Product Details</h3>
         <form class="grid grid-cols-1 md:grid-cols-2 gap-4" action="/additems" method="post"
             enctype="multipart/form-data">
             <div class="col-span-2 mb-4">
                 <label class="block mb-2 font-medium">Product Image:</label>
-                <input type="file" name="image"  required>
+                <input type="file" name="image" required>
             </div>
             <input type="text" placeholder="Product Name" class="px-3 py-2 border rounded" name="name">
             <input type="number" placeholder="Price (₹)" class="px-3 py-2 border rounded" name="price">
             <input type="text" placeholder="Category" class="px-3 py-2 border rounded" name="category">
             <input type="number" placeholder="Discount" class="px-3 py-2 border rounded" name="discount">
+            <input type="number" placeholder="Quantity" class="px-3 py-2 border rounded" name="quantity">
             <button type="submit" class="bg-gray-900 text-white py-2 rounded col-span-2 hover:bg-gray-700">Add
                 Product</button>
         </form>
     </div>
-
-
-    <%- include('partials/footer')%>
+    <%-include('partials/footer')%>

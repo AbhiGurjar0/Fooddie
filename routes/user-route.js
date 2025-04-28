@@ -136,7 +136,7 @@ router.post("/home/food_orders/cancel", isLoggedIn, async (req, res) => {
 router.post("/updateStatus/:id", async (req, res) => {
   let { status } = req.body;
   console.log(status);
-  let order = await orderModel.findOneAndUpdate({_id:req.params.id},{status});
+  let order = await orderModel.findOneAndUpdate({ _id: req.params.id }, { status });
   res.redirect("/admin");
 })
 
@@ -246,5 +246,31 @@ router.post("/additems", upload.single("image"), async (req, res) => {
   })
   res.redirect("/home/additems");
 })
+router.post("/updateStatus", async (req, res) => {
 
+  let { productId, status } = req.body;
+  await orderModel.findOneAndUpdate({ _id: productId }, {
+    status
+  }, { new: true, runValidators: true });
+  res.send("Successfully status changed");
+})
+
+router.post("/deleteItem", async (req, res) => {
+  await productModel.findOneAndDelete({ _id: req.body.productId });
+  res.send("Successfully deleted");
+})
+
+router.post("/deleteDeleted", async (req, res) => {
+  await orderModel.findOneAndDelete({ _id: req.body.productId });
+  res.send("Deleted Successfully");
+})
+// router.get("/analytics", (req, res) => {
+//   res.render("tracking")
+// })
+
+router.post("/deleteUser", async (req, res) => {
+  await userModel.findOneAndDelete({ _id: req.body.userId });
+  res.send("User deleted Successfully");
+
+})
 module.exports = router; 

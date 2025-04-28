@@ -471,84 +471,9 @@
                         </thead>
                         <tbody id="all" class="detail">
                             <%orders.forEach(order=>{%>
-                                <tr class="bg-white rounded-lg shadow-sm">
-                                    <td class="pl-4 align-middle">
-                                        <input aria-label="Select Sports Jacket order"
-                                            class="rounded border-gray-300 text-blue-600 focus:ring-blue-600"
-                                            type="checkbox" />
-                                    </td>
-                                    <td class="flex items-center space-x-3 py-3 pl-2 align-middle">
-                                        <img alt="Black sports jacket folded on white background"
-                                            class="rounded-md w-10 h-10 object-cover" height="40"
-                                            src="data:image/jpeg;base64,<%= order.productId ?order.productId.image.toString('base64') : '' %>"
-                                            width="40" />
-                                        <div>
-                                            <p class="font-semibold text-gray-900 text-sm leading-tight">
-                                                <%=order.productId.name%>
-                                            </p>
-                                            <p class="text-gray-400 text-xs leading-tight">
-                                                #<%= order._id.toString().substr(8, 13) %>
 
-                                            </p>
-                                        </div>
-                                    </td>
-                                    <td class="text-center pr-4 align-middle font-semibold text-gray-900">
-                                        $ <%=order.productId.price%>
-                                    </td>
-                                    <td class="text-center px-5 align-middle">
-                                        <span
-                                            class="inline-block rounded px-2 py-1 text-xs font-semibold text-yellow-600 bg-yellow-100 select-none">
-                                            <%=order.status%>
-                                        </span>
-                                    </td>
-                                    <td class="text-center align-middle font-semibold text-gray-900">
-                                        <%= order.orderDate.toString().substr(0, 15) %>
+                                <%if(order.productId!==null){%>
 
-                                    </td>
-                                    <td class="openPopup" class="text-center">
-
-                                        <span class="px-3 py-2 bg-blue-100 rounded-md text-blue-500"> <i
-                                                class="fa-solid fa-pen-to-square"></i></span>
-
-                                    </td>
-
-                                </tr>
-                                <div 
-                                    class=" popup fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center hidden">
-                                    <div class="bg-white p-8 rounded-2xl shadow-lg w-11/12 max-w-md">
-                                        <h2 class="text-2xl font-bold mb-6 text-center">Select an Option</h2>
-
-                                        <!-- Options -->
-                                        <form  method="POST" action="/updateStatus/<%=order._id%>"
-                                            class="flex flex-col gap-2 optionForm">
-                                            <button type="submit" name="status" value="Shipped"
-                                                class="px-4 py-2 bg-blue-500 text-white rounded  w-full my-2">
-                                                Shipped
-                                            </button>
-                                            <button type="submit" name="status" value="Processed"
-                                                class="px-4 py-2 bg-yellow-500 text-white rounded  w-full">
-                                                Processed
-                                            </button>
-                                            <button type="submit" name="status" value="Delivered"
-                                                class="px-4 py-2 bg-green-500 text-white rounded  w-full my-2">
-                                                Delivered
-                                            </button>
-                                        </form>
-
-                                        <!-- Close Button -->
-                                        <button 
-                                            class="closePopup mt-6 text-gray-500 hover:text-gray-800 block mx-auto">
-                                            Close
-                                        </button>
-                                    </div>
-                                </div>
-                                <% })%>
-
-
-                        </tbody>
-                        <tbody id="completed" class="detail hidden">
-                            <%orders.forEach(order=>{%>
-                                <% if(order.status.toString().substr(0,1)=="D" ){%>
                                     <tr class="bg-white rounded-lg shadow-sm">
                                         <td class="pl-4 align-middle">
                                             <input aria-label="Select Sports Jacket order"
@@ -574,8 +499,8 @@
                                             $ <%=order.productId.price%>
                                         </td>
                                         <td class="text-center px-5 align-middle">
-                                            <span
-                                                class="inline-block rounded px-2 py-1 text-xs font-semibold text-yellow-600 bg-yellow-100 select-none">
+                                            <span id="<%=order._id%>"
+                                                class="inline-block rounded px-2 py-1 text-xs font-semibold text-green-500  select-none">
                                                 <%=order.status%>
                                             </span>
                                         </td>
@@ -583,7 +508,7 @@
                                             <%= order.orderDate.toString().substr(0, 15) %>
 
                                         </td>
-                                        <td id="openPopup" class="text-center">
+                                        <td onclick="openPopup('<%=order._id%>')" class="text-center">
 
                                             <span class="px-3 py-2 bg-blue-100 rounded-md text-blue-500"> <i
                                                     class="fa-solid fa-pen-to-square"></i></span>
@@ -591,201 +516,40 @@
                                         </td>
 
                                     </tr>
-                                    <div id="popup"
-                                        class="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center hidden">
-                                        <div class="bg-white p-8 rounded-2xl shadow-lg w-11/12 max-w-md">
-                                            <h2 class="text-2xl font-bold mb-6 text-center">Select an Option</h2>
+                                   <% }%>
 
-                                            <!-- Options -->
-                                            <form id="optionForm" method="POST" action="/updateStatus/<%=order._id%>"
-                                                class="flex flex-col gap-2 ">
-                                                <button type="submit" name="status" value="Shipped"
-                                                    class="px-4 py-2 bg-blue-500 text-white rounded  w-full my-2">
-                                                    Shipped
+                                    <% })%>
+                                        <div id="popup"
+                                            class="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center hidden">
+                                            <div class="bg-white p-8 rounded-2xl shadow-lg w-11/12 max-w-md">
+                                                <h2 class="text-2xl font-bold mb-6 text-center">Select an Option
+                                                </h2>
+
+                                                <!-- Options -->
+                                                <form class="flex flex-col gap-2 ">
+                                                    <button onclick="stat(value)" value="Shipped"
+                                                        class="px-4 py-2 bg-blue-500 text-white rounded  w-full my-2">
+                                                        Shipped
+                                                    </button>
+                                                    <button onclick="stat(value)" value="Cancelled"
+                                                        class="px-4 py-2 bg-red-500 text-white rounded  w-full">
+                                                        Cancelled
+                                                    </button>
+                                                    <button onclick="stat(value)" value="Delivered"
+                                                        class="px-4 py-2 bg-green-500 text-white rounded  w-full my-2">
+                                                        Delivered
+                                                    </button>
+                                                </form>
+
+                                                <!-- Close Button -->
+                                                <button id="closePopup"
+                                                    class=" mt-6 text-gray-500 hover:text-gray-800 block mx-auto">
+                                                    Close
                                                 </button>
-                                                <button type="submit" name="status" value="Processed"
-                                                    class="px-4 py-2 bg-yellow-500 text-white rounded  w-full">
-                                                    Processed
-                                                </button>
-                                                <button type="submit" name="status" value="Delivered"
-                                                    class="px-4 py-2 bg-green-500 text-white rounded  w-full my-2">
-                                                    Delivered
-                                                </button>
-                                            </form>
-
-                                            <!-- Close Button -->
-                                            <button id="closePopup"
-                                                class=" mt-6 text-gray-500 hover:text-gray-800 block mx-auto">
-                                                Close
-                                            </button>
-                                        </div>
-                                    </div>
-
-                                    <% }%>
-
-                                        <% })%>
-
-                        </tbody>
-                        <tbody id="processed" class="detail hidden">
-                            <%orders.forEach(order=>{%>
-                                <% if(order.status.toString().substr(0,2)=="Pr" ){%>
-                                    <tr class="bg-white rounded-lg shadow-sm">
-                                        <td class="pl-4 align-middle">
-                                            <input aria-label="Select Sports Jacket order"
-                                                class="rounded border-gray-300 text-blue-600 focus:ring-blue-600"
-                                                type="checkbox" />
-                                        </td>
-                                        <td class="flex items-center space-x-3 py-3 pl-2 align-middle">
-                                            <img alt="Black sports jacket folded on white background"
-                                                class="rounded-md w-10 h-10 object-cover" height="40"
-                                                src="data:image/jpeg;base64,<%= order.productId ?order.productId.image.toString('base64') : '' %>"
-                                                width="40" />
-                                            <div>
-                                                <p class="font-semibold text-gray-900 text-sm leading-tight">
-                                                    <%=order.productId.name%>
-                                                </p>
-                                                <p class="text-gray-400 text-xs leading-tight">
-                                                    #<%= order._id.toString().substr(8, 13) %>
-
-                                                </p>
                                             </div>
-                                        </td>
-                                        <td class="text-center pr-4 align-middle font-semibold text-gray-900">
-                                            $ <%=order.productId.price%>
-                                        </td>
-                                        <td class="text-center px-5 align-middle">
-                                            <span
-                                                class="inline-block rounded px-2 py-1 text-xs font-semibold text-yellow-600 bg-yellow-100 select-none">
-                                                <%=order.status%>
-                                            </span>
-                                        </td>
-                                        <td class="text-center align-middle font-semibold text-gray-900">
-                                            <%= order.orderDate.toString().substr(0, 15) %>
-
-                                        </td>
-                                        <td id="openPopup" class="text-center">
-
-                                            <span class="px-3 py-2 bg-blue-100 rounded-md text-blue-500"> <i
-                                                    class="fa-solid fa-pen-to-square"></i></span>
-
-                                        </td>
-
-                                    </tr>
-                                    <div id="popup"
-                                        class="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center hidden">
-                                        <div class="bg-white p-8 rounded-2xl shadow-lg w-11/12 max-w-md">
-                                            <h2 class="text-2xl font-bold mb-6 text-center">Select an Option</h2>
-
-                                            <!-- Options -->
-                                            <form id="optionForm" method="POST" action="/updateStatus/<%=order._id%>"
-                                                class="flex flex-col gap-2 ">
-                                                <button type="submit" name="status" value="Shipped"
-                                                    class="px-4 py-2 bg-blue-500 text-white rounded  w-full my-2">
-                                                    Shipped
-                                                </button>
-                                                <button type="submit" name="status" value="Processed"
-                                                    class="px-4 py-2 bg-yellow-500 text-white rounded  w-full">
-                                                    Processed
-                                                </button>
-                                                <button type="submit" name="status" value="Delivered"
-                                                    class="px-4 py-2 bg-green-500 text-white rounded  w-full my-2">
-                                                    Delivered
-                                                </button>
-                                            </form>
-
-                                            <!-- Close Button -->
-                                            <button id="closePopup"
-                                                class=" mt-6 text-gray-500 hover:text-gray-800 block mx-auto">
-                                                Close
-                                            </button>
                                         </div>
-                                    </div>
-
-                                    <% }%>
-
-                                        <% })%>
-
                         </tbody>
-                        <tbody id="cancelled" class="detail hidden">
-                            <%orders.forEach(order=>{%>
-                                <% if(order.status.toString().substr(0,1)=="C" ){%>
-                                    <tr class="bg-white rounded-lg shadow-sm">
-                                        <td class="pl-4 align-middle">
-                                            <input aria-label="Select Sports Jacket order"
-                                                class="rounded border-gray-300 text-blue-600 focus:ring-blue-600"
-                                                type="checkbox" />
-                                        </td>
-                                        <td class="flex items-center space-x-3 py-3 pl-2 align-middle">
-                                            <img alt="Black sports jacket folded on white background"
-                                                class="rounded-md w-10 h-10 object-cover" height="40"
-                                                src="data:image/jpeg;base64,<%= order.productId ?order.productId.image.toString('base64') : '' %>"
-                                                width="40" />
-                                            <div>
-                                                <p class="font-semibold text-gray-900 text-sm leading-tight">
-                                                    <%=order.productId.name%>
-                                                </p>
-                                                <p class="text-gray-400 text-xs leading-tight">
-                                                    #<%= order._id.toString().substr(8, 13) %>
 
-                                                </p>
-                                            </div>
-                                        </td>
-                                        <td class="text-center pr-4 align-middle font-semibold text-gray-900">
-                                            $ <%=order.productId.price%>
-                                        </td>
-                                        <td class="text-center px-5 align-middle">
-                                            <span
-                                                class="inline-block rounded px-2 py-1 text-xs font-semibold text-yellow-600 bg-yellow-100 select-none">
-                                                <%=order.status%>
-                                            </span>
-                                        </td>
-                                        <td class="text-center align-middle font-semibold text-gray-900">
-                                            <%= order.orderDate.toString().substr(0, 15) %>
-
-                                        </td>
-                                        <td id="openPopup" class="text-center">
-
-                                            <span class="px-3 py-2 bg-blue-100 rounded-md text-blue-500"> <i
-                                                    class="fa-solid fa-pen-to-square"></i></span>
-
-                                        </td>
-
-                                    </tr>
-                                    <div id="popup"
-                                        class="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center hidden">
-                                        <div class="bg-white p-8 rounded-2xl shadow-lg w-11/12 max-w-md">
-                                            <h2 class="text-2xl font-bold mb-6 text-center">Select an Option</h2>
-
-                                            <!-- Options -->
-                                            <form id="optionForm" method="POST" action="/updateStatus/<%=order._id%>"
-                                                class="flex flex-col gap-2 ">
-                                                <button type="submit" name="status" value="Shipped"
-                                                    class="px-4 py-2 bg-blue-500 text-white rounded  w-full my-2">
-                                                    Shipped
-                                                </button>
-                                                <button type="submit" name="status" value="Processed"
-                                                    class="px-4 py-2 bg-yellow-500 text-white rounded  w-full">
-                                                    Processed
-                                                </button>
-                                                <button type="submit" name="status" value="Delivered"
-                                                    class="px-4 py-2 bg-green-500 text-white rounded  w-full my-2">
-                                                    Delivered
-                                                </button>
-                                            </form>
-
-                                            <!-- Close Button -->
-                                            <button id="closePopup"
-                                                class=" mt-6 text-gray-500 hover:text-gray-800 block mx-auto">
-                                                Close
-                                            </button>
-                                        </div>
-                                    </div>
-
-                                    <% }%>
-
-                                        <% })%>
-
-                        </tbody>
                     </table>
                 </section>
             </div>
@@ -822,7 +586,7 @@
                             </thead>
                             <tbody>
                                 <%products.forEach(product=>{%>
-                                    <tr class="bg-[#f5faf7] rounded-lg h-[12vh]">
+                                    <tr class="bg-[#f5faf7] rounded-lg h-[12vh]" id="<%=product._id%>">
                                         <td class=" h-full py-2 flex items-center gap-2 font-semibold">
                                             <img class=" h-[80%] w-[5vw] object-cover rounded" height="24"
                                                 loading="lazy"
@@ -852,7 +616,8 @@
                                         </td>
                                         <td>
 
-                                            <span class=" px-3 py-2 bg-red-100 rounded-md text-red-500"> <i
+                                            <span onclick="deleteItem('<%=product._id%>')"
+                                                class=" px-3 py-2 bg-red-100 rounded-md text-red-500"> <i
                                                     class="fa-solid fa-trash "></i></span>
                                             <span class="px-3 py-2 bg-blue-100 rounded-md text-blue-500"> <i
                                                     class="fa-solid fa-pen-to-square"></i></span>
@@ -874,10 +639,10 @@
                 <table class="w-full text-xs text-left text-gray-700 border-separate border-spacing-y-2">
                     <thead>
                         <tr class="border-b border-gray-200">
-                            <th class="pb-2 font-semibold">
+                            <th class="pl-10 font-semibold w-[10vw]">
                                 Name
                             </th>
-                            <th class="pb-2 font-semibold">
+                            <th class="pb-2 font-semibold ">
                                 Email
                             </th>
                             <th class="pb-2 font-semibold">
@@ -886,18 +651,21 @@
                             <th class="pb-2 font-semibold">
                                 Total ordered
                             </th>
+                            <th class="pb-2 font-semibold">
+                                Actions
+                            </th>
 
                         </tr>
                     </thead>
                     <tbody class="px-5">
                         <%users.forEach(user=>{%>
-                            <tr class="bg-[#f5faf7] rounded-lg h-[8vh]">
+                            <tr id="<%=user._id%>" class="bg-[#f5faf7] rounded-lg h-[8vh]">
 
-                                <td class="font-normal">
+                                <td class=" pl-10 font-normal">
                                     <%=user.fullname%>
                                 </td>
 
-                                <td class="text-[#0f4f3f] font-semibold">
+                                <td class="text-[#0f4f3f] font-semibold ">
                                     <%=user.email%>
                                 </td>
                                 <td class="font-normal">
@@ -910,7 +678,7 @@
 
                                 <td>
 
-                                    <span class=" px-3 py-2 bg-red-100 rounded-md text-red-500"> <i
+                                    <span onclick="deleteUser('<%=user._id%>')"  class=" px-3 py-2 bg-red-100 rounded-md text-red-500"> <i
                                             class="fa-solid fa-trash "></i></span>
                                     <span class=" px-3 py-2 bg-red-100 rounded-md text-red-500"> <i
                                             class="fa-solid fa-arrow-up-right-from-square"></i></span>

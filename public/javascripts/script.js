@@ -317,3 +317,18 @@ function deleteItem(productId, index) {
             console.log("Error in deletion ", err);
         });
 }
+
+
+// remove deleted items 
+
+function closing(productId) {
+    fetch("/deleteDeleted",{
+        method:"POST",
+        headers:{
+            'Content-Type':'application/json',
+        },
+        body:JSON.stringify({productId}),
+    })
+
+    document.getElementById("closed").remove();
+}

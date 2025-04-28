@@ -190,7 +190,10 @@
                         <section class="bg-white p-6 rounded-lg shadow-lg w-[50%] ">
                             <h2 class="text-2xl font-bold mb-4">Current Orders</h2>
                             <div class="space-y-4 w-[100%] ">
-                                <%orders.forEach(order=>{%>
+                                <%orders.forEach((order,idx)=>{%>
+                                   <% if(order.productId!=null){%>
+
+                                    
                                     <div class="flex justify-between items-center p-4 bg-gray-50 rounded-lg shadow-sm"
                                         data-product-id="<%=order._id%>">
                                         <img alt="Pepperoni Pizza" class="rounded-lg " height="100"
@@ -210,6 +213,13 @@
                                         <!-- <button onclick="deleteProduct('<%=order._id%>')"
                                             class="bg-red-500 text-white py-1 px-3 rounded-lg">Cancel</button> -->
                                     </div>
+                                    <%}else{%>
+                                        <div  id="closed" class="w-ful h-[4vw] rounded-md bg-zinc-100 border my-1 flex justify-between items-center box-border p-5"><p>this is product is deleted</p>
+                                            <i  onclick="closing('<%=order._id%>')" class="ri-close-line"></i></div>
+                                            
+                                        
+
+                                        <%}%>
                                     <% });%>
 
                             </div>

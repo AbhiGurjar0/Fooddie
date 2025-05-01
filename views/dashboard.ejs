@@ -104,15 +104,9 @@
 
                             </div>
                             <div class="flex gap-3">
-                                <button
-                                    class="flex items-center gap-2 border border-gray-300 rounded-md px-3 py-1 text-sm text-gray-700 hover:bg-gray-100 transition"
-                                    type="button">
-                                    <i class="fas fa-th-large text-xs">
-                                    </i>
-                                    Customize
-                                </button>
+
                                 <a href="/home/additems"><button
-                                        class="bg-[#0f4f3f] text-white rounded-md px-4 py-1 text-sm font-semibold hover:bg-[#0d3e31] transition"
+                                        class="bg-[#0f4f3f] text-white rounded-md px-4 py-1 text-sm font-semibold hover:bg-[#0d3e31] transition active:scale-90"
                                         type="button">
                                         + Add new
                                     </button>
@@ -556,8 +550,10 @@
                                             <span onclick="deleteItem('<%=product._id%>')"
                                                 class=" px-3 py-2 bg-red-100 rounded-md text-red-500"> <i
                                                     class="fa-solid fa-trash "></i></span>
-                                            <span class="px-3 py-2 bg-blue-100 rounded-md text-blue-500"> <i
+                                           <a href="/admin/editProducts/<%=product._id%>"> <span 
+                                                class="px-3 py-2 bg-blue-100 rounded-md text-blue-500 hover:bg-blue-200 cursor-pointer"> <i
                                                     class="fa-solid fa-pen-to-square"></i></span>
+                                                </a>
 
                                         </td>
                                     </tr>

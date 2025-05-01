@@ -98,6 +98,20 @@ function deleteUser(userId) {
 }
 
 
+function editProduct(productId) {
+    fetch("/admin/editProducts", {
+        method: "POST",
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ productId }),
+    })
+    // document.getElementById(`${userId}`).remove();
+
+}
+
+
+
 
 
 

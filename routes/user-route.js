@@ -273,4 +273,34 @@ router.post("/deleteUser", async (req, res) => {
   res.send("User deleted Successfully");
 
 })
+
+router.get("/admin/editProducts/:id", async (req, res) => {
+  let product = await productModel.findOne({ _id: req.params.id });
+  res.render("editProducts", { product });
+})
+
+router.post("/admin/updateProduct/:id", upload.single("images"), async (req, res) => {
+  let { name, quantity, category, price, discount } = req.body;
+  let product = await productModel.findOneAndUpdate(req.params.id);
+  let updateData = {
+    name,
+    quantity,
+    category,
+    price,
+    discount,
+    image: req.file ? req.file.buffer : product.image,
+  }
+
+  await productModel.findByIdAndUpdate(req.params.id, updateData, {
+    new: true,
+  });
+
+  res.redirect("/admin");
+})
+
+router.get("/admin/userDetails", async (req, res) => {
+
+  res.render("userDetails");
+})
+
 module.exports = router; 

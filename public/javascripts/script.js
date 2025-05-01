@@ -320,7 +320,7 @@ function deleteItem(productId, index) {
 
 
 // remove deleted items 
-
+ 
 function closing(productId) {
     fetch("/deleteDeleted",{
         method:"POST",

@@ -363,7 +363,7 @@
                                     <td class="p-4">
                                         <i class="fas fa-map-marker-alt text-purple-600">
                                         </i>
-                                        <%=user.address[0].address%>
+                                        <%=user?.address[0]?.address%>
                                     </td>
                                     <td class="p-4 text-purple-600">
                                         $ <%=ord.amount%>
@@ -523,8 +523,8 @@
                                     </h2>
                                     <p class="text-gray-500 capitalize">
                                         <%if(user.address){%>
-                                            <%=user.address[0]?user.address[0].city:''%>,
-                                                <%=user.address[0]?user.address[0].state:''%>
+                                            <%=user.address[0]?.city:''%>,
+                                                <%=user.address[0]?.state:''%>
                                                     <% }%>
                                     </p>
                                 </div>
